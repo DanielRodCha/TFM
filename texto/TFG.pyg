@@ -1,0 +1,35 @@
+-- | Por ejemplo,
+--
+-- >>> let [p1,p2] = [Atom "p1",Atom "p2"]
+-- >>> tr p1
+-- x1
+-- >>> tr (p1 ∧ p2)
+-- x1x2
+-- >>> tr (p ∧ (q ∨ r))
+-- qrx+qx+rx
+tr :: FProp -> PolF2
+tr T             = 1
+tr F             = 0
+tr (Atom (a:as)) | a == 'p'  = var ('x':as)
+                 | otherwise = var (a:as)
+tr (Neg a)       = 1 + tr a
+tr (Conj a b)    = tr a * tr b
+tr (Disj a b)    = a' + b' + a' * b'
+                 where a' = tr a
+                       b' = tr b
+tr (Impl a b)    = 1 + a' + a' * tr b
+                 where a' = tr a
+tr (Equi a b)    = 1 + tr a + tr b
+\end{mintend}
+
+ Para la transformación contraria (de polinomios a fórmulas) se usará el mapeo
+ $\Theta :\mathbb{F}_2[x] \rightarrow Form(\mathcal{L})$ definida por:
+
+\begin{itemize}
+\item[•] $\Theta$
+\item[•]
+\item[•]
+\item[•]
+\item[•]
+\end{itemize}
+

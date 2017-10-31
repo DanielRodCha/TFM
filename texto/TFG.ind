@@ -1,0 +1,33 @@
+\begin{theindex}
+
+  \item \texttt{FProp}, \hyperpage{13}
+  \item \texttt{Interpretacion}, \hyperpage{16}
+  \item \texttt{VarProp}, \hyperpage{13}
+  \item \texttt{\IeC {\ensuremath  {\leftrightarrow }}}, \hyperpage{14}
+  \item \texttt{\IeC {\ensuremath  {\rightarrow }}}, \hyperpage{14}
+  \item \texttt{\IeC {\ensuremath  {\vee }}}, \hyperpage{14}
+  \item \texttt{\IeC {\ensuremath  {\wedge }}}, \hyperpage{14}
+  \item \texttt{cuadrado}, \hyperpage{9}, \hyperpage{37}, 
+		\hyperpage{39}, \hyperpage{41}
+  \item \texttt{equivalentesKB}, \hyperpage{23}
+  \item \texttt{equivalentes}, \hyperpage{23}
+  \item \texttt{esConsecuenciaKB}, \hyperpage{22}
+  \item \texttt{esConsecuencia}, \hyperpage{21}
+  \item \texttt{esConsistente}, \hyperpage{20}
+  \item \texttt{esInconsistente}, \hyperpage{21}
+  \item \texttt{esInsatisfacible}, \hyperpage{18}
+  \item \texttt{esModeloFormula}, \hyperpage{16}
+  \item \texttt{esModeloKB}, \hyperpage{19}
+  \item \texttt{esSatisfacible}, \hyperpage{18}
+  \item \texttt{esValida}, \hyperpage{18}
+  \item \texttt{interpretacionesForm}, \hyperpage{17}
+  \item \texttt{interpretacionesKB}, \hyperpage{19}
+  \item \texttt{modelosFormula}, \hyperpage{17}
+  \item \texttt{modelosKB}, \hyperpage{20}
+  \item \texttt{no}, \hyperpage{14}
+  \item \texttt{significado}, \hyperpage{16}
+  \item \texttt{simbolosPropForm}, \hyperpage{17}
+  \item \texttt{simbolosPropKB}, \hyperpage{19}
+  \item \texttt{sustituye}, \hyperpage{15}
+
+\end{theindex}

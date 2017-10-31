@@ -1,0 +1,79 @@
+-- This file has been generated from package.yaml by hpack version 0.14.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:                TFM
+version:             0.1.0.0
+homepage:            https://github.com/githubuser/TFM#readme
+bug-reports:         https://github.com/githubuser/TFM/issues
+license:             BSD3
+license-file:        LICENSE
+author:              Daniel R. Chavarria
+maintainer:          drodriguez15@us.es
+copyright:           2017 Author name here
+category:            Haskell
+build-type:          Simple
+cabal-version:       >= 1.10
+
+extra-source-files:
+    README.org
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/TFM
+
+library
+  hs-source-dirs:
+      src
+  exposed-modules:
+      Logica
+      Haskell4Maths
+      F2
+  other-modules:
+      PFH
+      Transformaciones
+      Paths_TFM
+  build-depends:
+      base >=4.7 && <5
+    , HaskellForMaths
+    , containers
+    , hatt
+    , doctest
+    , QuickCheck
+  default-language: Haskell2010
+
+executable TFM-exe
+  hs-source-dirs:
+      app
+    , src
+  main-is: Main.hs
+  build-depends:
+      base >=4.7 && <5
+    , HaskellForMaths
+    , containers
+    , hatt
+    , doctest
+    , QuickCheck
+  other-modules:
+      F2
+      Haskell4Maths
+      Logica
+      PFH
+      Transformaciones
+  default-language: Haskell2010
+
+test-suite doctests
+  type: exitcode-stdio-1.0
+  main-is: Doctest.hs
+  hs-source-dirs:
+      test
+  ghc-options: -threaded
+  build-depends:
+      base >=4.7 && <5
+    , HaskellForMaths
+    , containers
+    , hatt
+    , doctest
+    , QuickCheck
+    , doctest-discover
+  default-language: Haskell2010

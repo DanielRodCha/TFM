@@ -1,0 +1,36 @@
+name: TFM
+version: '0.1.0.0'
+category: Haskell
+author: Daniel R. Chavarria
+maintainer: drodriguez15@us.es
+copyright: 2017 Author name here
+license: BSD3
+github: githubuser/TFM
+extra-source-files:
+- README.org
+dependencies:
+- base >=4.7 && <5
+- HaskellForMaths
+- containers
+- hatt
+- doctest
+- QuickCheck
+library:
+  source-dirs: src
+  exposed-modules:
+  - Logica
+  - Haskell4Maths
+  - F2
+executables:
+  TFM-exe:
+    main: Main.hs
+    source-dirs:
+    - app
+    - src
+tests:
+  doctests:
+    main: Doctest.hs
+    source-dirs: test
+    ghc-options: -threaded
+    dependencies:
+    - doctest-discover

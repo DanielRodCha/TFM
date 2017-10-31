@@ -1,0 +1,16 @@
+\begin{thebibliography}{1}
+
+\bibitem{Alonso-15b}
+J.~Alonso.
+\newblock
+  \href{https://www.cs.us.es/~jalonso/cursos/i1m-15/temas/2015-16-IM-temas-PF.pdf}
+  {Temas de programación funcional}.
+\newblock Technical report, Univ. de Sevilla, 2015.
+
+\bibitem{Kapur-1985}
+D.~Kapur and P.~Narendran.
+\newblock An equational approach to theorem proving in first-order predicate
+  calculus.
+\newblock {\em SIGSOFT Softw. Eng. Notes}, 10(4):63--66, Aug. 1985.
+
+\end{thebibliography}
