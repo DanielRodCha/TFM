@@ -21,6 +21,7 @@ library:
   - Logica
   - Haskell4Maths
   - F2
+  - Transformaciones
 executables:
   TFM-exe:
     main: Main.hs

@@ -29,9 +29,9 @@ library
       Logica
       Haskell4Maths
       F2
+      Transformaciones
   other-modules:
       PFH
-      Transformaciones
       Paths_TFM
   build-depends:
       base >=4.7 && <5
