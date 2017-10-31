@@ -35,8 +35,14 @@
 module Transformaciones where
 
 import Logica
-import Haskell4Maths (Vect(..),var,mindices,eval)
-import F2
+import Haskell4Maths (Vect(..)
+                     , var
+                     , vars
+                     , mindices
+                     , eval
+                     , linear
+                     , (%%))
+import F2 (PolF2)
 
 import Test.QuickCheck
 \end{code}
@@ -208,6 +214,107 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
 -- 0
 \end{code}
 
-\subsection{Proyeccion polinomial}
+\subsection{Proyección polinomial}
  Consideremos ahora la parte derecha de la figura \ref{fig:esquema}. Para
- simplificar la relación entre la semántica de la lógica proposicional
+ simplificar la relación entre la semántica de la lógica proposicional y la
+ geometría sobre cuerpos finitos se usará el mapa:
+
+ $$\Phi:\mathbb{F}_2[\textbf{x}] \rightarrow \mathbb{F}_2[\textbf{x}]$$
+ $$\Phi (\sum\limits_{\alpha \in I} \textbf{x}^{\alpha} ) := \sum\limits_{\alpha
+ \in I} \textbf{ x}^{sg(\alpha)} $$
+
+ siendo $sg(\alpha) := (\delta_1 ,\dots,\delta_n)$ donde $\delta_i$ es 0 si
+ $\alpha_i = 0$ y 1 en cualquier otro caso. \\
+
+ En la librería \texttt{HaskellForMaths} ya existe una función que calcula el
+ representante de un polinomio un el grupo cociente por un ideal. Esta es la
+ función \texttt{(\%\%)}. Sin embargo, ya que la búsqueda de la eficiencia es una
+ máxima en este trabajo, se aprovechará el hecho de que calcular dicho
+ representante equivale a reeplazar cada ocurrencia de $x_i^k$ (con
+ $k\in\mathbb{N}$) por $x_i$.\\ 
+
+ La función \texttt{(phi p)} calcula el representante de menor grado del
+ polinomio $p$ en el grupo cociente $\mathbb{F}_2[\textbf{x}]/_{\mathbb{I}_2}$,
+ siendo $\mathbb{I}_2 = \{x_1+x_1^2,...,x_n+x_n^2\}$ y $n\in \mathbb{N}$ el
+ número total de variables. 
+
+\begin{code}
+-- | Por ejemplo,
+-- >>> let [x1,x2] = [var "x1", var "x2"] :: [PolF2]
+-- >>> phi (1+x1+x1^2*x2) 
+-- x1x2+x1+1
+phi :: PolF2  -> PolF2
+phi = linear (\m -> product [ var x | (x,i) <- mindices m])
+\end{code}
+
+ Para poder comprobar la propiedad clave que justifica la redefinición de phi,
+ es necesaria la función (\texttt{ideal p}) que devuelve el ideal (con menos
+ generadores) respecto al cual se calcula el grupo cociente para buscar el
+ representante.
+
+\begin{code}
+-- | Por ejemplo,
+--
+-- >>> let [x1,x2] = [var "x1", var "x2"] :: [PolF2]
+-- >>> ideal (1+x1+x1^2*x2)
+-- [x1^2+x1,x2^2+x2]
+ideal :: PolF2 -> [PolF2]
+ideal p = [v+v^2| v<-vars p]
+\end{code}
+
+ La propiedad implementada queda:
+
+\begin{code}
+-- |
+-- >>> quickCheck prop_phi
+-- +++ OK, passed 100 tests.
+prop_phi :: PolF2 -> Bool
+prop_phi p = phi p == p %% (ideal p)
+\end{code}
+
+ Tal y como se ha descrito anteriormente, $\Phi$ selecciona un representante de
+ la clase de equivalencia de $\mathbb{F}_2[\textbf{x}]/_{\mathbb{I}_2}$. Dicho
+ representante resulta ser también un polinomio, por lo que cuando se quiere
+ asociar un polinomio a una fórmula proposicional basta aplicar la composición
+ $\pi := \Phi \circ P$, que se llamará \textit{proyección polinomial}.\\
+
+ Esta proyección es muy útil para manejar los polinomios ya que los simplifica
+ en gran medida. Por ejemplo, sea $F=p_1\rightarrow p_1 \wedge p_2$, entonces
+ $P(F)=1+x_1+x_1^2x_2$ mientras que $\pi(F)=1+x_1+x_1x_2$. \\
+
+ La función \texttt{proyeccion p} es la implementación de la función $\pi (p)$:
+
+\begin{code}
+-- | Por ejemplo,
+-- >>> let [p1,p2] = [Atom "p1",Atom "p2"]
+-- >>> proyeccion p1
+-- x1
+-- >>> tr (p1 → p1 ∧ p2)
+-- x1^2x2+x1+1
+-- >>> proyeccion (p1 → p1 ∧ p2)
+-- x1x2+x1+1
+proyeccion :: FProp -> PolF2
+proyeccion = (phi . tr)
+\end{code}
+
+ Conveniene comprobar si se verifica que cualquier fórmula $f$ es
+ equivalente a $\theta (\pi (f))$:
+
+\begin{code}
+-- |
+-- >>> quickCheckWith (stdArgs {maxSize = 50}) prop_theta_proyeccion
+-- +++ OK, passed 100 tests.
+prop_theta_proyeccion :: FProp -> Bool
+prop_theta_proyeccion f = equivalentes (theta (proyeccion f)) f
+\end{code}
+
+ Además, como se ha solucionado el problema de los exponentes se puede
+ comprobar la propiedad recíproca:
+
+\begin{code}
+-- |
+-- >>> quickCheck prop_proyeccion_theta
+-- +++ OK, passed 100 tests.
+prop_proyeccion_theta :: PolF2 -> Bool
+prop_proyeccion_theta p = phi p == (proyeccion . theta) p
+\end{code}

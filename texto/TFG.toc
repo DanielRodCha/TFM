@@ -27,12 +27,12 @@
 \contentsline {subsubsection}{Propiedades de $\PazoBB {F}_2[\textbf {x}]$}{34}{section*.11}
 \contentsline {subsection}{\numberline {2.2.4}Transformaciones entre f\IeC {\'o}rmulas y polinomios}{36}{subsection.2.2.4}
 \contentsline {subsection}{\numberline {2.2.5}Correspondencia entre valoraciones y puntos en $\PazoBB {F}_2^n$}{39}{subsection.2.2.5}
-\contentsline {subsection}{\numberline {2.2.6}Proyeccion polinomial}{40}{subsection.2.2.6}
-\contentsline {chapter}{\numberline {3}Regla de independencia y prueba no clausal de teoremas}{41}{chapter.3}
-\contentsline {section}{\numberline {3.1}Introducci\IeC {\'o}n a Haskell}{41}{section.3.1}
-\contentsline {chapter}{\numberline {4}Aplicaciones}{43}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introducci\IeC {\'o}n a Haskell}{43}{section.4.1}
-\contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{45}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{45}{section.5.1}
-\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{46}{section.5.1}
-\contentsline {chapter}{Indice de definiciones}{47}{chapter*.12}
+\contentsline {subsection}{\numberline {2.2.6}Proyecci\IeC {\'o}n polinomial}{40}{subsection.2.2.6}
+\contentsline {chapter}{\numberline {3}Regla de independencia y prueba no clausal de teoremas}{43}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introducci\IeC {\'o}n a Haskell}{43}{section.3.1}
+\contentsline {chapter}{\numberline {4}Aplicaciones}{45}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introducci\IeC {\'o}n a Haskell}{45}{section.4.1}
+\contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{47}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{47}{section.5.1}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{48}{section.5.1}
+\contentsline {chapter}{Indice de definiciones}{49}{chapter*.12}
