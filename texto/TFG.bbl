@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{Agudelo-15}
+J.~C. Agudelo-Agudelo, C.~A. Agudelo-González, and O.~E. García-Quintero.
+\newblock On polynomial semantics for propositional logics.
+\newblock {\em Journal of Applied Non-Classical Logics}, 26(2):103--125, 2016.
+
 \bibitem{Alonso-15b}
 J.~Alonso.
 \newblock
@@ -12,5 +17,16 @@ D.~Kapur and P.~Narendran.
 \newblock An equational approach to theorem proving in first-order predicate
   calculus.
 \newblock {\em SIGSOFT Softw. Eng. Notes}, 10(4):63--66, Aug. 1985.
+
+\bibitem{Laita99}
+L.~M. Laita, E.~Roanes-Lozano, L.~de~Ledesma, and J.~A. Alonso.
+\newblock A computer algebra approach to verification and deduction in
+  many-valued knowledge systems.
+\newblock {\em Soft Computing}, 3(1):7--19, Jun 1999.
+
+\bibitem{Winkler96}
+F.~Winkler.
+\newblock {\em The method of Gr{\"o}bner bases}, pages 172--203.
+\newblock Springer Vienna, Vienna, 1996.
 
 \end{thebibliography}

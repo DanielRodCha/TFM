@@ -34,21 +34,21 @@ type PolF2 = Vect F2 (Lex String)
 \end{code}
 
  Notar que el tipo de las variables es simplemente un cambio de nombre respecto
- a los polinomios que ha sido metido dentro de la mónada \texttt{Box}. Este
+ a los polinomios que ha sido metido dentro del constructor \texttt{Box}. Este
  artificio es necesario ya que no se pueden declarar instancias (como se hará a
  continuación) repetidas sobre un mismo tipo de dato aunque tengan nombres
  distintos. \\
 
- Sin embargo, es necesario definir la función auxiliar \texttt{unbox
- x} que saca a $x$ de la mónada \texttt{Var}:
+ Sin embargo, es necesario definir la función auxiliar \texttt{(unbox
+ x)} que saca a $x$ de la mónada \texttt{Var}:
 
 \begin{code}
 unbox :: VarF2 -> PolF2
 unbox (Box x) = x
 \end{code}
 
- Para poder mostrar por consola las variables de forma estética, es decir, sin
- mostrar la mónada \texttt{Bos}, declaramos la instancia \texttt{Show}:
+ Para poder mostrar por consola las variables de forma estética; es decir, sin
+ mostrar el constructor \texttt{Box}, declaramos la instancia \texttt{Show}:
 
 \begin{code}
 instance Show VarF2 where
@@ -56,9 +56,10 @@ instance Show VarF2 where
 \end{code}
 
  Para poder definir propiedades que involucren a estos tipos
- de datos y  chequearlas con \texttt{quickCheck} es necesario añadir la
- instacia Arbitrary, así como definir generadores de dichos tipos. Se comenzará
- por el tipo \texttt{VarF2} ya que servirá como apoyo para el de los polinomios:
+ de datos y comprobarlas con \texttt{QuickCheck} es necesario añadir la
+ instacia \texttt{Arbitrary}, así como definir generadores de dichos tipos. Se
+ comenzará por el tipo \texttt{VarF2} ya que servirá como apoyo para el de los
+ polinomios:
 
 \begin{code}
 instance Arbitrary VarF2 where

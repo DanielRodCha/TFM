@@ -9,7 +9,7 @@
  La notación usada en los polinomios es la estándar. Dado $\alpha = (\alpha_1,
  ... , \alpha_n) \in \mathbb{N}^n$, se define $|\alpha| := \text{máx} \{
  \alpha_1,...,\alpha_n \}$ y $x^{\alpha}$ es el monomio
- $x^{\alpha_1}_1,...,x_n^{\alpha_n}$. \\
+ $x^{\alpha_1}_1...x_n^{\alpha_n}$. \\
 
  \defn El \textit{grado} de $a(\textbf{x}) \in \mathbb{F}_2[\textbf{x}]$ es
  $$deg_{\infty}(a(\textbf{x})) := \text{máx}\{|\alpha| : \textbf{x}^{\alpha}
@@ -35,7 +35,8 @@
 \hspace{10.5cm} Isaac Newton
 \end{center}
 
- así que conviene apoyarse en la multitud de librerías existentes de la
+ \noindent así que conviene apoyarse en la multitud de librerías existentes de
+la 
  comunidad Haskell. Aunque, continuando con la metáfora de Newton, no es fácil
  saber qué gigante es el más alto si miramos desde el suelo. Por tanto, es
  necesario un estudio de las distintas librerías, a fin de escoger la que se
@@ -52,7 +53,7 @@
  en Haskell, siendo un trabajo muy pulido con un tutarial muy completo.\\
 
  Sin embargo, no resulta intuitivo aislar la librería de polinomios por lo que
- para realizar las pruebas se optado por cargar todo el paquete apoyándonos en
+ para realizar las pruebas se ha optado por cargar todo el paquete apoyándonos en
  la documentación.\\
 
  Esta librería sólo trabaja con polinomios en una única variable. Por
@@ -153,7 +154,6 @@ module Haskell4Maths
 import Math.Core.Field
 import Math.Algebras.VectorSpace
 import Math.CommutativeAlgebra.Polynomial
---    (Lex, Glex, Grevlex, var, mindices, lm, lt, (%%), vars)
 \end{code}
 
 \subsubsection{Math.Core.Field}
@@ -262,24 +262,24 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
 
 \begin{code}
 -- |
--- >>> let [x,y,z] = map var ["x","y","z"] :: [LexPoly Q String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly Q String]
 -- >>> x^2+x*y+x*z+x+y^2+y*z+y+z^2+z+1
 -- x^2+xy+xz+x+y^2+yz+y+z^2+z+1
--- >>> let [x,y,z] = map var ["x","y","z"] :: [GlexPoly Q String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [GlexPoly Q String]
 -- >>> x^2+x*y+x*z+x+y^2+y*z+y+z^2+z+1
 -- x^2+xy+xz+y^2+yz+z^2+x+y+z+1
--- >>> let [x,y,z] = map var ["x","y","z"] :: [GrevlexPoly Q String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [GrevlexPoly Q String]
 -- >>> x^2+x*y+x*z+x+y^2+y*z+y+z^2+z+1
 -- x^2+xy+y^2+xz+yz+z^2+x+y+z+1
--- >>> let [x,y,z] = map var ["x","y","z"] :: [LexPoly Q String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly Q String]
 -- >>> (x+y+z)^2
 -- x^2+2xy+2xz+y^2+2yz+z^2
--- >>> let [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
 -- >>> (x+y+z)^2
 -- x^2+y^2+z^2
 \end{code}
  
- Como se mencionó anteriormente la base del es espacio vectorial deque es un
+ Como se mencionó anteriormente la base del espacio vectorial que es un
  polinomio, está formada por monomios. El tipo de dato monomio está formado por
  un coeficiente $i$ y una lista de pares. En el caso de los polinomios, un
  ejemplo de monomio es:
@@ -292,7 +292,7 @@ monomio :: MonImpl [Char]
 monomio = (M 1 [("x",2),("y",1)])
 \end{code}
  
- Dichos pares se obtienen mediante la función \texttt{mindices m} y se pueden
+ Dichos pares se obtienen mediante la función \texttt{(mindices m)} y se pueden
  entender como los elementos canónicos que forman cada monomio de la base, así
  como su exponente:
 
@@ -305,34 +305,34 @@ monomio = (M 1 [("x",2),("y",1)])
  En este módulo también se implementan tres funciones auxiliares que resultarán
  de gran utilidad más adelante. La función auxiliar que resulta más natural
  implementar cuando se trabaja con polinomios y que además goza de una gran
- importancia es \texttt{vars p}. Ésta devuelve la lista de variables que
+ importancia es \texttt{(vars p)}. Ésta devuelve la lista de variables que
  aparecen en el polinomio $p$.
 
 \begin{code}
 -- |Por ejemplo,
 --
--- >>> let [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
 -- >>> vars (x*z*y+y*x^2+z^4)
 -- [x,y,z]
 \end{code}
 
- La segunda función auxiliar es \texttt{lt m}
+ La segunda función auxiliar es \texttt{(lt m)}
  (término líder) que devuelve un par \texttt{(m,i)} donde $m$ es el monomio
  líder e $i$ su coeficiente ($i\in k$). 
 
 \begin{code}
 -- |
--- >>> let [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
 -- >>> lt (x*z*y+y*x^2+z^4)
 -- (x^2y,1)
 \end{code}
 
- La tercera es la función \texttt{lm p} que devuelve el monomio líder del
+ La tercera es la función \texttt{(lm p)} que devuelve el monomio líder del
  polinomio $p$: 
 
 \begin{code}
 -- |
--- >>> let [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
 -- >>> lm (x*z*y+y*x^2+z^4)
 -- x^2y
 \end{code}
@@ -343,7 +343,7 @@ monomio = (M 1 [("x",2),("y",1)])
 
 \begin{code}
 -- |
--- >>> let [x,y] = map var ["x","y"] :: [LexPoly F2 String]
+-- >>> [x,y] = map var ["x","y"] :: [LexPoly F2 String]
 -- >>> eval (x^2+y^2) [(x,1),(y,0)]
 -- 1
 \end{code}
@@ -353,7 +353,7 @@ monomio = (M 1 [("x",2),("y",1)])
 
 \begin{code}
 -- |
--- >>> let [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
+-- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
 -- >>> (x^2+y^2) %% [x^2+1]
 -- y^2+1
 \end{code}

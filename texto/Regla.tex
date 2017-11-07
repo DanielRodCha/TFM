@@ -1,15 +1,19 @@
-\chapter{Regla de independencia y prueba no clausal de teoremas}\label{sec:progfunHas}
+\chapter{Regla de independencia y prueba no clausal de teoremas}
 
-En este capítulo se hace una breve introducción a la programación funcional en
-Haskell suficiente para entender su aplicación en los siguientes
-capítulos. Para una introducción más amplia se pueden consultar los apuntes de
-la asignatura de Informática de 1º del Grado en Matemáticas
-(\cite{Alonso-15b}). 
+En el presente capítulo se expondrá el diseño de un método de prueba de teoremas basado en la consistencia o inconsistencia del conjunto de fórmulas de partida, así como de la negación de la fórmula que se quiere deducir. En definitiva se basa en el hecho de que, si $K$ es una base de conocimiento y $F$ una fórmula proposicional:
 
-El contenido de este capítulo se encuentra en el módulo \texttt{PFH} 
-\entrada{PFH}.
+$$K\vDash F \;\text{ si y sólo si }\; K \cup \{ \neg F \} \text{ es inconsistente}$$
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "TFG"
-%%% End:
+La idea principal será hallar la inconsistencia del conjunto de fórmulas mediante la saturación de dicho conjunto en la constante $\bot$. Para saturar, se usarán las ya mencionadas retracciones conservativas,  que se calcularán mediante lo que se denominará un \textit{operador de olvido de variables}. \\
+
+Este operador eliminará una de las variables cada vez que se aplique, obteniendo a cada paso un conjunto equivalente de fórmulas en los que se usa una variable menos. Finalmente, como hay un número finito de variables en $K \cup \{ \neg F \} $, llegará un momento en el que no queden variables y que sólo queden las constantes $\top$ o $\bot$ (sólo una de ellas), habiendo así refutado o probado, respectivamente, el teorema.\\
+
+Al igual que en el capítulo anterior, se paralelizará la exposición de la teoría y el desarrollo de las implementaciones en Haskell. Teniendo en cuenta que el objetivo principal de dichos programas es la obtención de una herramienta eficiente para resolver el problema SAT, tema que se tratará con más detalle en el capítulo siguiente.
+
+\section{Retracción conservativa mediante olvido de variables}
+
+\section{Derivadas Booleanas}
+
+\section{Regla de independencia}
+
+\section{Cálculo lógico}

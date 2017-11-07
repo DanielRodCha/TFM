@@ -318,3 +318,142 @@ prop_theta_proyeccion f = equivalentes (theta (proyeccion f)) f
 prop_proyeccion_theta :: PolF2 -> Bool
 prop_proyeccion_theta p = phi p == (proyeccion . theta) p
 \end{code}
+
+\subsection{Bases de conocimiento e ideales}
+
+ En esta subsección se recordará la correspondencia entre conjuntos
+ algebraicos e ideales polinomiales (enfocado al cuerpo de coeficientes
+ $\mathbb{F}_2$) y la lógica proposicional.\\
+
+ \defn Dado un subconjunto $X \subseteq (\mathbb{F}_2)^n$, se denota por $I(X)$
+ al ideal de polinomios de $\mathbb{F}_2[\textbf{x}]$ que se anulan en $X$:
+ $$ I(X) = \{ a(\textbf{x}) \in \mathbb{F}_2[\textbf{x}] \;\; : \;\; a(u) = 0
+ \; \text{ para cualquier } \; u \in X \} $$
+
+ Simétricamente, a partir de un subconjunto $J \subseteq
+ \mathbb{F}_2[\textbf{x}]$ es posible definir el conjunto algebraico
+ $\mathcal{V} (J)$ comentado anteriormente:
+ $$ \mathcal{V}(J) = \{ u \in (\mathbb{F}_2)^n \;\; : \;\; a(u) = 0 \; \text{
+ para cualquier } \; a(\mathbf{x}) \in J\} $$
+
+ Antes de enunciar y demostrar el teorema de Nullstellensatz para cuerpos
+ finitos \cite{Agudelo-15} (concretamente $\mathbb{F}_2$) es necesario un lema:
+ \\
+
+ \lem \label{lem1} Sea un polinomio $p \in \mathbb{F}_2[\textbf{x}]$, entonces
+ $p \in \mathbb{I}_2^n \; \Leftrightarrow \; p(\textbf{z}) = 0 \; \forall
+ \textbf{z} \in (\mathbb{F}_2)^n $ \\
+
+ \noindent \textbf{Prueba:} La implicación hacia la derecha es trivial ya que
+ si $p \in \mathbb{I}_2^n$ entonces $p \in \langle x_1^2+x_1 , \dots ,
+ x_n^2+x_n \rangle $ , es decir, $p = \sum_{i=0}^n q_i (x_i^2+x_i)$ donde $q_i
+ \in \mathbb{F}_2[\textbf{x}]$ con $i=1,\dots ,n $. Como todos los
+ $(x_i^2+x_i)$ se anulan en todo punto de $\mathbb{F}_2[\textbf{x}]$ entonces
+ $p$ también. 
+
+ \noindent La implicación hacia la izquierda se probará por inducción en el
+ número de variables. En el caso de una única variable ($n=1$), la división
+ euclídea de $p$ por $\mathbb{I_2^1 = x_1^2+x_1}$ queda $p=a*(x_1^2+x_1 + b)$
+ con $b=b_0+b_1x_1$. De la hipótesis tenemos que $b(0)=b(1)=0$, luego $b=0$ y
+ por tanto $p \in \mathbb{I}_2^1$.
+
+ \noindent Sea $n \geq 1$, se usa también la división respecto $\mathbb{I}_1$
+ por lo que $p = a*\mathbb{I}_2^1 + b$ donde $b = b_0+b_1x$; $b_0, b_1 \in
+ \mathbb{F}_2[x_2,\dots ,x_n]$. Fijando un punto cualquiera $z=(z_2,\dots
+ ,z_n)\in \mathbb{F}_2^{n-1}$, el polinomio $b$ respecto de la variable $x_1$
+ queda: $b_0(z)+b_1(z)x_1=0$ para $x_1=0$ y para $x_1=1$. Como, $b(z)(x_1)$ es
+ de grado 1 y tiene 2 raíces, entonces $b_0(z)=b_1(z)=0$. Aplicando la
+ hipótesis de inducción $b_0 , b_1 \in \langle x_2^2+x_2 ,\dots ,x_n^2+x_n
+ \rangle$ luego $p \in \mathbb{I}_2^n$. $\;\;\;\;\;\,\square$
+  
+ \thm Teorema de Nullstellensatz con coeficientes en el cuerpo
+ $\mathbb{F}_2$
+ 
+ \begin{enumerate}
+ \item Si $A \subseteq (\mathbb{F}_2)^n$, entonces $\mathcal{V}(I(A)) = A$
+ \item Para todo $\mathfrak{J} \in Ideales(\mathbb{F}_2[\textbf{x}])$,
+ $I(\mathcal{V}(\mathfrak{J})) = \mathfrak{J} + \mathbb{I}_2$ 
+ \end{enumerate}
+
+ \noindent \textbf{Prueba:} 
+  \begin{enumerate}
+ \item Se prueba por doble contención. La primera ($A \subseteq
+ \mathcal{V}(I(A))$) es trivial: sea $a \in A$ entonces por definición de $I$
+ se tiene que $\forall p \in I(A),\; p(a)=0$; y, por lo tanto, $a \in
+ \mathcal{V}(I(A))$. \\
+ La contención contraria ($\mathcal{V}(I(A)) \subseteq A$) se probará por
+ \textit{reductio ad absurdum}. Supongamos que existe un punto $a \in
+ \mathcal{V}(I(A))$ pero que $a \notin A$. Sea el polinomio $p_A(\textbf{x}) = 1 +
+ \sum_{\alpha \in A}\prod_{i=1}^{n}(x_i+\alpha_i+1)$. Es fácil ver que
+ $p_A(u) = 0$ sii $u \in A$. De la hipótesis se tiene que $p_A(a) \neq 0$,
+ y de la definición de $p_A$ que $p_A \in I(A)$. De esto se deduce que $a
+ \notin \mathcal{V}(I(A))$, lo cual es una contradicción. \hspace{4cm} $\square$
+ \item Del teorema de las bases de Hilbert se deduce que existen $j_1,\dots,j_s
+ \in \mathbb{F}_2[\textbf{x}]$ tales que $\mathfrak{J} = \langle j_1, \dots
+ ,j_s\rangle$. Entonces, la prueba de la contención hacia la izquierda,
+ $J+\mathbb{I}_2 \subseteq I(\mathcal{V}(\mathfrak{J}))$, es inmediata porque 
+ todos los polinomios $j_k$ e $i_{k'}$ con $1 \leq k \leq s$, $1 \leq k' \leq
+ n$ se anulan en $\mathcal{V}(\mathfrak{J})$.\\
+ Para probar la contención inversa se fijan el polinomio $p \in
+ I(\mathcal{V}(\mathfrak{J}))$ y el subconjunto $A \subseteq (\mathbb{F}_2)^n$
+ definido como $A := (\mathbb{F}_2)^n \setminus
+ \mathcal{V}(\mathfrak{J})$. Además se tiene que para todo $a=(a_1, \dots , a_n)
+ \in A$ existe un índice $i_a$ tal que $j_{i_a} \neq 0$. Entonces, el polinomio
+ $g = p \cdot (\prod_{a \in A}(j_{i_a}-j_{i_a}(a)))$ se anula en todo
+ $(\mathbb{F}_2)^n$ (porque $p$ se anula en $\mathcal{V}(\mathfrak{J})$ y
+ $\prod_{a \in A}(j_{i_a}-j_{i_a}(a))$ en $A$). Por el lema \ref{lem1}, $g \in
+ \mathbb{I}_2^n$. Desarrollando el producto en $g$ se puede escribir el
+ polinomio como $g=bp+h$, donde $h\in \mathfrak{J}$ y $b=\prod_{a \in
+ A}(-j_{i_a}(a))$. Por tanto, $bp=g-h \in \mathfrak{J}+\mathbb{I}_2^n$ y $b\neq
+ 0$. De esto se sigue que $p \in \mathfrak{J}+\mathbb{I}_2^n$. \hspace{13cm}
+ $\square$ 
+ \end{enumerate}
+
+ Del teorema de Nullstellensatz se sigue que:
+ $$F \equiv F' \text{ si y  sólo si } P(F)=P(F')\,(\text{mod }\mathbb{I}_2)$$
+
+ Por consiguiente, $F \equiv F'$ si y sólo si $\pi(F) = \pi(F')$. El siguiente
+ teorema resume la relación principal entre la lógica proposicional y
+ $\mathbb{F}_2[\textbf{x}]$: 
+
+ \thm Sea $K = \{F_1,\dots F_m\}$ un conjunto de fórmulas proposicionales y $G$
+ una fórmula proposicional. Las siguientes sentencias son equivalentes:
+
+ \begin{enumerate}
+ \item $\{F_1,\dots F_m\} \vDash G$
+ \item $1+P(G) \in (1+P(F_1), \dots ,1+P(F_m)) + \mathbb{I}_2$
+ \item $\mathcal{V}(1+P(F_1), \dots ,1+P(F_m)) \subseteq \mathcal{V}(1+P(G))$
+ \item $\texttt{NF}(1+P(G),\texttt{GB}[(1+P(F_1), \dots ,1+P(F_m)) +
+ \mathbb{I}_2]) = 0$ \\
+ donde $\texttt{GB}(I)$ denota la base de Gröbner del ideal $I$ y
+ $\texttt{NF}(p,B)$ denota la forma normal del polinomio $p$ respecto de la
+ base de Gröbner $B$. 
+ \end{enumerate}
+
+ Para una introducción general a las bases de Gröbner ver
+ \cite{Winkler96}. Además, en \cite{Laita99}, se estudia el uso de las bases de
+ Gröbner para la lógica porposicional.
+
+ Es sabido que todo conjunto $X \subseteq (\mathbb{F}_2)^n$ es un conjunto
+ algebraico; de hecho, existen $a_X \in \mathbb{F}_2(\textbf{x})$ tal que
+ $\mathcal{V} (a_X) = X$. Por lo que, aplicando el teorema de Nullstellensatz
+ se tiene que $I(\mathcal{V}(a_X)) = (a_X)+\mathbb{I}_2$, de lo que se sigue
+ que el anillo de coordenadas de $X$ como variedad algebraica es:
+ $$ \mathbb{F}_2[\textbf{x}]/_{I(X)} \cong
+ (\mathbb{F}_2[\textbf{x}]/_{(a_X)})/_{\mathbb{I}_2} $$
+
+ Cualquier ideal $J_X$ tal que $\mathcal{V}(J_X) = X$ se puede usar para
+ describir el anillo de coordenadas. Por consiguiente y con el objetivo de
+ simplificar la notación, se asumirá que $\mathbb{I}_2 \subseteq J_X$ si es
+ necesario. De manera similar, dada una base de conocimiento $K$, se define el
+ ideal:
+
+ $$J_K = (\{1+P(F) : F \in K\})$$
+
+ y entonces
+
+ $$v \vDash K \; \Longleftrightarrow \; o_v \in \mathcal{V}(J_K)$$
+
+ \defn El \textit{anillo de coordenadas} de $K$ se define como el
+ correspondiente a la variedad algebraica $V(J_K)$, que, por el teorema de
+ Nullstellensatz, es $\mathbb{F}_2[\textbf{x}]/_{(J_K)})/_{\mathbb{I}_2} $.

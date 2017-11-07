@@ -47,10 +47,10 @@ símbolos auxiliares. \\
  finito de símbolos proposicionales que, tal y como su propio nombre indica, 
  representan proposiciones. Dichas proposiciones son sentencias que pueden ser
  declaradas como verdaderas o falsas, es por esto que se dice que las variables
- proposicionales toman valores discretos (True o False). Es comunmente aceptado
+ proposicionales toman valores discretos (True o False). Es comúnmente aceptado
  (y así será en este trabajo) llamar al conjunto de las variables ($\mathcal{L} =
  \{p_1,...,p_n\}$) lenguaje proposicional. A la hora de implementar las
- variables proposicionales se representarán por cadenas.
+ variables proposicionales se representarán por cadenas:
 
 \index{\texttt{VarProp}}
 \begin{code}
@@ -110,7 +110,7 @@ instance Show FProp where
     show (Equi x y) = "(" ++ show x ++ " ↔ " ++ show y ++ ")"
 \end{code}
 
- Las fórmulas atómicas carecen de una estructura formal más profunda, es decir,
+ Las fórmulas atómicas carecen de una estructura formal más profunda; es decir,
  son aquellas fórmulas que no contienen conectivas lógicas. En la lógica
  proposicional, las únicas fómulas atómicas que aparecen son las variables
  proposicionales. Por ejemplo: 
@@ -174,7 +174,7 @@ infixr 2 ↔
  Durante el desarrollo del trabajo se definirán distintas propiedades sobre las
  fórmulas proposicionales. Es bien sabido que una ventaja que nos ofrece
  Haskell a la hora de trabajar es poder definir también dichas propiedades y
- chequearlas. Sin embargo, como las fórmulas proposicionales se han definido
+ comprobarlas. Sin embargo, como las fórmulas proposicionales se han definido
  por el usuario el sistema no es capaz de generarlas automáticamente. Es
  necesario declarar que \texttt{FProp} sea una instancia de Arbitrary:
 \begin{code}
@@ -197,7 +197,7 @@ instance Arbitrary FProp where
 \end{code}
 
  Dadas dos fórmulas $F,G$ y $p$ una variable proposicional, se denota por
- $F\{p/G\}$ a la fórmula obtenida de sustituir cada ocurrencia de $p$ en $F$
+ $F\{p/G\}$ a la fórmula obtenida al sustituir cada ocurrencia de $p$ en $F$
  por la fórmula $G$. \\
 
  Se implementa $f\{p/g\}$ en la función \texttt{(sustituye f p g)}, donde f es la
@@ -280,7 +280,7 @@ esModeloFormula i f = significado f i
 \end{code}
 
  Se denota por $Mod(F)$ al conjunto de modelos de $F$. Para implementarlo se
- necesita de dos funciones auxiliares.\\
+ necesitan dos funciones auxiliares.\\
 
  \texttt{(simbolosPropForm f)} es el conjunto formado por todos los símbolos
  proposicionales que aparecen en la fórmula f.
@@ -349,7 +349,7 @@ esValida f = modelosFormula f == interpretacionesForm f
 
 \defn Una fórmula $F$ se dice insatisfacible si no existe ninguna
  interpretación $i$ de $F$ que sea modelo de la fórmula. La función
- (esInsatisfacible f) se verifica si la fórmula f es insatisfacible.
+ \texttt{(esInsatisfacible f)} se verifica si la fórmula f es insatisfacible.
 
 \index{\texttt{esInsatisfacible}}
 \begin{code}
@@ -365,7 +365,7 @@ esInsatisfacible f = modelosFormula f == []
 
 \defn Una fórmula $F$ se dice satisfacible si existe al menos una
  interpretación $i$ de $F$ que sea modelo de la fórmula. La función
- (esSatisfacible f) se verifica si la fórmula f es satisfacible.
+ \texttt{(esSatisfacible f)} se verifica si la fórmula f es satisfacible.
 
 \index{\texttt{esSatisfacible}}
 \begin{code}
@@ -376,7 +376,7 @@ esInsatisfacible f = modelosFormula f == []
 -- >>> esSatisfacible ((p → q) ∧ (q → r))
 -- True
 esSatisfacible :: FProp -> Bool
-esSatisfacible f = modelosFormula f /= []
+esSatisfacible = not . null . modelosFormula
 \end{code}
 
 \subsection{Bases de conococimiento}
@@ -425,8 +425,8 @@ interpretacionesKB = subsequences . simbolosPropKB
 
  \defn Análogamente al caso de una única fórmula, se dice que $i$ es \textit{modelo} de
  $K$ ($i \vDash K$) si lo es de cada una de las fórmulas de $K$. La función
- (esModeloKB i k) se verifica si la interpretación i es un modelo de todas las
- fórmulas de la base de conocimiento k.
+ texttt{(esModeloKB i k)} se verifica si la interpretación $i$ es un modelo de
+ todas las fórmulas de la base de conocimiento $k$.
 
 \index{\texttt{esModeloKB}}
 \begin{code}
@@ -437,11 +437,11 @@ interpretacionesKB = subsequences . simbolosPropKB
 -- >>> esModeloKB [q,r] (S.fromList [q,no p ,r])
 -- True
 esModeloKB :: Interpretacion -> KB -> Bool
-esModeloKB i k = foldr (\f acc -> (esModeloFormula i f) && acc) True k
+esModeloKB i = all (esModeloFormula i)
 \end{code}
 
- Al conjunto de modelos de $K$ se le denota por $Mod(K)$. \texttt{modelosKB k}
- es la lista de modelos de la base de conocimiento k.
+ Al conjunto de modelos de $K$ se le denota por $Mod(K)$. \texttt{(modelosKB
+ k)} es la lista de modelos de la base de conocimiento k.
 
 \index{\texttt{modelosKB}}
 \begin{code}
@@ -477,7 +477,7 @@ modelosKB s = [i | i <- interpretacionesKB s, esModeloKB i s]
 -- >>> esConsistente $ S.fromList [(p ∨ q) ∧ ((no q) ∨ r), p → r, no r]  
 -- False
 esConsistente :: KB -> Bool
-esConsistente k = modelosKB k /= []
+esConsistente = not . null . modelosKB
 \end{code}
 
  \defn Un conjunto de fórmulas se dice \textit{inconsistente} si y sólo si no
@@ -497,7 +497,7 @@ esConsistente k = modelosKB k /= []
 -- >>> esInconsistente $ S.fromList [(p ∨ q) ∧ ((no q) ∨ r), p → r, no r]  
 -- True
 esInconsistente :: KB -> Bool
-esInconsistente k = modelosKB k == []
+esInconsistente = null . modelosKB
 \end{code}
 
 \subsection{Consecuencia lógica}
@@ -516,7 +516,7 @@ esInconsistente k = modelosKB k == []
  Mod(F)$. Equivalentemente, $K \vDash F$ si no es posible que las premisas sean
  verdaderas y la conclusión falsa.
 
- La función \texttt{esConsecuencia k f} se verifica si la fórmula proposicional
+ La función \texttt{(esConsecuencia k f)} se verifica si la fórmula proposicional
  f es consecuencia lógica de la base de conocimiento o conjunto de fórmulas k.
 
  \index{\texttt{esConsecuencia}}
@@ -536,7 +536,7 @@ esConsecuencia k f =
 
  Con el objetivo de hacer más robusto el sistema se implementarán dos
  propiedades de la relación de \textit{ser consecuencia} en lógica
- proposicional. Dichas propiedades se comprobarán con la librería quickCheck
+ proposicional. Dichas propiedades se comprobarán con la librería QuickCheck
  propia del lenguaje Haskell. Es importante saber que estas comprobaciones no
  son más que meros chequeos de que una propiedad se cumple para una batería de
  ejemplos. En ningún caso se puede confiar en que dicha propiedad se cumple
@@ -581,14 +581,14 @@ prop_esConsecuencia k f =
 -- >>> esConsecuenciaKB (S.fromList [p]) (S.fromList [p ∧ q])
 -- False
 esConsecuenciaKB :: KB -> KB -> Bool
-esConsecuenciaKB k k' = foldr (\f acc -> acc && esConsecuencia k f) True k'
+esConsecuenciaKB k = all (esConsecuencia k)
 \end{code}
 
 \subsection{Equivalencia}
 
- \defn Sean $F$ y $G$ dos fórmulas proposicionales, se dice que son equivalentes
- ($F \equiv G$) si tienen el mismo contenido lógico, es decir, si tienen el
- mismo valor de verdad en todas sus interpretaciones.
+ \defn Sean $F$ y $G$ dos fórmulas proposicionales, se dice que son
+ equivalentes ($F \equiv G$) si tienen el mismo contenido lógico, es decir, si
+ tienen el mismo valor de verdad en todas sus interpretaciones. 
 
  La función \texttt{(equivalentes f g)} se verifica si las fórmulas
  proposicionales son equivalentes.
@@ -648,7 +648,7 @@ prop_equivalentes f g =
  se le conoce con el nombre de extensión:
  
  \defn Sean $K$ y $K'$ bases de conocimiento, se dice que $K$ es una
- \textit{extension} de $K'$ si $\mathcal{L}(K') \subseteq \mathcal{L}(K)$ y
+ \textit{extensión} de $K'$ si $\mathcal{L}(K') \subseteq \mathcal{L}(K)$ y
  $$\forall F \in Form (\mathcal{L} (K')) \;\; [K' \vDash F \Rightarrow K \vDash
  F]$$
 
@@ -656,7 +656,7 @@ prop_equivalentes f g =
  el lenguaje de la otra:
 
  \defn  Sean $K$ y $K'$ bases de conocimiento, se dice que $K$ es una
- \textit{extension conservativa} de $K'$ si es una extensión tal que toda
+ \textit{extensión conservativa} de $K'$ si es una extensión tal que toda
  consecuencia lógica de $K$ expresada en el lenguaje $\mathcal{L} (K')$, es
  también consecuencia de $K'$,
  $$\forall F \in Form (\mathcal{L} (K')) \;\; [K \vDash F \Rightarrow K' \vDash
