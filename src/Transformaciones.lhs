@@ -353,7 +353,7 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
 
  \noindent La implicación hacia la izquierda se probará por inducción en el
  número de variables. En el caso de una única variable ($n=1$), la división
- euclídea de $p$ por $\mathbb{I_2^1 = x_1^2+x_1}$ queda $p=a*(x_1^2+x_1 + b)$
+ euclídea de $p$ por $\mathbb{I}_2^1 = x_1^2+x_1$ queda $p=a*(x_1^2+x_1 + b)$
  con $b=b_0+b_1x_1$. De la hipótesis tenemos que $b(0)=b(1)=0$, luego $b=0$ y
  por tanto $p \in \mathbb{I}_2^1$.
 
@@ -412,29 +412,73 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  Del teorema de Nullstellensatz se sigue que:
  $$F \equiv F' \text{ si y  sólo si } P(F)=P(F')\,(\text{mod }\mathbb{I}_2)$$
 
- Por consiguiente, $F \equiv F'$ si y sólo si $\pi(F) = \pi(F')$. El siguiente
- teorema resume la relación principal entre la lógica proposicional y
+ Por consiguiente, $F \equiv F'$ si y sólo si $\pi(F) = \pi(F')$. Para la
+ prueba del Teorema \ref{thm:123} es necesario el siguiente lema: 
+
+ \lem \label{lem2} Sean los polinomios $R, P_1, \dots , P_m \in \mathbb{F}_2[\textbf{x}]$,
+ sea el ideal $\mathfrak{J} = \langle P_1, \dots ,P_m \rangle$ y sea
+ $\mathcal{R} = \mathfrak{J} + \mathbb{I}_2^n$. Entonces,
+ $$R \in \mathcal{R} \Longleftrightarrow R(a)=0,\; \forall a \in A = \{z\in
+ (\mathbb{F}_2)^n : P_1(z) = \dots = P_m(z) = 0 \}$$
+
+ \noindent \textbf{Prueba:} La implicación hacia la derecha ($\Rightarrow$) es
+ trivial ya que $P_i(a) = 0$ y $a_j^2+a_j = 0$ para todo $i=1,\dots ,m$ y $j=1,
+ \dots , n$. Para la otra implicación ($\Leftarrow$), se define el conjunto $B =
+ \mathbb{F}_2)^n \setminus A$. Entonces $\forall z \in B$ existe un índice $i_z
+ \in \{1, \dots ,m \}$ tal que $P_{i_z}(z) \neq 0$. Se define el polinomio $S=R
+ \cdot \prod_{z \in B} (P_{i_z}-P_{i_z}(z))$. Notar que este polinomio se anula
+ en todo $(\mathbb{F}_2)^n$ ya que es producto de $R$, que se anula en $A$; y
+ de $\prod_{z \in B} (P_{i_z}-P_{i_z}(z))$, que se anula en $B$. El lema
+ \ref{lem1} implica que $S \in \mathbb{I}_2^n$. Si se reescribe $S$
+ desarrollando el producto: $S=b\cdot R + P'$, con $P' \in \mathfrak{J}$ y $b =
+ \prod_{z \in B}(-P_{i_z}(z)) \in \mathbb{F}_2$; se deduce que $b\cdot R=S-P'
+ \in \mathfrak{J} + \mathbb{I}_2^n=\mathcal{R}$. Finalmente, como $b \neq 0$,
+ se tiene que $R \in \mathcal{R}$. \hspace{2cm} $\square$ \\
+
+
+ El siguiente teorema resume la relación entre la lógica proposicional y
  $\mathbb{F}_2[\textbf{x}]$: 
 
- \thm Sea $K = \{F_1,\dots F_m\}$ un conjunto de fórmulas proposicionales y $G$
- una fórmula proposicional. Las siguientes sentencias son equivalentes:
+ \thm \label{thm:123} Sea $K = \{F_1,\dots F_m\}$ un conjunto de fórmulas
+ proposicionales y $G$una fórmula proposicional. Las siguientes sentencias son
+ equivalentes: 
 
  \begin{enumerate}
  \item $\{F_1,\dots F_m\} \vDash G$
- \item $1+P(G) \in (1+P(F_1), \dots ,1+P(F_m)) + \mathbb{I}_2$
+ \item $1+P(G) \in \langle 1+P(F_1), \dots ,1+P(F_m) \rangle + \mathbb{I}_2$
  \item $\mathcal{V}(1+P(F_1), \dots ,1+P(F_m)) \subseteq \mathcal{V}(1+P(G))$
- \item $\texttt{NF}(1+P(G),\texttt{GB}[(1+P(F_1), \dots ,1+P(F_m)) +
- \mathbb{I}_2]) = 0$ \\
- donde $\texttt{GB}(I)$ denota la base de Gröbner del ideal $I$ y
- $\texttt{NF}(p,B)$ denota la forma normal del polinomio $p$ respecto de la
- base de Gröbner $B$. 
+ %% \item $\texttt{NF}(1+P(G),\texttt{GB}[(1+P(F_1), \dots ,1+P(F_m)) +
+ %% \mathbb{I}_2]) = 0$ \\
+ %% donde $\texttt{GB}(I)$ denota la base de Gröbner del ideal $I$ y
+ %% $\texttt{NF}(p,B)$ denota la forma normal del polinomio $p$ respecto de la
+ %% base de Gröbner $B$. 
  \end{enumerate}
 
- Para una introducción general a las bases de Gröbner ver
- \cite{Winkler96}. Además, en \cite{Laita99}, se estudia el uso de las bases de
- Gröbner para la lógica porposicional.
+ %% Para una introducción general a las bases de Gröbner ver
+ %% \cite{Winkler96}. Además, en \cite{Laita99}, se estudia el uso de las bases de
+ %% Gröbner para la lógica porposicional.\\
 
- Es sabido que todo conjunto $X \subseteq (\mathbb{F}_2)^n$ es un conjunto
+ \noindent \textbf{Prueba:} La estructura que se seguirá es ver que la segunda
+ condición se cumple si y sólo si las otras dos lo hacen. Por el lema \ref{lem2}:
+
+ $$ 1+P(G) \in \langle 1+P(F_1), \dots ,1+P(F_m) \rangle + \mathbb{I}_2
+ \Longleftrightarrow $$
+ $$ \Longleftrightarrow 1+P(G)(a)=0  \;\; \forall a \in A = \{z\in
+ (\mathbb{F}_2)^n : 1+ P(F_1)(z) = \cdots = P(F_m)(z) = 0\}$$
+ \noindent En otras palabras, si se anulan todos los $(1+P(F_i))$, $i=1, \dots
+ ,m$, entonces se anula $(1+P(G))$. Esto pasa si y sólo si:
+ $$\mathcal{V}(1+P(F_1), \dots ,1+P(F_m)) \subseteq \mathcal{V}(1+P(G))$$
+ \noindent quedando así probado ($2 \Leftrightarrow 3$). \\ Además, es fácil ver
+ que $A=\{o_v: v\in Mod(\{F_1, \dots F_m\})\}$, y por tanto,
+ $$ 1+P(G)(a)=0  \;\; \forall a \in A \Longleftrightarrow P(G)(a)=1  \;\;
+ \forall a \in A \Longleftrightarrow A \subseteq \{o_v' : v \in Mod(G) \}
+ \Longleftrightarrow$$ 
+ $$ \Longleftrightarrow Mod(\{F_1, \dots ,F_m\}) \subseteq Mod(G)
+ \Longleftrightarrow \{F_1,\dots F_m\} \vDash G$$
+ \noindent quedando así probado ($2 \Leftrightarrow 1$). $\hspace{9.9cm}
+ \square$ \\
+
+ \indent Se sabe que todo conjunto $X \subseteq (\mathbb{F}_2)^n$ es un conjunto
  algebraico; de hecho, existen $a_X \in \mathbb{F}_2(\textbf{x})$ tal que
  $\mathcal{V} (a_X) = X$. Por lo que, aplicando el teorema de Nullstellensatz
  se tiene que $I(\mathcal{V}(a_X)) = (a_X)+\mathbb{I}_2$, de lo que se sigue
