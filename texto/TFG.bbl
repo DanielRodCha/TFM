@@ -18,15 +18,10 @@ D.~Kapur and P.~Narendran.
   calculus.
 \newblock {\em SIGSOFT Softw. Eng. Notes}, 10(4):63--66, Aug. 1985.
 
-\bibitem{Laita99}
-L.~M. Laita, E.~Roanes-Lozano, L.~de~Ledesma, and J.~A. Alonso.
-\newblock A computer algebra approach to verification and deduction in
-  many-valued knowledge systems.
-\newblock {\em Soft Computing}, 3(1):7--19, Jun 1999.
-
-\bibitem{Winkler96}
-F.~Winkler.
-\newblock {\em The method of Gr{\"o}bner bases}, pages 172--203.
-\newblock Springer Vienna, Vienna, 1996.
+\bibitem{Lang2003}
+J.~Lang, P.~Liberatore, and P.~Marquis.
+\newblock Propositional independence: Formula-variable independence and
+  forgetting.
+\newblock {\em J. Artif. Int. Res.}, 18(1):391--443, May 2003.
 
 \end{thebibliography}

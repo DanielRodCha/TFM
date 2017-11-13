@@ -8,44 +8,44 @@ A level-1 auxiliary file: Aplicaciones.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: abbrv.bst
 Database file #1: TFG.bib
-You've used 5 entries,
+You've used 4 entries,
             2118 wiz_defined-function locations,
-            543 strings with 4681 characters,
-and the built_in function-call counts, 1670 in all, are:
-= -- 168
-> -- 68
-< -- 1
-+ -- 30
-- -- 22
-* -- 119
-:= -- 282
-add.period$ -- 15
-call.type$ -- 5
-change.case$ -- 26
+            536 strings with 4543 characters,
+and the built_in function-call counts, 1255 in all, are:
+= -- 125
+> -- 56
+< -- 0
++ -- 23
+- -- 18
+* -- 98
+:= -- 223
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 22
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 63
-empty$ -- 130
-format.name$ -- 22
-if$ -- 346
+cite$ -- 4
+duplicate$ -- 41
+empty$ -- 95
+format.name$ -- 18
+if$ -- 250
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 5
-newline$ -- 28
-num.names$ -- 10
-pop$ -- 23
+int.to.str$ -- 4
+missing$ -- 3
+newline$ -- 23
+num.names$ -- 8
+pop$ -- 14
 preamble$ -- 1
-purify$ -- 21
+purify$ -- 17
 quote$ -- 0
-skip$ -- 45
+skip$ -- 27
 stack$ -- 0
-substring$ -- 116
-swap$ -- 13
-text.length$ -- 1
+substring$ -- 86
+swap$ -- 3
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 18
+type$ -- 16
 warning$ -- 0
-while$ -- 18
-width$ -- 6
-write$ -- 58
+while$ -- 13
+width$ -- 5
+write$ -- 46

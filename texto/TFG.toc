@@ -30,13 +30,14 @@
 \contentsline {subsection}{\numberline {2.2.6}Proyecci\IeC {\'o}n polinomial}{40}{subsection.2.2.6}
 \contentsline {subsection}{\numberline {2.2.7}Bases de conocimiento e ideales}{42}{subsection.2.2.7}
 \contentsline {chapter}{\numberline {3}Regla de independencia y prueba no clausal de teoremas}{47}{chapter.3}
-\contentsline {section}{\numberline {3.1}Retracci\IeC {\'o}n conservativa mediante olvido de variables}{48}{section.3.1}
-\contentsline {section}{\numberline {3.2}Derivadas Booleanas}{49}{section.3.2}
-\contentsline {section}{\numberline {3.3}Regla de independencia}{49}{section.3.3}
-\contentsline {section}{\numberline {3.4}C\IeC {\'a}lculo l\IeC {\'o}gico}{49}{section.3.4}
-\contentsline {chapter}{\numberline {4}Aplicaciones}{51}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introducci\IeC {\'o}n a Haskell}{51}{section.4.1}
-\contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{53}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{53}{section.5.1}
-\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{54}{section.5.1}
-\contentsline {chapter}{Indice de definiciones}{55}{chapter*.12}
+\contentsline {section}{\numberline {3.1}Retracci\IeC {\'o}n conservativa mediante omisi\IeC {\'o}n de variables}{48}{section.3.1}
+\contentsline {subsubsection}{Retracciones conservativas inducidas por un operador de omisi\IeC {\'o}n}{50}{section*.12}
+\contentsline {section}{\numberline {3.2}Derivadas Booleanas}{53}{section.3.2}
+\contentsline {section}{\numberline {3.3}Regla de independencia}{53}{section.3.3}
+\contentsline {section}{\numberline {3.4}C\IeC {\'a}lculo l\IeC {\'o}gico}{53}{section.3.4}
+\contentsline {chapter}{\numberline {4}Aplicaciones}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introducci\IeC {\'o}n a Haskell}{55}{section.4.1}
+\contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{57}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{57}{section.5.1}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{58}{section.5.1}
+\contentsline {chapter}{Indice de definiciones}{59}{chapter*.13}
