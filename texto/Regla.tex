@@ -116,7 +116,7 @@ A partir de los operadores de omisión resulta natural definir el siguiente cál
 
 La completitud (refutacional) del cálculo asociado a los operadores de omisión se enuncia como sigue:
 
-\thm Sea $\{ \delta_p : p \in \mathcal{L} \}$ una familia de operadores de omisión. Entonces $\vdash_{\delta}$ es refutacionalmente completo, es decir, $K$ es inconsistente si y sólo si $K \vdash_{\delta} \bot$.\\
+\thm \label{teo:completo} Sea $\{ \delta_p : p \in \mathcal{L} \}$ una familia de operadores de omisión. Entonces $\vdash_{\delta}$ es refutacionalmente completo, es decir, $K$ es inconsistente si y sólo si $K \vdash_{\delta} \bot$.\\
 
 \noindent \textbf{Prueba:} La idea es saturar la base de conocimiento como en la Figura (\ref{fig:comple}). Si $sat_{\delta} (K) = \{ \top \}$, entonces, aplicando repetidas veces el lema de elevación, se puede extender la valoración vacía (la cual es modelo de $\{ \top \}$) a un modelo de $K$.\\
 Si $\bot \in sat_{\delta} (K)$ entonces $K$ es inconsistente, porque $K \vDash sat_{\delta} (K)$ por robustez de los operadores de omisión. $\square$ %% La elección de una $\vdash_{\delta}$-refutación en particular es sencilla.
@@ -130,7 +130,7 @@ Si $\bot \in sat_{\delta} (K)$ entonces $K$ es inconsistente, porque $K \vDash s
 \end{figure}
 \vspace{0.5cm}
 
-\cor $\delta_p [K] \equiv [K, \mathcal{L} \setminus \{ p \}]$
+\cor \label{cor:omitep} $\delta_p [K] \equiv [K, \mathcal{L} \setminus \{ p \}]$
 
 \noindent \textbf{Prueba:} Por robustez del operador de omisión $\delta_p$ se tiene:
 $$[K, \mathcal{L} \setminus \{ p \}] \vDash \delta_p [K]$$
@@ -144,9 +144,63 @@ así que, aplicando saturación empezando por $p$:
 $$sat_{\delta}(K \cup \{ \neg F \}) \equiv sat_{\delta}(\delta_p [K] \cup \{ \neg F \})$$
 Lo que indica que $K \cup \{ \neg F \}$ es consistente, luego $K \nvDash F$, que es una contradicción. $\square$\\
 
-Dado $Q \subseteq \mathcal{L}$ y un orden lineal $q_1 < \cdots < q_k$
+Dados $Q \subseteq \mathcal{L}$ y un orden lineal $q_1 < \cdots < q_k$ sobre $Q$, se define el operador: $$\delta_{Q,<} := \delta_{q_1} \circ \cdots \circ \delta_{q_k}$$
+
+Este, no es más que la aplicación sucesiva del operador de omisión $\delta$  respecto de cada una de las variables de $Q$ en un orden dado. De hecho, si prescindimos de hacer explícito el orden, el operador está bien definido módulo equivalencia lógica. En otras palabras, dados dos órdenes sobre $Q$ cualesquiera, producen bases de conocimiento equivalentes. Esto es cierto puesto que para cada $p,q \in \mathcal{L}$, usando el corolario \ref{cor:omitep} se sigue que:
+$$ \delta_p \circ \delta_q [K] \equiv \delta_q \circ \delta_p [K]$$
+\noindent ya que ambas son equivalentes a $[K, \mathcal{L} \setminus \{ p,q \}]$. Por consiguiente y con la idea de simplificar la notación, se escribirá $\delta_Q$ cuando no importe la presentación sintáctica de dicha base de conocimiento.\\
+
+Como consecuencia del teorema \ref{teo:completo} y el corolario \ref{cor:omitep} se da que el hecho de saber si una fórmula es o no consecuencia lógica de otra (o de una base de conocimiento) se puede reducir a otro problema similar en el que sólo se trabaje con las variables de la fórmula objetivo. Basta con eliminar de forma sucesiva todas las variables de la base de conocimiento que no ocurran en la fórmula objetivo. A esta propiedad se le conoce como \textit{Propiedad de localización}:
+
+\cor (\textbf{Propiedad de Localización \cite{Borrego2009}}) Las siguientes condiciones son equivalentes:
+\begin{enumerate}
+\item $K \vDash F$
+\item $\delta_{\mathcal{L} \setminus var(F)} [K] \vDash F$
+\end{enumerate}
+
+\noindent \textbf{Prueba:} Trivial, porque $\delta_{\mathcal{L} \setminus var(F)} [K] \equiv [K,var(F)]$
 
 \section{Derivadas Booleanas}
+Con el objetivo de definir el operador de omisión que se usará en la herramienta, se hará uso de las derivadas polinomiales aunque no de forma directa. En la práctica, se traducirá la derivada sobre $\mathbb{F}_2 [\textbf{x}]$ tradicional a un operador sobre fórmulas proposicionales.\\
+
+Antes de continuar se expondrán diversas propiedades básicas. Recalcar que una derivación sobre un anillo $R$ es una mapa $d:R \rightarrow R$ verificando que $\forall a,b \in R$:
+
+\begin{itemize}
+\item[•] $d(a+b) = d(a) + d(b)$
+\item[•] $d(a \cdot b) = d(a) \cdot b + a \cdot d(b)$
+\end{itemize}
+
+La traducción al mundo de la lógica de las derivaciones se construye tal y como sigue:
+
+\defn \cite{Borrego2009} Un mapa $\partial : Form(\mathcal{L}) \rightarrow Form(\mathcal{L})$ es una \textit{derivada Booleana} si existe una derivación $d$ sobre $\mathbb{F}_2 [\textbf{x}]$ tal que el siguiente diagrama sea conmutativo:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+ $Form(\mathcal{L})$& $\xrightarrow{\partial} $ & $Form(\mathcal{L})$ \\ \\
+ $\pi \; \downarrow $ & $\#$ & $\uparrow \Theta$ \\\\
+ $\mathbb{F}_2 [\textbf{x}]$ & $\xrightarrow{d}$ & $\mathbb{F}_2 [\textbf{x}]$
+\end{tabular}
+\end{table}
+ 
+ \noindent O lo que es lo mismo: $$\partial = \Theta \circ d \circ \pi $$
+ 
+ En este trabajo, la atención recae sobre una derivada booleana en particular, denotada por $\frac{\partial}{\partial p}$, e inducida por la derivada $d = \frac{\partial}{\partial x_p}$. El siguiente resultado muestra una expresión semánticamente equivalente de esta derivada:
+\prop $\frac{\partial}{\partial x_p} F \equiv \neg (F\{ p/\neg p \} \leftrightarrow F) $
+
+\noindent \textbf{Prueba:} Es fácil ver que
+$$\pi (F\{ p/\neg p \}) (x) = \pi (F) (x_1, \dots , x_p +1 ,\dots , x_n)$$
+\noindent Por otro lado, se cumple que para fórmulas polinomiales:
+$$\frac{\partial}{\partial x}a(x) = a(x+1)+a(x)$$
+\noindent Así que,
+$$\frac{\partial}{\partial x_p} \pi (F) = \pi (F) (x_1, \dots , x_p +1 ,\dots , x_n) + \pi (F) (x_1, \dots , x_n)$$
+\noindent Y por tanto, aplicando $\Theta$ se tiene
+$$\frac{\partial}{\partial p} F = \Theta (\frac{\partial}{\partial x_p} \, \pi (F)) \equiv \neg (F\{ p/\neg p \} \leftrightarrow F)$$
+\hspace{15cm} $\square$ \\
+
+Notar que el valor de verdad de $\frac{\partial}{\partial p}F$ respecto de una valoración no depende del valor de verdad de la propia $p$, luego se pueden aplicar valoraciones sobre $\mathcal{L} \setminus \{ p \}$ a dicha fórmula. De hecho, se puede describir la estructura de $F$ aislando el rol de la variable $p$ de la siguiente manera:
+
+\lem \cite{Borrego2009} (Forma $p$-normal) Sea $F \in Form(\mathcal{L})$ y sea $p$ una variable proposicional.
 
 \section{Regla de independencia}
 

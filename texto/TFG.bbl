@@ -12,6 +12,12 @@ J.~Alonso.
   {Temas de programación funcional}.
 \newblock Technical report, Univ. de Sevilla, 2015.
 
+\bibitem{Borrego2009}
+G.~A. Aranda-Corral, J.~Borrego-D{\'i}az, and M.~M. Fern{\'a}ndez-Lebr{\'o}n.
+\newblock {\em Conservative Retractions of Propositional Logic Theories by
+  Means of Boolean Derivatives: Theoretical Foundations}, pages 45--58.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2009.
+
 \bibitem{Kapur-1985}
 D.~Kapur and P.~Narendran.
 \newblock An equational approach to theorem proving in first-order predicate

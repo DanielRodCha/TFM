@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.23)  10 NOV 2017 13:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.23)  13 NOV 2017 20:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2974,7 +2974,74 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 133.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 133.
-[51])
+[51]
+Underfull \hbox (badness 10000) in paragraph at lines 144--146
+
+ []
+
+LaTeX Info: Redefining \. on input line 150.
+LaTeX Info: Redefining \% on input line 150.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 150.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 150.
+[52 <./imagenes/comple.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 150--152
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
+
+ []
+
+LaTeX Info: Redefining \. on input line 184.
+LaTeX Info: Redefining \% on input line 184.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 184.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 184.
+[53])
 LaTeX Info: Redefining \. on input line 232.
 LaTeX Info: Redefining \% on input line 232.
 Package babel Info: Redefining spanish shorthand <<
@@ -3001,68 +3068,10 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 232.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 232.
- [52 <./imagenes/comple.png>]
-LaTeX Info: Redefining \. on input line 232.
-LaTeX Info: Redefining \% on input line 232.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 232.
- [53]
+ [54]
 \openout2 = `Aplicaciones.aux'.
 
  (./Aplicaciones.tex
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1.
- [54
-
-
-
-]
 Cap\'{\i }tulo 4.
 (../src/PFH.lhs))
 Package babel Info: Redefining spanish shorthand <<
@@ -3089,7 +3098,11 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 233.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 233.
- [55]
+ [55
+
+
+
+]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
@@ -3266,13 +3279,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 259.
  ) 
 Here is how much of TeX's memory you used:
- 29266 strings out of 493014
- 519545 string characters out of 6133350
- 633702 words of memory out of 5000000
- 31798 multiletter control sequences out of 15000+600000
+ 29276 strings out of 493014
+ 519657 string characters out of 6133350
+ 633791 words of memory out of 5000000
+ 31802 multiletter control sequences out of 15000+600000
  56419 words of font info for 146 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,15n,104p,534b,722s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,20n,104p,549b,722s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
@@ -3289,10 +3302,10 @@ xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/201
 texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2016/texmf-d
 ist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2016/texmf-dist/fon
 ts/type1/urw/palatino/uplri8a.pfb>
-Output written on TFG.pdf (60 pages, 518569 bytes).
+Output written on TFG.pdf (60 pages, 524585 bytes).
 PDF statistics:
- 576 PDF objects out of 1000 (max. 8388607)
- 468 compressed objects within 5 object streams
- 161 named destinations out of 1000 (max. 500000)
+ 588 PDF objects out of 1000 (max. 8388607)
+ 480 compressed objects within 5 object streams
+ 167 named destinations out of 1000 (max. 500000)
  144 words of extra memory for PDF output out of 10000 (max. 10000000)
 
