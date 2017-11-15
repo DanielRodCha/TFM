@@ -22,6 +22,8 @@ library:
   - Haskell4Maths
   - F2
   - Transformaciones
+  - Derivada
+  - Regla
 executables:
   TFM-exe:
     main: Main.hs

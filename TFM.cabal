@@ -30,6 +30,8 @@ library
       Haskell4Maths
       F2
       Transformaciones
+      Derivada
+      Regla
   other-modules:
       PFH
       Paths_TFM
@@ -55,10 +57,12 @@ executable TFM-exe
     , doctest
     , QuickCheck
   other-modules:
+      Derivada
       F2
       Haskell4Maths
       Logica
       PFH
+      Regla
       Transformaciones
   default-language: Haskell2010
 
@@ -67,7 +71,6 @@ test-suite doctests
   main-is: Doctest.hs
   hs-source-dirs:
       test
-  ghc-options: -threaded
   build-depends:
       base >=4.7 && <5
     , HaskellForMaths

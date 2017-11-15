@@ -32,7 +32,10 @@
  La implementación se hará en el módulo \texttt{Transformaciones}:
 
 \begin{code}
-module Transformaciones where
+module Transformaciones
+    ( phi
+    , theta
+    , proyeccion) where
 
 import Logica
 import Haskell4Maths (Vect(..)
@@ -440,7 +443,7 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  $\mathbb{F}_2[\textbf{x}]$: 
 
  \thm \label{thm:123} Sea $K = \{F_1,\dots F_m\}$ un conjunto de fórmulas
- proposicionales y $G$una fórmula proposicional. Las siguientes sentencias son
+ proposicionales y $G$ una fórmula proposicional. Las siguientes sentencias son
  equivalentes: 
 
  \begin{enumerate}

@@ -8,7 +8,9 @@ La idea principal será hallar la inconsistencia del conjunto de fórmulas media
 
 Este operador eliminará una de las variables cada vez que se aplique, obteniendo a cada paso un conjunto equivalente de fórmulas en los que se usa una variable menos. Finalmente, como hay un número finito de variables en $K \cup \{ \neg F \} $, llegará un momento en el que no queden variables y que sólo queden las constantes $\top$ o $\bot$ (sólo una de ellas), habiendo así refutado o probado, respectivamente, el teorema.\\
 
-Un cambio relevante en la estructura de este capítulo respecto a la seguida en el capítulo anterior es que se expondrán en primer lugar las bases teóricas que fundamentan el modelo lógico-algebraico de razonamiento; y, posteriormente, se implementará en Haskell dicho modelo. 
+Al igual que en el anterior capítulo, la metodología escogida para describir las bases teóricas que fundamentan el modelo lógico-algebraico de razonamiento así como su posterior implementación en el lenguaje Haskell, será la de paralelizar ambas exposiciones en la medida de lo posible, con la idea de facilitar la compresión al lector.
+
+%Un cambio relevante en la estructura de este capítulo respecto a la seguida en el capítulo anterior es que se expondrán en primer lugar las bases teóricas que fundamentan el modelo lógico-algebraico de razonamiento; y, posteriormente, se implementará en Haskell dicho modelo. 
 
 \section{Retracción conservativa mediante omisión de variables}
 En esta sección se presenta cómo calcular retracciones conservativas usando los ya mencionados operadores \textit{de omisión (o de olvido)}. Dichos operadores son mapas del tipo:
@@ -56,7 +58,7 @@ $$[K, \mathcal{L} \setminus \{ p \}] \equiv \delta_p (\bigwedge K , \bigwedge K)
 Un caso interesante aparece cuando $\delta_p(F_1,F_2) \equiv \top$. En este caso, toda valoración parcial en $\mathcal{L} \setminus \{ p \}$ se puede extender a un modelo de $\{ F_1,F_2 \}$.\\
 
 La siguiente caracterización será útil más adelante:
-\cor Sea $\delta : Form(\mathcal{L}) \times Form(\mathcal{L}) \longrightarrow Form(\mathcal{L} \setminus \{ p \})$ un operador robusto. Las siguientes condiciones son equivalentes:
+\cor \label{cor:robusto} Sea $\delta : Form(\mathcal{L}) \times Form(\mathcal{L}) \longrightarrow Form(\mathcal{L} \setminus \{ p \})$ un operador robusto. Las siguientes condiciones son equivalentes:
 \begin{enumerate}
 \item $\delta$ es un operador de omisión de la variable $p$.
 \item Para cualesquiera $F,G \in Form(\mathcal{L})$ y $v \vDash \delta (F,G) $ valoración sobre $\mathcal{L} \setminus \{ p \}$, existe una extensión de $v$ modelo de $\{ F,G \}$.
@@ -107,7 +109,7 @@ Posteriormente se verá que $sat_{\delta}(K)$ no depende del orden de aplicació
 
 A partir de los operadores de omisión resulta natural definir el siguiente cálculo lógico:
 
-\defn Sea $K$ una base de conocimiento, $F\in Form(\mathcal{L})$ y $\{ \delta_p : p \in \mathcal{L}(K) \}$ una familia de operadores de omisión.
+\defn \label{def:prueba} Sea $K$ una base de conocimiento, $F\in Form(\mathcal{L})$ y $\{ \delta_p : p \in \mathcal{L}(K) \}$ una familia de operadores de omisión.
 \begin{itemize}
 \item[•] $A \vdash_{\delta}$-prueba en $K$ es una secuencia de fórmula $F_1, \dots ,F_n$ tal que para todo $i \leq n$, $F_i \in K$ ó existen $F_j , F_k (j,k < i)$ tal que $F_i = \delta_p (F_j , F_k)$ para algún $p \in \mathcal{L}$.
 \item[•] $K \vdash_{\delta} F$ si existe una $\vdash_{\delta}$-prueba en $K$, $F_1, \dots ,F_n$, con $F_n = F$.
@@ -124,8 +126,8 @@ Si $\bot \in sat_{\delta} (K)$ entonces $K$ es inconsistente, porque $K \vDash s
 \vspace{0.5cm}
 \begin{figure}[h]
 	\centering
-		\includegraphics[scale=0.44]{imagenes/comple.png}
-	\caption{Decidir la consistencia usando operadores de omisión ($\partial_{p_i}$)}
+		\includegraphics[scale=0.8]{imagenes/comple.png}
+	\caption{Decidir la consistencia usando operadores de omisión ($\delta$)}
 	\label{fig:comple}
 \end{figure}
 \vspace{0.5cm}
@@ -185,23 +187,53 @@ La traducción al mundo de la lógica de las derivaciones se construye tal y com
  
  \noindent O lo que es lo mismo: $$\partial = \Theta \circ d \circ \pi $$
  
- En este trabajo, la atención recae sobre una derivada booleana en particular, denotada por $\frac{\partial}{\partial p}$, e inducida por la derivada $d = \frac{\partial}{\partial x_p}$. El siguiente resultado muestra una expresión semánticamente equivalente de esta derivada:
-\prop $\frac{\partial}{\partial x_p} F \equiv \neg (F\{ p/\neg p \} \leftrightarrow F) $
+ En este trabajo, la atención recae sobre una derivada booleana en particular, denotada por $\frac{\partial}{\partial p}$, e inducida por la derivada $d = \frac{\partial}{\partial x_p}$. A continuación se implementará dicha derivada.\\
 
-\noindent \textbf{Prueba:} Es fácil ver que
-$$\pi (F\{ p/\neg p \}) (x) = \pi (F) (x_1, \dots , x_p +1 ,\dots , x_n)$$
-\noindent Por otro lado, se cumple que para fórmulas polinomiales:
-$$\frac{\partial}{\partial x}a(x) = a(x+1)+a(x)$$
-\noindent Así que,
-$$\frac{\partial}{\partial x_p} \pi (F) = \pi (F) (x_1, \dots , x_p +1 ,\dots , x_n) + \pi (F) (x_1, \dots , x_n)$$
-\noindent Y por tanto, aplicando $\Theta$ se tiene
-$$\frac{\partial}{\partial p} F = \Theta (\frac{\partial}{\partial x_p} \, \pi (F)) \equiv \neg (F\{ p/\neg p \} \leftrightarrow F)$$
-\hspace{15cm} $\square$ \\
-
+\entrada{Derivada}  
+ 
 Notar que el valor de verdad de $\frac{\partial}{\partial p}F$ respecto de una valoración no depende del valor de verdad de la propia $p$, luego se pueden aplicar valoraciones sobre $\mathcal{L} \setminus \{ p \}$ a dicha fórmula. De hecho, se puede describir la estructura de $F$ aislando el rol de la variable $p$ de la siguiente manera:
 
-\lem \cite{Borrego2009} (Forma $p$-normal) Sea $F \in Form(\mathcal{L})$ y sea $p$ una variable proposicional.
+\lem \cite{Borrego2009} (Forma $p$-normal) Sea $F \in Form(\mathcal{L})$ y sea $p$ una variable proposicional. Existe $F_0 \in Form (\mathcal{L} \setminus \{ p \})$ tal que 
+$$F \equiv \neg (F_0 \leftrightarrow p \wedge \frac{\partial}{\partial p} F)$$
+
+\noindent \textbf{Prueba:} Como $\pi (F)$ es una fórmula polinomial, se puede suponer que
+$$\pi (F) = a + x_p b \;\;\; \text{ con } \;\;\; deg_{x_p} (a) = deg_{x_p} (b) = 0$$
+\noindent Por consiguiente,
+$$F \equiv \Theta (\pi (F)) \equiv \neg (\theta (a) \leftrightarrow p \wedge \Theta (b)) $$
+Entonces, $F_0 = \Theta (a)$. Además, como $b=\frac{\partial}{\partial x_p} \pi (F)$, se tiene que $\Theta (b) = \frac{\partial}{\partial p} F$ . \hspace{1cm} $\square$ \\
+
+Por ejemplo, sea $F=p \wedge q \rightarrow r$. Entonces,
+$$\pi (F) = 1+x_px_q + x_px_qx_r = 1+x_p (x_q+x_qx_r)$$
+Siguiendo la prueba anterior, $a=1$ y $b=x_q+x_qx_r$ (notar que $\frac{\partial}{\partial x_p} (\pi (F))=x_q+x_q+x_r$). Por tanto, $\Theta (a) = \top$ y $\Theta (b)=q \wedge \neg r$, así que:
+$$F \equiv \neg (\top \leftrightarrow p \wedge (q \wedge \neg r))$$
+
 
 \section{Regla de independencia}
+El operador de omisión que se va a definir en esta sección se llama regla de independencia y trata de representar los modelos de la retracción conservativa como aquellos que pueden ser extendidos a modelos de $F \wedge G$. Destacar que ésta es la idea tras el Lema de elevación (\ref{lem:lifting}).\\
 
-\section{Cálculo lógico}
+\vspace{0.5cm}
+\begin{figure}[h]
+	\centering
+		\includegraphics[scale=0.65]{imagenes/indegeo.png}
+	\caption{Interpretación geométrica de la regla de independencia}
+	\label{fig:comple}
+\end{figure}
+\vspace{0.5cm}
+
+Geométricamente, si $a$ y $b$ son los polinomios $\pi (F)$ y $\pi (G)$, respectivamente; entonces el conjunto $\mathcal{V} (1+a,1+b)$ (que correspondería al conjunto de modelos tanto de $F$ como de $G$) se proyecta mediante $\partial_p$ (ver Figura \ref{fig:proy2}). La expresión algebraica de dicha proyección se describe a continuación en forma de regla:
+
+\defn La \textit{regla de independencia} (o regla $\partial$) sobre fórmulas polinomiales se define como sigue: dados $a_1,a_2 \in \mathbb{F}_2 [\textbf{x}]$ y $x$ una variable indeterminada:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c}
+$a_1$, $a_2$ \\
+\hline $\partial (a_1,a_2)$
+\end{tabular}
+\end{table}
+
+
+\noindent donde:
+$$\partial_x (a_1, a_2) = 1 + \Phi [(1+a_1 \cdot a_2) \cdot (1+a_1 \cdot \frac{\partial}{\partial x} a_2 + a_2 \cdot \frac{\partial}{\partial x} a_1 + \frac{\partial}{\partial x} a_1 \cdot \frac{\partial}{\partial x} a_2)]$$
+
+\entrada{Regla}
