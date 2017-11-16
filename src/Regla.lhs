@@ -308,8 +308,17 @@ Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto par
  $$\partial_{\mathcal{L} \setminus \{ p_3, p_4 \}} [K] \equiv \partial_{p_1}
  [\partial_{p_2} [\partial_{p_5}]]$$
 
- Sin embargo, no se ha implementado el operador $\partial$ aplicado a toda una
- base de conocimiento. 
+ Previamente a ver los cálculos, debido a la manifiesta necesidad de extender
+ la definición en Haskell de la regla de independencia, se procede a la
+ implementación de la misma. Para lo cual serán necesarias dos funciones
+ auxiliares.\\
+
+ La función \texttt{(reglaIndependenciaAux v p ps)} aplica la regla de
+ independecia respecto de la variable \texttt{v} a todos los pares de
+ polinomios  $(\texttt{p},p_i)$, con $p_i \in \texttt{ps}$; y las une a las que
+ hubiera en el conjunto \texttt{acum}. Es decir, se fija en la primera
+ coordenada al polinomio $p$ y con la segunda coordenada se recorre el conjunto
+ de polinomios $ps$.
 
 \begin{code}
 reglaIndependenciaAux :: PolF2 -> PolF2 -> S.Set PolF2 -> S.Set PolF2 -> S.Set PolF2
@@ -319,18 +328,41 @@ reglaIndependenciaAux v p ps acum | S.null ps = acum
                                              (S.insert dR acum)
   where (p',ps') = S.deleteFindMin ps
         dR       = reglaIndependencia v p p'
+\end{code}
 
+ Notar que si aparece un cero, que traducido a fórmula es un $\bot$, se
+ para el proceso y se devuelve un conjunto con como único elemento el propio
+ 0. Esto se debe al hecho de que una base de conocimiento es una conjunción de
+ fórmulas y, por tanto, es falsa si una de sus fórmulas lo es (en este caso es
+ el mismo $\bot$). En cuenstiones de eficiencia este detalle es fundamental ya
+ que aprovecha una de las características claves del lenguaje Haskell, la
+ evaluación perezosa.\\
+
+ Como la regla de independencia es simétrica, al aplicar una vez la función
+ anterior no será necesario volver a aplicar la regla de independencia al
+ polinomio distinguido $p$, y por consiguiente, se puede continuar aplicando la
+ regla al resto de polinomios.\\
+
+ De esta forma se define la función \texttt{(reglaIndependenciaKB v pps acum)}
+ que aplica el operador de omisión $\partial_{\texttt{v}}$ al conjunto
+ $\texttt{pps}$ y une todas las fórmulas obtenidas a las del conjunto
+ \texttt{acum}.
+
+\begin{code}
 reglaIndependenciaKB :: PolF2 -> S.Set PolF2 ->
                   S.Set PolF2 -> S.Set PolF2
-reglaIndependenciaKB v pps acum | acum == set0 = set0
+reglaIndependenciaKB v pps acum | acum == S.fromList [0] = S.fromList [0]
                           | S.null pps   = acum
                           | otherwise    = reglaIndependenciaKB v ps
                                            (reglaIndependenciaAux v p pps acum)
   where (p,ps) = S.deleteFindMin pps
-
-set0 :: S.Set PolF2
-set0 = S.fromList [0]
 \end{code}
+
+ En correlación al caso anterior, si en algún momento de la computación el
+ acumulador es el conjunto cuyo único elemento es el 0 querrá decir que se ha
+ obtenido al aplicar la regla de independencia y que por tanto la base de
+ conocimiento de la que proviene dicho conjunto de polinomios es
+ inconsistente tal y como se indica en el corolario anterior.
 
  Dicha computación en Haskell queda:
 
