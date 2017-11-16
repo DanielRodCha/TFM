@@ -4,7 +4,7 @@ Para ello se crea el módulo \texttt{Derivada} y se importan los módulos necesa
 module Derivada (derivaPol) where
 
 import Logica
-import Haskell4Maths (Lex
+import Haskell4Maths ( Lex
                      , lm
                      , var
                      , vars
@@ -13,6 +13,8 @@ import Haskell4Maths (Lex
 import F2 (PolF2)
 import Transformaciones (proyeccion
                         , theta)
+
+import Math.CommutativeAlgebra.Polynomial
 
 import Data.List (union)
 import Test.QuickCheck
@@ -62,7 +64,7 @@ derivaMononomio m v
 
 \begin{code}
 -- | Por ejemplo,
--- [x1,x2,x3,x4] = (map var ["x1","x2","x3","x4"]) :: [PolF2]
+-- >>> [x1,x2,x3,x4] = (map var ["x1","x2","x3","x4"]) :: [PolF2]
 -- >>> derivaPol x1 x1
 -- 1
 -- >>> derivaPol (1+x1+x2+x1*x2) x1

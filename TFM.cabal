@@ -71,6 +71,7 @@ test-suite doctests
   main-is: Doctest.hs
   hs-source-dirs:
       test
+  ghc-options: -threaded
   build-depends:
       base >=4.7 && <5
     , HaskellForMaths

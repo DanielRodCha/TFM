@@ -14,6 +14,7 @@ import Transformaciones ( phi
 
 import Data.List (union)
 import Test.QuickCheck
+import qualified Data.Set as S
 \end{code}
 
  La función \texttt{(reglaIndependencia x a1 a2)} es el polinomio obtenido de
@@ -160,9 +161,10 @@ Siguiendo con el ejemplo anterior,
 
 \begin{code}
 -- |
--- >>> proyeccion $ p1 ∨ (no p1)
+-- >>> p = Atom "p"
+-- >>> proyeccion $ p ∨ (no p)
 -- 1
--- >>> proyeccion $ p1 ∧ (no p1)
+-- >>> proyeccion $ p ∧ (no p)
 -- 0
 \end{code}
 
@@ -268,4 +270,73 @@ Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto par
  \bot$.
 
  \noindent \textbf{Prueba:} Es consecuencia directa de los teoremas
- \ref{teo:completo} y  \ref{thm:opOmision}. \hspace{4cm} $\square$
+ \ref{teo:completo} y  \ref{thm:opOmision}. \hspace{4cm} $\square$ \\
+
+ El resultado anterior en términos algebraicos queda:
+
+ \cor Sea $F \in Form(\mathcal{L})$ una base de conocimiento. Los siguientes
+ enunciados son equivalentes:
+ \begin{enumerate}
+ \item $K \vDash F$
+ \item $J_K \vdash_{\partial} 0$, donde $J_K$ es el ideal definido en la página
+ \pageref{def:J_K}. 
+ \end{enumerate}
+ 
+ \noindent \textbf{Prueba: } $(1) \Rightarrow (2)$ : Supuesto $K \vDash F$,
+ entonces $K \cup  \{ \neg F \}$ es inconsistente. Como $\partial_p$ es
+ refutacionalmente completo, $K\cup \{ \neg F \} \vdash_{\partial} \bot$. Por
+ tanto, 
+ $$\{ 1+\pi (G) : G \in K \} \cup \{ \pi (F) \} \vdash_{\partial} 0$$
+ 
+ $(1) \Rightarrow (2)$ : Si se encuentra una $\partial$-refutación con los
+ polinomios, entonces, por el corolario anterior,  $K\cup \{ \neg F \}$ es
+ inconsistente. \hspace{7.5cm} $\square$\\
+
+ Por ejemplo, si consideramos $G = p_4 \rightarrow p_3$ y sea $K$ la base de
+ conocimiento:
+ $$f(x)= \left\{ \begin{array}{l}
+             p_5 \wedge p_1 \leftrightarrow p_4 \\
+             p_5 \wedge p_3 \rightarrow p_4 \\
+             p_5 \wedge p_2 \rightarrow p_4 \\
+             p_1 \wedge p_2 \wedge p_4 \wedge p_5 \rightarrow p_3
+             \end{array}
+   \right.
+ $$
+
+ Para decidir si $K \vDash G$ se debe computar:
+
+ $$\partial_{\mathcal{L} \setminus \{ p_3, p_4 \}} [K] \equiv \partial_{p_1}
+ [\partial_{p_2} [\partial_{p_5}]]$$
+
+ Sin embargo, no se ha implementado el operador $\partial$ aplicado a toda una
+ base de conocimiento. 
+
+\begin{code}
+reglaIndependenciaAux :: PolF2 -> PolF2 -> S.Set PolF2 -> S.Set PolF2 -> S.Set PolF2
+reglaIndependenciaAux v p ps acum | S.null ps = acum
+                              | dR == 0   = S.fromList [0]
+                              | otherwise = reglaIndependenciaAux v p ps'
+                                             (S.insert dR acum)
+  where (p',ps') = S.deleteFindMin ps
+        dR       = reglaIndependencia v p p'
+
+reglaIndependenciaKB :: PolF2 -> S.Set PolF2 ->
+                  S.Set PolF2 -> S.Set PolF2
+reglaIndependenciaKB v pps acum | acum == set0 = set0
+                          | S.null pps   = acum
+                          | otherwise    = reglaIndependenciaKB v ps
+                                           (reglaIndependenciaAux v p pps acum)
+  where (p,ps) = S.deleteFindMin pps
+
+set0 :: S.Set PolF2
+set0 = S.fromList [0]
+\end{code}
+
+ Dicha computación en Haskell queda:
+
+\begin{code}
+-- |
+-- >>> [p1,p2,p3,p4,p5] = map Atom ["p1","p2","p3","p4","p5"]
+-- >>> k = [p5 ∧ p1 ↔ p4, p5 ∧ p3 → p4, p5 ∧ p2 → p4, p1 ∧ p2 ∧ p4 ∧ p5 → p3]
+-- >>> map proyeccion K
+\end{code}

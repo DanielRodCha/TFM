@@ -495,7 +495,7 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  necesario. De manera similar, dada una base de conocimiento $K$, se define el
  ideal:
 
- $$J_K = (\{1+P(F) : F \in K\})$$
+ $$ \label{def:J_K} J_K = (\{1+P(F) : F \in K\})$$
 
  y entonces
 
@@ -504,3 +504,4 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  \defn El \textit{anillo de coordenadas} de $K$ se define como el
  correspondiente a la variedad algebraica $V(J_K)$, que, por el teorema de
  Nullstellensatz, es $\mathbb{F}_2[\textbf{x}]/_{(J_K)})/_{\mathbb{I}_2} $.
+
