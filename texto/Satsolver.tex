@@ -1,0 +1,57 @@
+\chapter{Herramienta $\mathtt{SAT\_Solver}$}
+
+En el presente capítulo se expondrá una herramienta para resolver el famoso problema de satisfacibilidad o más conocido como el problema $SAT$. Dicha herramienta se basará en la teoría presentada en los capítulos anteriores, mostrando así una de sus más relevantes aplicaciones. \\
+
+Antes de tratar la herramienta, se pondrá al lector en situación dando una descripción detallada del problema de satisfacibilidad booleana; así como de su importancia, tanto para la comunidad científica internacional como para el resto de las personas.\\
+
+Posteriormente, se describirán las tecnologías clave utilizadas en el desarrollo de la herramienta, que han dotado de estructura al proyecto además de concederle cierta robustez.\\
+
+Finalmente, se realizará un análisis de eficiencia de la herramienta, durante el cual se detectaron ciertas ``fugas de tiempo''. Estas posibles mejoras se implementarán también dando lugar a una primera versión del \texttt{SAT-Solver}.
+
+\newpage
+\section{El problema $SAT$}
+
+%\subsection{Definición}
+Tal y como se definió en la página \pageref{def:sat}, una fórmula $F$ se dice \textit{satisfacible} si existe al menos una interpretación $i$ de $F$ que sea modelo de la fórmula. A partir de esta definición, es natural preguntarse cuándo una formula dada es satisfacible o no. Éste es el problema de la satisfacibilidad booleana o el comúnmente conocido como problema $SAT$. En definitiva consiste en saber \textit{a priori} si existe alguna forma de sustituir las variables proposicionales por $True$ o $False$, de manera que la fórmula sea verdadera. \\
+
+Es importante destacar que para una fórmula con 10 variables, existen $2^{10} = 1024$ valoraciones a comprobar. Si a esto se suma que para que una fórmula se considere ``mínimamente interesante'' (en el mundo empresarial, por ejemplo) debe tener cientos de variables; el orden de magnitud de comprobaciones que se han de hacer es similar al número de átomos que hay en el universo. Este crecimiento tan rápido de combinaciones se debe a la complejidad exponencial intrínseca al problema de satisfacibilidad. \\
+
+En teoría de la complejidad computacional, es considerado el problema capital de la clase de complejidad $NP$ al ser también un problema $NP$ duro ($NP$-hard), y ganándose así el estatus de problema $NP$-completo. \\
+
+Respecto a los problemas $NP$-completos, no hay manera eficiente conocida de localizar una solución. Es decir, el tiempo requerido para resolver el problema usando cualquier algoritmo actualmente conocido aumenta muy rápidamente a medida que el tamaño del problema crece.\\
+
+Como consecuencia, el problema de determinar si es posible resolver estos problemas de forma rápida, llamado problema $P$ versus $NP$ (¿$P=NP$?), es uno de los principales problemas sin resolver de la informática actual. Es por esto que en el año 2000, el \textit{Clay Mathematics Institute} lo declaró como el primer problema del milenio, junto a otros siete. Este título no es vano, ya que se cree que estos problemas marcarán el devenir de la comunidad científico-matemática.\\
+
+Para comprender algo mejor la importancia del problema ¿$P=NP$? es importante conocer las consecuencias de su resolución. Si resultara que no son iguales, el impacto en la sociedad sería mínimo ya que únicamente se dejarían de buscar algoritmos de complejidad polinomial para resolver problemas de la clase $NP$.\\
+
+Sin embargo, si se demostrase que ambas clases de complejidad son iguales, las implicaciones para la sociedad actual serían de una magnitud incomparable. Esto se debe a que la robustez de los sistemas criptográficos actuales se basan en la intratabilidad de ciertos problemas de la clase $NP$. Si éstos fueran resolubles en tiempo polinomial peligrarían todas las comunicaciones y las claves bancarias dejarían de ser seguras. Por otro lado, no todas las consecuencias son negativas ya que multitud de problemas de ámbito empresarial o social serían tratables; y por tanto, los costes se reducirían y los beneficios aumentarían.\\
+
+Aunque, una vez vista la importancia del problema ¿$P=NP$? es natural preguntarse cómo podría resolverse. La respuesta es tan sencilla como dar un algoritmo que trabaje en tiempo polinomial en función del dato de entrada para un problema $NP$-completo, o demostrar que no existe dicho algoritmo. \\ 
+
+El problema $NP$-completo objeto de la mayoría de estudios por parte de la comunidad científica es el problema $SAT$. Es tal su popularidad que cada año se publican multitud de nuevos algoritmos que dicen mejorar la eficiencia de resolución, y que se basan en las técnicas informáticas más innovadoras. \\
+
+Con el objetivo de regular dicha competición, así como de identificar y promover nuevos retos relacionados con la resolución del problema $SAT$ surge la \textit{SAT Competition 2002}, enmarcada dentro del \textit{Fifth  International Symposium on the Theory and Applications of Satisfiability Testing}. Y desde ese año, de forma anual o bianual, se celebra tal competición. \\
+
+Enmarcando el trabajo aquí presente en el contexto actual, pretende sentar las bases de un programa que resuelva el problema $SAT$ en un tiempo eficiente y que cumpla los estándares de dicha competición. Es por lo que a partir de este punto, la eficiencia será una máxima.
+
+%\subsection{Implicaciones}
+
+\section{Gestión del proyecto}
+
+\subsection{Lenguaje Haskell}
+
+\subsection{GitHub}
+
+\subsection{Stack}
+
+\section{La herramienta}
+
+\subsection{Entrada y salida}
+
+\subsection{Preprocesado}
+
+\subsection{Cálculo}
+
+\section{Análisis de la herramienta}
+
+\subsection{Heurísticas}

@@ -34,6 +34,7 @@ library
       Regla
   other-modules:
       PFH
+      SAT_Solver
       Paths_TFM
   build-depends:
       base >=4.7 && <5
@@ -63,6 +64,7 @@ executable TFM-exe
       Logica
       PFH
       Regla
+      SAT_Solver
       Transformaciones
   default-language: Haskell2010
 

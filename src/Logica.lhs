@@ -363,7 +363,7 @@ esInsatisfacible :: FProp -> Bool
 esInsatisfacible f = modelosFormula f == []
 \end{code}
 
-\defn Una fórmula $F$ se dice satisfacible si existe al menos una
+\defn \label{def:sat} Una fórmula $F$ se dice satisfacible si existe al menos una
  interpretación $i$ de $F$ que sea modelo de la fórmula. La función
  \texttt{(esSatisfacible f)} se verifica si la fórmula f es satisfacible.
 

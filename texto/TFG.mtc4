@@ -1,1 +1,11 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.1}Introducci\IeC {\'o}n a Haskell}{\reset@font\mtcSfont 67}{section.4.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.1}El problema $SAT$}{\reset@font\mtcSfont 68}{section.4.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.2}Gesti\IeC {\'o}n del proyecto}{\reset@font\mtcSfont 70}{section.4.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.1}Lenguaje Haskell}{\reset@font\mtcSSfont 70}{subsection.4.2.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.2}GitHub}{\reset@font\mtcSSfont 70}{subsection.4.2.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.2.3}Stack}{\reset@font\mtcSSfont 70}{subsection.4.2.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.3}La herramienta}{\reset@font\mtcSfont 70}{section.4.3}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.1}Entrada y salida}{\reset@font\mtcSSfont 70}{subsection.4.3.1}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.2}Preprocesado}{\reset@font\mtcSSfont 70}{subsection.4.3.2}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.3.3}C\IeC {\'a}lculo}{\reset@font\mtcSSfont 70}{subsection.4.3.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {4.4}An\IeC {\'a}lisis de la herramienta}{\reset@font\mtcSfont 70}{section.4.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {4.4.1}Heur\IeC {\'\i }sticas}{\reset@font\mtcSSfont 70}{subsection.4.4.1}}
