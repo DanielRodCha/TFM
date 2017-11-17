@@ -308,10 +308,10 @@ Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto par
  $$\partial_{\mathcal{L} \setminus \{ p_3, p_4 \}} [K] \equiv \partial_{p_1}
  [\partial_{p_2} [\partial_{p_5}]]$$
 
- Previamente a ver los cálculos, debido a la manifiesta necesidad de extender
+ Previamente a ver los cálculos y debido a la manifiesta necesidad de extender
  la definición en Haskell de la regla de independencia, se procede a la
- implementación de la misma. Para lo cual serán necesarias dos funciones
- auxiliares.\\
+ implementación de la misma. Para lo cual, será necesaria la siguiente función 
+ auxiliar. \\ 
 
  La función \texttt{(reglaIndependenciaAux v p ps)} aplica la regla de
  independecia respecto de la variable \texttt{v} a todos los pares de
@@ -321,27 +321,28 @@ Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto par
  de polinomios $ps$.
 
 \begin{code}
-reglaIndependenciaAux :: PolF2 -> PolF2 -> S.Set PolF2 -> S.Set PolF2 -> S.Set PolF2
-reglaIndependenciaAux v p ps acum | S.null ps = acum
-                              | dR == 0   = S.fromList [0]
-                              | otherwise = reglaIndependenciaAux v p ps'
-                                             (S.insert dR acum)
-  where (p',ps') = S.deleteFindMin ps
-        dR       = reglaIndependencia v p p'
+reglaIndependenciaAux :: PolF2 -> PolF2 -> S.Set PolF2 ->
+                            S.Set PolF2 -> S.Set PolF2
+reglaIndependenciaAux v p ps acum
+  | S.null ps = acum
+  | otherwise = reglaIndependenciaAux v p ps' (S.insert dR acum)
+                where (p',ps') = S.deleteFindMin ps
+                      dR       = reglaIndependencia v p p'
 \end{code}
 
- Notar que si aparece un cero, que traducido a fórmula es un $\bot$, se
- para el proceso y se devuelve un conjunto con como único elemento el propio
- 0. Esto se debe al hecho de que una base de conocimiento es una conjunción de
- fórmulas y, por tanto, es falsa si una de sus fórmulas lo es (en este caso es
- el mismo $\bot$). En cuenstiones de eficiencia este detalle es fundamental ya
- que aprovecha una de las características claves del lenguaje Haskell, la
- evaluación perezosa.\\
+% --  | dR == 0   = S.fromList [0]
+% Notar que si aparece un cero, que traducido a fórmula es un $\bot$, se
+% para el proceso y se devuelve un conjunto con como único elemento el propio
+% 0. Esto se debe al hecho de que una base de conocimiento es una conjunción de
+% fórmulas y, por tanto, es falsa si una de sus fórmulas lo es (en este caso es
+% el mismo $\bot$). En cuenstiones de eficiencia este detalle es fundamental ya
+% que aprovecha una de las características claves del lenguaje Haskell, la
+% evaluación perezosa.\\
 
  Como la regla de independencia es simétrica, al aplicar una vez la función
  anterior no será necesario volver a aplicar la regla de independencia al
  polinomio distinguido $p$, y por consiguiente, se puede continuar aplicando la
- regla al resto de polinomios.\\
+ regla al resto de polinomios y decartar $p$. \\
 
  De esta forma se define la función \texttt{(reglaIndependenciaKB v pps acum)}
  que aplica el operador de omisión $\partial_{\texttt{v}}$ al conjunto
@@ -351,24 +352,62 @@ reglaIndependenciaAux v p ps acum | S.null ps = acum
 \begin{code}
 reglaIndependenciaKB :: PolF2 -> S.Set PolF2 ->
                   S.Set PolF2 -> S.Set PolF2
-reglaIndependenciaKB v pps acum | acum == S.fromList [0] = S.fromList [0]
-                          | S.null pps   = acum
-                          | otherwise    = reglaIndependenciaKB v ps
-                                           (reglaIndependenciaAux v p pps acum)
-  where (p,ps) = S.deleteFindMin pps
+reglaIndependenciaKB v pps acum
+  | S.null pps   = acum
+  | otherwise    = reglaIndependenciaKB v ps
+                   (reglaIndependenciaAux v p pps acum)
+      where (p,ps) = S.deleteFindMin pps
 \end{code}
 
- En correlación al caso anterior, si en algún momento de la computación el
- acumulador es el conjunto cuyo único elemento es el 0 querrá decir que se ha
- obtenido al aplicar la regla de independencia y que por tanto la base de
- conocimiento de la que proviene dicho conjunto de polinomios es
- inconsistente tal y como se indica en el corolario anterior.
+% --  | acum == S.fromList [0] = S.fromList [0]
+% En correlación a la función anterior, si en algún momento de la computación el
+% acumulador es el conjunto cuyo único elemento es el 0, querrá decir que se ha
+% obtenido al aplicar la regla de independencia. Por tanto la base de
+% conocimiento de la que proviene dicho conjunto de polinomios es
+% inconsistente tal y como se indica en el corolario anterior. 
 
- Dicha computación en Haskell queda:
+ Volviendo al ejemplo anterior, ya se está en condiciones de realizar los
+ cálculos con Haskell. 
+ 
+\begin{code}
+-- |
+-- >>> [p1,p2,p3,p4,p5] = map Atom ["p1","p2","p3","p4","p5"]
+-- >>> k = [p5 ∧ p1 ↔ p4,                                                                                p5 ∧ p3 → p4,                                                                                p5 ∧ p2 → p4,                                                                                p1 ∧ p2 ∧ p4 ∧ p5 → p3]
+-- >>> ps = S.fromList $ map proyeccion k
+-- >>> ps
+-- fromList [x1x2x3x4x5+x1x2x4x5+1,x1x5+x4+1,x2x4x5+x2x5+1,x3x4x5+x3x5+1]
+-- >>> ps' = reglaIndependenciaKB (proyeccion p5) ps (S.fromList [])
+-- >>> ps'
+-- fromList [x1x2x3x4+x1x2x4+x1x4+x4+1,x1x4+x4+1,1]
+-- >>> ps'' = reglaIndependenciaKB (proyeccion p2) ps' (S.fromList [])
+-- >>> ps''
+-- fromList [x1x4+x4+1,1]
+-- >>> ps''' = reglaIndependenciaKB (proyeccion p1) ps'' (S.fromList [])
+-- >>> ps'''
+-- fromList [1]
+\end{code}
+
+ Así que:
+$$[K, \mathcal{L} \setminus \{ p_3, p_4 \}] \equiv \{ \top \} \nvDash G $$
+
+ Se considerará ahora la fórmula $F = p_1 \wedge p_2 \wedge p_5 \rightarrow
+ p_3$. Para saber si $K \vDash F$, basta computar $[K, \mathcal{L} (F)] \equiv
+ \partial_{p_3} [K]$ :
 
 \begin{code}
 -- |
 -- >>> [p1,p2,p3,p4,p5] = map Atom ["p1","p2","p3","p4","p5"]
--- >>> k = [p5 ∧ p1 ↔ p4, p5 ∧ p3 → p4, p5 ∧ p2 → p4, p1 ∧ p2 ∧ p4 ∧ p5 → p3]
--- >>> map proyeccion K
+-- >>> k = [p5 ∧ p1 ↔ p4,                                                                                p5 ∧ p3 → p4,                                                                                p5 ∧ p2 → p4,                                                                                p1 ∧ p2 ∧ p4 ∧ p5 → p3]
+-- >>> ps = S.fromList $ map proyeccion k
+-- >>> ps
+-- fromList [x1x2x3x4x5+x1x2x4x5+1,x1x5+x4+1,x2x4x5+x2x5+1,x3x4x5+x3x5+1]
+-- >>> ps' = reglaIndependenciaKB (proyeccion p3) ps (S.fromList [])
+-- >>> ps'
+-- fromList [x1x2x4x5+x1x2x5+x1x5+x2x4x5+x2x5+x4+1,x1x5+x4+1,x2x4x5+x2x5+1,1]
+-- >>> f = p1 ∧ p2 ∧ p5 → p4
+-- > pol¬f = proyeccion (no f)
+-- > pol¬f
+-- x1x2x4x5+x1x2x5
+-- >>> reglaIndependenciaKB (proyeccion p1) (S.insert (pol¬f) ps') (S.fromList [])
+-- fromList [0,x2x4x5+x2x5,x2x4x5+x2x5+x4x5+x4+1,x2x4x5+x2x5+1,x4x5+x4+1,1]
 \end{code}
