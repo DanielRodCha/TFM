@@ -116,13 +116,241 @@ Las funciones que intervienen en el preprocesado tratan de transformar un archiv
 \entrada{Preprocesado}
 
 \newpage
-\subsection{Cálculo}
+\subsection{Saturación}
 
-Una vez que se tiene el conjunto de polinomios basta saturar dicho conjunto usando la regla de independencia. Las funciones encargadas de realizar dicho proceso son: \texttt{omiteVariableKB} y \texttt{saturaKB}. El módulo en el que se implementarán será \texttt{Saturacion}:
+Una vez que se tiene el conjunto de polinomios basta saturar dicho conjunto usando la regla de independencia. Las funciones encargadas de realizar este proceso son: \texttt{omiteVariableKB} y \texttt{saturaKB}. El módulo en el que se implementan estas se llama \texttt{Saturacion}.
 
 \entrada{Saturacion}
+
+Y así queda implementada una primera versión de la herramienta.
 
 \newpage
 \section{Análisis de la herramienta}
 
+En esta sección se probará la herramienta con instancias de ejemplo, con el objetivo de detectar cotas de eficiencia. Las instancias se almacenan en el directorio \texttt{exDIMACS}, organizadas en carpetas según su dificultad.
+
+\subsection{Directorio \texttt{easy}}
+Este directorio contiene cuatro ejemplos muy sencillos, de hecho, las fórmulas que codifican sólo  tienen 2 variables ($p$ y $q$). El objetivo de estos ejemplos es servir como test para comprobar que el funcionamiento de la herramienta es el deseado.
+
+\subsubsection{Ejemplo 1}
+
+El archivo se llama \texttt{example1.txt}:
+\begin{codigo}
+c example 1 
+c 
+c f = (p ∨ q)
+c
+p cnf 2 1 
+1 2 0
+\end{codigo}
+
+Y codifica la fórmula:
+$$(p \vee q)$$
+
+La ejecución en máquina es:
+\begin{code}
+>>> satSolver "exDIMACS/easy/example1.txt"
+True
+(0.00 secs, 586,368 bytes)
+\end{code}
+\subsubsection{Ejemplo 2}
+El archivo se llama \texttt{example2.txt}:
+\begin{codigo}
+c example 2
+c 
+c f = (p ∨ q) ∧ (¬p ∨ q)
+c
+p cnf 2 2
+1 2 0
+-1 2 0
+\end{codigo}
+
+Y codifica la fórmula:
+$$(p \vee q) \wedge (\neg p \vee q)$$
+
+La ejecución en máquina es:
+\begin{code}
+>>> satSolver "exDIMACS/easy/example2.txt"
+True
+(0.00 secs, 792,784 bytes)
+\end{code}
+\subsubsection{Ejemplo 3}
+El archivo se llama \texttt{example3.txt}:
+\begin{codigo}
+c example 3
+c 
+c f = (p ∨ q) ∧ (¬p ∨ q) ∧ (p ∨ ¬q)
+c
+p cnf 2 3
+1 2 0
+-1 2 0
+1 -2 0
+\end{codigo}
+
+Y codifica la fórmula:
+$$(p \vee q)\wedge (\neg p \vee q)\wedge ( p \vee \neg q)$$
+
+La ejecución en máquina es:
+\begin{code}
+>>> satSolver "exDIMACS/easy/example3.txt"
+True
+(0.00 secs, 1,047,600 bytes)
+\end{code}
+\subsubsection{Ejemplo 4}
+El archivo se llama \texttt{example4.txt}:
+\begin{codigo}
+c example 4
+c 
+c f = (p ∨ q) ∧ (¬p ∨ q) ∧ (p ∨ ¬q) ∧ (¬p ∨ ¬q)
+c
+p cnf 2 4
+1 2 0
+-1 2 0
+1 -2 0
+-1 -2 0
+\end{codigo}
+
+Y codifica la fórmula:
+$$(p \vee q)\wedge (\neg p \vee q)\wedge ( p \vee \neg q)\wedge (\neg p \vee \neg q)$$
+
+La ejecución en máquina es:
+\begin{code}
+>>> satSolver "exDIMACS/easy/example4.txt"
+False
+(0.01 secs, 1,361,672 bytes)
+\end{code}
+
+\newpage
+\subsection{Directorio \texttt{medium}}
+Tras comprobar que la herramienta responde de la forma deseada con los ejemplos anterior, conviene probar su eficiencia. Para ello, se construye una batería de ejemplos truncando el archivo \texttt{sat100.cnf} del directorio \texttt{hard}. Al ser conjuntos de cláusulas contenidas en un conjunto de cláusulas satisfacible son también satisfacibles y por tanto, el resultado de usar la herramienta debe ser \texttt{True}.
+
+Únicamente se tratarán los tres primeros ejemplos ya que el resto no se ejecuta en un tiempo razonable.
+
+\subsubsection{Ejemplo 0}
+El archivo se llama \texttt{exampleSat0} y codifica una fórmula en forma normal conjuntiva con 30 cláusulas en las que intervienen hasta 59 variables distintas. Destacar que tanto en este ejemplo como en los próximos, en cada cláusula habrá exactamente 3 literales.
+
+\begin{codigo}
+c 
+c    clause length = 3 
+c
+p cnf 59 30
+30 -19 -3 0
+89 31 -42 0
+1 10 38 0
+2 -21 -98 0
+36 56 -78 0
+14 -59 -87 0
+89 -75 -86 0
+-20 -80 4 0
+-63 90 -55 0
+59 75 9 0
+-5 31 -97 0
+48 -35 58 0
+28 84 16 0
+65 -4 94 0
+-72 -23 7 0
+18 -64 -55 0
+-96 3 -35 0
+89 -65 83 0
+8 -60 -28 0
+34 50 -14 0
+64 -47 -35 0
+-19 57 93 0
+52 99 -94 0
+-59 10 48 0
+-78 -44 76 0
+-63 -48 52 0
+-88 84 -68 0
+10 88 -76 0
+92 -81 -88 0
+\end{codigo}
+
+La ejecución en máquina es:
+\begin{code}
+>>> satSolver "exDIMACS/medium/exampleSat0.txt"
+True
+(0.02 secs, 10,307,480 bytes)
+\end{code}
+
+\subsubsection{Ejemplo 5}
+El archivo se llama \texttt{exampleSat1.txt} y codifica una fórmula satisfacible con 91 cláusulas y 82 variables. Por razones de espacio se omitirá mostar el archivo. La ejecución en máquina es:
+\begin{code}
+>>> satSolver "exDIMACS/medium/exampleSat1.txt"
+True
+(5.87 secs, 2,122,138,840 bytes)
+\end{code}
+
+\subsubsection{Ejemplo 6}
+El archivo se llama \texttt{exampleSat2.txt} y codifica una fórmula satisfacible de mayor tamaño que la anterior, de hecho, la contiene. Por razones de espacio se omitirá mostar el archivo. La ejecución en máquina es:
+\begin{code}
+>>> satSolver "exDIMACS/medium/exampleSat2.txt"
+True
+(139.13 secs, 34,754,329,424 bytes)
+\end{code}
+
+\subsection{Directorio \texttt{hard}}
+
+En este directorio se encuentras tres archivos \texttt{.cnf} que son tres ejemplos oficiales de instancias dadas por la organización de la competición $SAT$ en la que se pretende participar.
+
+\subsubsection{Archivo \texttt{sat100.cnf}}
+Este ejemplo consta de 100 variables en 430 cláusulas. La fórmula es satisfacible pero tiempo de ejecución sobrepasa la hora.
+\subsubsection{Archivo \texttt{sat250.cnf}}
+Este ejemplo consta de 250 variables en 1065 cláusulas. La fórmula es satisfacible aunque el tiempo de ejecución excede la hora.
+\subsubsection{Archivo \texttt{unsat250.cnf}}
+Este ejemplo consta de 250 variables en 1065 cláusulas. La fórmula es insatisfacible y la ejecución queda:
+\begin{code}
+>>> satSolver "exDIMACS/hard/unsat250.cnf"
+False
+(0.05 secs, 34,873,832 bytes)
+\end{code}
+
 \subsection{Heurísticas}
+Ya en el ejemplo 5, el tiempo de ejecución es demasiado alto. Sin embargo, en el ejemplo 6 y posteriores (exceptuando \texttt{unsat250.cnf}) el coste en tiempo excede lo razonable, por lo que se pone de manifiesto la necesidad de una mejora en la implementación.\\
+
+Tras diversas pruebas, la mejora que se ha implementado se debe al hecho observado de que aunque el resultado tras saturar permanezca invariante si se cambia el orden de las variables a omitir, el tiempo de ejecución sí cambia.\\
+
+A raíz de esto se probarán experimentalmente varias heurísticas; y en base a estos experimentos, se escogerá la que tenga mejores resultados. Es importante tener en cuenta que no es seguro que el orden escogido sea el óptimo ya que nos basamos en un criterio absolutamente empírico.\\
+
+Se define el módulo \texttt{Heuristicas}, en el que se implementarán dichas heurísticas.
+
+\entrada{Heuristicas}
+
+Quedando la resolución del ejemplo 5:
+
+\begin{code}
+>>> satSolver heuristicaLex "exDIMACS/medium/exampleSat1.txt"
+True
+(5.82 secs, 2,122,150,944 bytes)
+>>> satSolver heuristicaFrecuencia "exDIMACS/medium/exampleSat1.txt"
+True
+(0.24 secs, 62,955,680 bytes)
+>>> satSolver heuristicaFrecRev "exDIMACS/medium/exampleSat1.txt"
+True
+(7.08 secs, 3,372,336,472 bytes)
+\end{code}
+
+Mientras que la del ejemplo 6:
+
+\begin{code}
+>>> satSolver heuristicaLex "exDIMACS/medium/exampleSat2.txt"
+True
+(137.98 secs, 34,754,335,488 bytes)
+>>> satSolver heuristicaFrecuencia "exDIMACS/medium/exampleSat2.txt"
+True
+(0.30 secs, 92,607,744 bytes)
+>>> satSolver heuristicaFrecRev "exDIMACS/medium/exampleSat2.txt"
+Interrupted.
+\end{code}
+
+Tras varios minutos de espera queda patente que la tercera heurística no es nada eficiente. Si se prueba la segunda (\texttt{heuristicaFrecuencia}) con el ejemplo 7 y con \texttt{unsat250.cnf}
+
+\begin{code}
+>>> satSolver heuristicaFrecuencia "exDIMACS/medium/exampleSat3.txt"
+True
+(5.87 secs, 2,317,863,248 bytes)
+>>> satSolver heuristicaFrecuencia "exDIMACS/hard/unsat250.cnf"
+False
+(0.06 secs, 34,872,144 bytes)
+\end{code}
+
+En función de estos resultados, la heurística escogida es \texttt{heuristicaFrecuencia}. Sin embargo, el tiempo sigue siendo demasiado alto si se quiere resolver el ejemplo 8 o algunas de las dos instancias satisfacibles del directorio \texttt{hard}.

@@ -44,10 +44,23 @@
 \contentsline {section}{\numberline {4.3}La herramienta}{68}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Fichero de entrada y el formato \texttt {DIMACS}}{68}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Preprocesado}{70}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}C\IeC {\'a}lculo}{73}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.3}Saturaci\IeC {\'o}n}{73}{subsection.4.3.3}
 \contentsline {section}{\numberline {4.4}An\IeC {\'a}lisis de la herramienta}{76}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Heur\IeC {\'\i }sticas}{76}{subsection.4.4.1}
-\contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{77}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{77}{section.5.1}
-\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{78}{section.5.1}
-\contentsline {chapter}{Indice de definiciones}{79}{chapter*.25}
+\contentsline {subsection}{\numberline {4.4.1}Directorio \texttt {easy}}{76}{subsection.4.4.1}
+\contentsline {subsubsection}{Ejemplo 1}{76}{section*.25}
+\contentsline {subsubsection}{Ejemplo 2}{76}{section*.26}
+\contentsline {subsubsection}{Ejemplo 3}{77}{section*.27}
+\contentsline {subsubsection}{Ejemplo 4}{77}{section*.28}
+\contentsline {subsection}{\numberline {4.4.2}Directorio \texttt {medium}}{79}{subsection.4.4.2}
+\contentsline {subsubsection}{Ejemplo 0}{79}{section*.29}
+\contentsline {subsubsection}{Ejemplo 5}{80}{section*.30}
+\contentsline {subsubsection}{Ejemplo 6}{80}{section*.31}
+\contentsline {subsection}{\numberline {4.4.3}Directorio \texttt {hard}}{80}{subsection.4.4.3}
+\contentsline {subsubsection}{Archivo \texttt {sat100.cnf}}{80}{section*.32}
+\contentsline {subsubsection}{Archivo \texttt {sat250.cnf}}{80}{section*.33}
+\contentsline {subsubsection}{Archivo \texttt {unsat250.cnf}}{81}{section*.34}
+\contentsline {subsection}{\numberline {4.4.4}Heur\IeC {\'\i }sticas}{81}{subsection.4.4.4}
+\contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{85}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{85}{section.5.1}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{86}{section.5.1}
+\contentsline {chapter}{Indice de definiciones}{87}{chapter*.35}

@@ -35,7 +35,7 @@ library
       Preprocesado
       Saturacion
   other-modules:
-      Heuristics
+      Heuristicas
       PFH
       SAT_Solver
       Paths_TFM
@@ -64,7 +64,7 @@ executable TFM-exe
       Derivada
       F2
       Haskell4Maths
-      Heuristics
+      Heuristicas
       Logica
       PFH
       Preprocesado

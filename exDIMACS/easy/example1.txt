@@ -1,6 +1,6 @@
-c
-c start with comments
-c
+c example 1 
 c 
+c f = (p ∨ q)
+c
 p cnf 2 1 
 1 2 0

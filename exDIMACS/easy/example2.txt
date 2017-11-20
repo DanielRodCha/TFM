@@ -1,7 +1,7 @@
-c
-c start with comments
-c
+c example 2
 c 
+c f = (p ∨ q) ∧ (¬p ∨ q)
+c
 p cnf 2 2
 1 2 0
 -1 2 0

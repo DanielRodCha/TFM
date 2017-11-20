@@ -127,7 +127,7 @@ theta' ((v,i):vs)       = Conj (Atom v) (theta' vs)
 
 \begin{code}
 -- |
--- >>> quickCheckWith (stdArgs {maxSize = 50}) prop_theta_tr
+-- >>> quickCheckWith (stdArgs {maxSize = 30}) prop_theta_tr
 -- +++ OK, passed 100 tests.
 prop_theta_tr :: FProp -> Bool
 prop_theta_tr f = equivalentes (theta (tr f)) f

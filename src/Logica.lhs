@@ -269,7 +269,7 @@ significado (Equi f g) i = significado (Conj (Impl f g) (Impl g f)) i
 
 \index{\texttt{esModeloFormula}}
 \begin{code}
--- | Por ejemplo, 
+-- | Por ejemplo,
 --
 -- >>> esModeloFormula [r]   ((p ∨ q) ∧ ((no q) ∨ r))
 -- False
@@ -472,9 +472,9 @@ modelosKB s = [i | i <- interpretacionesKB s, esModeloKB i s]
 \begin{code}
 -- |Por ejemplo,
 --
--- >>> esConsistente $ S.fromList [(p ∨ q) ∧ ((no q) ∨ r), p → r]        
+-- >>> esConsistente $ S.fromList [(p ∨ q) ∧ ((no q) ∨ r), p → r]
 -- True
--- >>> esConsistente $ S.fromList [(p ∨ q) ∧ ((no q) ∨ r), p → r, no r]  
+-- >>> esConsistente $ S.fromList [(p ∨ q) ∧ ((no q) ∨ r), p → r, no r]
 -- False
 esConsistente :: KB -> Bool
 esConsistente = not . null . modelosKB

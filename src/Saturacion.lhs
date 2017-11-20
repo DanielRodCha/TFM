@@ -121,3 +121,22 @@ saturaKB (ps,v:vs) | S.member 0 ps = False
                        where nextVPS = omiteVariableKB v ps
 
 \end{code}
+
+ Finalmente, se combinan ambas etapas (Preprocesado y Saturación) en la función
+ \texttt{satSolver f}. Esta función recibe un fichero donde se codifica una
+ fórmula en formato \texttt{DIMACS} y devuelve \texttt{True} si dicha fórmula
+ es satisfacible y \texttt{False} en caso contrario.
+
+\begin{code}
+-- | Por ejemplo,
+--
+-- >>> satSolver "exDIMACS/easy/example1.txt"
+-- True
+-- >>> satSolver "exDIMACS/easy/example4.txt"
+-- False
+-- >>> satSolver "exDIMACS/medium/exampleSat0.txt"
+-- True
+satSolver f = do
+  f' <- dimacsAPolinomios f
+  return (saturaKB f')
+\end{code}
