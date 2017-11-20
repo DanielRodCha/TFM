@@ -32,7 +32,13 @@ El problema $NP$-completo objeto de la mayoría de estudios por parte de la comu
 
 Con el objetivo de regular dicha competición, así como de identificar y promover nuevos retos relacionados con la resolución del problema $SAT$ surge la \textit{SAT Competition 2002}, enmarcada dentro del \textit{Fifth  International Symposium on the Theory and Applications of Satisfiability Testing}. Y desde ese año, de forma anual o bianual, se celebra tal competición. \\
 
-Enmarcando el trabajo aquí presente en el contexto actual, pretende sentar las bases de un programa que resuelva el problema $SAT$ en un tiempo eficiente y que cumpla los estándares de dicha competición. Es por lo que a partir de este punto, la eficiencia será una máxima.
+Enmarcando el trabajo aquí presente en el contexto actual, éste pretende sentar las bases de un programa que resuelva el problema $SAT$ en un tiempo eficiente y que cumpla los estándares de dicha competición. Es por lo que a partir de este punto, la eficiencia será una máxima.\\
+
+ Además, para poder participar en dicha competición se deben seguir un estándar. Principalmente, que la fórmula (o base de conocimiento) de entrada está escrita en un fichero de texto en forma normal conjuntiva.
+ 
+ 
+
+
 
 %\subsection{Implicaciones}
 
@@ -40,18 +46,83 @@ Enmarcando el trabajo aquí presente en el contexto actual, pretende sentar las 
 
 \subsection{Lenguaje Haskell}
 
+\subsubsection{Haskell Literario}
+
 \subsection{GitHub}
 
 \subsection{Stack}
 
 \section{La herramienta}
+A continuación, se describirán los distintos módulos de la herramienta, detallando los procesos más relevantes. Es importante destacar que los cálculos llevados a cabo por el programa se dividen principalmente en dos etapas:
+\begin{enumerate}
+\item Preprocesado del fichero de entrada.
+\item Decisión por saturación con la regla de independencia.
+\end{enumerate}
 
-\subsection{Entrada y salida}
+\subsection{Fichero de entrada y el formato \texttt{DIMACS}}
+Previo a la descripción del formato \texttt{DIMACS} es necesaria una definición formal de qué es la forma normal conjuntiva. Con este objetivo se verán antes dos definiciones de la lógica proposicional.
+
+\defn Un literal es una fórmula atómica o su negación. Se dice que un literal es \textit{positivo} si se trata de un átomo y \textit{negativo} si es la negación de un átomo.\\
+
+Por ejemplo, $p_1$, $p_2$ ó $\neg p_1$ son literales.
+
+\defn Una cláusula es una disyunción de literales. En otras palabras, es una colección finita de literales que se hace verdadera si alguno de ellos lo es. \\
+
+Por ejemplo, $p_1 \vee p_2$ ó $p_1 \vee \neg p_2 \vee \neg p_3$ son cláusulas. Ya se está en condiciones de definir la forma normal conjuntiva.
+
+\defn Dada una fórmula proposicional $F$ se dice que está en forma normal conjuntiva si se trata de una conjunción de cláusulas. \\
+
+De cara al problema de satisfacibilidad es importante saber el que criterio debe cumplir una fórmula en forma normal conjuntiva para ser verdadera. Esta condición es que en todas sus cláusulas debe haber al menos un literal que sea verdadero.\\
+
+Otra propiedad que se debe conocer sobre la forma normal conjuntiva es que dada cualquier fórmula proposicional existe otra equivalente en forma normal conjuntiva. El algoritmo \cite{apuntes} que la calcula es el siguiente:
+
+\begin{center}
+\includegraphics[scale=0.45]{imagenes/algfnc}
+\end{center}
+
+Como ya se ha comentado, se pretende presentar la herramienta a una competición, por tanto, debe cumplir ciertos requisitos para poder participar. El principal y más importante es que las instancias del problema $SAT$ que debe resolver vienen dadas en lo que se denomina el formato \texttt{DIMACS}. Un ejemplo de cómo se codificaría la fórmula $(p_1 \vee \neg p_5 \vee p_4)\wedge(\neg p_1 \vee p_5 \vee p_3 \vee p_4) \wedge (\neg p_3 \vee \neg p_4)$ en formato \texttt{DIMACS} es
+\begin{table}[h]
+\centering
+\label{ej:dimacs}
+\begin{tabular}{l}
+{\Large \texttt{c} }\\\\
+{\Large \texttt{c start with comments}} \\\\
+{\Large \texttt{c}} \\\\
+{\Large \texttt{c}}  \\\\
+{\Large \texttt{p cnf 5 3}} \\\\
+{\Large \texttt{1 -5 4 0}} \\\\
+{\Large \texttt{-1 5 3 4 0}} \\\\
+{\Large \texttt{-3 -4 0}}
+\end{tabular}
+\end{table}
+
+Dicho formato es una estandarización simplificada de la forma normal conjuntiva de una fórmula. Las instancias serán archivos de texto (\texttt{.txt} o \texttt{.cnf}) con la siguiente estructura:
+
+\begin{enumerate}
+\item En primer lugar, se encuentran las líneas de comentarios. Se identifican gracias a que están encabezadas por la letra \texttt{c}. En el ejemplo, son las cuatro primeras líneas.
+\item En segundo lugar, hay una línea distinguida que indica las propiedades de la fórmula como, por ejemplo, que está en forma normal conjuntiva (\texttt{cnf}). El segundo número que aparece indica cuántas variables proposicionales intervienen mientras que el segundo cuántas cláusulas.
+\item Finalmente, en cada línea se encuentra codificada una cláusula distinta según las siguientes indicaciones:
+\begin{itemize}
+\item Cada número entero representa un literal.
+\item El signo del número, positivo o negativo, indica si dicho literal es positivo o negativo, respectivamente.
+\item El final de la cláusula se codifica con un 0.
+\end{itemize} 
+\end{enumerate}
 
 \subsection{Preprocesado}
 
+Las funciones que intervienen en el preprocesado tratan de transformar un archivo \texttt{.txt} ó \texttt{.cnf} en formato \texttt{DIMACS} al conjunto de polinomios que les corresponde según la función $\pi$. A continuación, se presentan estas funciones.
+
+\entrada{Preprocesado}
+
+\newpage
 \subsection{Cálculo}
 
+Una vez que se tiene el conjunto de polinomios basta saturar dicho conjunto usando la regla de independencia. Las funciones encargadas de realizar dicho proceso son: \texttt{omiteVariableKB} y \texttt{saturaKB}. El módulo en el que se implementarán será \texttt{Saturacion}:
+
+\entrada{Saturacion}
+
+\newpage
 \section{Análisis de la herramienta}
 
 \subsection{Heurísticas}

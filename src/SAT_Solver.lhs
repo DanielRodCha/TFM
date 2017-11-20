@@ -4,14 +4,7 @@ module SAT_Solver where
 
 import F2
 import Logica
-import Derivada
-import Haskell4Maths ( var
-                     , vars)
-import Transformaciones ( phi
-                        , theta
-                        , proyeccion)
-
-import Data.List (union)
+import Regla (reglaIndependencia)
 import Test.QuickCheck
 import qualified Data.Set as S
 \end{code}
@@ -26,11 +19,21 @@ import qualified Data.Set as S
  Teniendo en cuenta lo comentado anteriormente, se pueden modificar las
  definiciones anteriores de \texttt{(reglaIndependenciaAux} y
  \texttt{(reglaIndependenciaKB} para obtener un método de saturación más
- eficiente. Para ello basta añadir al principio del bucle de la primera función
- la siguiente línea de código (sin comentar):
+ eficiente. Para ello basta añadir al bucle la siguiente línea de código:\\
+
+\texttt{| dR == 0   = S.fromList [0]}\\
+
+Quedando esta función:
 
 \begin{code}
---  | dR == 0   = S.fromList [0]
+reglaIndependenciaAux :: PolF2 -> PolF2 -> S.Set PolF2 ->
+                            S.Set PolF2 -> S.Set PolF2
+reglaIndependenciaAux v p ps acum
+  | S.null ps = acum
+  | dR == 0   = S.fromList [0]
+  | otherwise = reglaIndependenciaAux v p ps' (S.insert dR acum)
+                where (p',ps') = S.deleteFindMin ps
+                      dR       = reglaIndependencia v p p'
 \end{code}
 
  En cuanto a la segunda función, si en algún momento de la computación el
@@ -38,8 +41,16 @@ import qualified Data.Set as S
  obtenido al aplicar la regla de independencia. Por tanto la base de
  conocimiento de la que proviene dicho conjunto de polinomios es
  inconsistente. Para implementar esto sólo se debe añadir al principio del
- bucle la siguiente línea (sin comentar):
+ bucle la siguiente línea:\\
+
+\texttt{| acum == S.fromList [0] = S.fromList [0]} \\
 
 \begin{code}
---  | acum == S.fromList [0] = S.fromList [0]
+reglaIndependenciaKB :: PolF2 -> S.Set PolF2 ->
+                  S.Set PolF2 -> S.Set PolF2
+reglaIndependenciaKB v pps acum
+  | S.null pps   = acum
+  | otherwise    = reglaIndependenciaKB v ps
+                   (reglaIndependenciaAux v p pps acum)
+      where (p,ps) = S.deleteFindMin pps
 \end{code}

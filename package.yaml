@@ -24,6 +24,8 @@ library:
   - Transformaciones
   - Derivada
   - Regla
+  - Preprocesado
+  - Saturacion
 executables:
   TFM-exe:
     main: Main.hs

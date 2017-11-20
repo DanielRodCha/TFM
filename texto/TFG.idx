@@ -5,25 +5,25 @@
 \indexentry{\texttt{\IeC {\ensuremath  {\vee }}}|hyperpage}{14}
 \indexentry{\texttt{\IeC {\ensuremath  {\wedge }}}|hyperpage}{14}
 \indexentry{\texttt{\IeC {\ensuremath  {\rightarrow }}}|hyperpage}{14}
-\indexentry{\texttt{\IeC {\ensuremath  {\leftrightarrow }}}|hyperpage}{15}
+\indexentry{\texttt{\IeC {\ensuremath  {\leftrightarrow }}}|hyperpage}{14}
 \indexentry{\texttt{sustituye}|hyperpage}{15}
 \indexentry{\texttt{Interpretacion}|hyperpage}{16}
 \indexentry{\texttt{significado}|hyperpage}{16}
 \indexentry{\texttt{esModeloFormula}|hyperpage}{16}
-\indexentry{\texttt{simbolosPropForm}|hyperpage}{17}
+\indexentry{\texttt{simbolosPropForm}|hyperpage}{16}
 \indexentry{\texttt{interpretacionesForm}|hyperpage}{17}
 \indexentry{\texttt{modelosFormula}|hyperpage}{17}
-\indexentry{\texttt{esValida}|hyperpage}{18}
+\indexentry{\texttt{esValida}|hyperpage}{17}
 \indexentry{\texttt{esInsatisfacible}|hyperpage}{18}
 \indexentry{\texttt{esSatisfacible}|hyperpage}{18}
-\indexentry{\texttt{simbolosPropKB}|hyperpage}{19}
+\indexentry{\texttt{simbolosPropKB}|hyperpage}{18}
 \indexentry{\texttt{interpretacionesKB}|hyperpage}{19}
 \indexentry{\texttt{esModeloKB}|hyperpage}{19}
-\indexentry{\texttt{modelosKB}|hyperpage}{20}
-\indexentry{\texttt{esConsistente}|hyperpage}{20}
-\indexentry{\texttt{esInconsistente}|hyperpage}{21}
-\indexentry{\texttt{esConsecuencia}|hyperpage}{21}
-\indexentry{\texttt{esConsecuenciaKB}|hyperpage}{22}
-\indexentry{\texttt{equivalentes}|hyperpage}{23}
-\indexentry{\texttt{equivalentesKB}|hyperpage}{23}
-\indexentry{\texttt{cuadrado}|hyperpage}{71}
+\indexentry{\texttt{modelosKB}|hyperpage}{19}
+\indexentry{\texttt{esConsistente}|hyperpage}{19}
+\indexentry{\texttt{esInconsistente}|hyperpage}{20}
+\indexentry{\texttt{esConsecuencia}|hyperpage}{20}
+\indexentry{\texttt{esConsecuenciaKB}|hyperpage}{21}
+\indexentry{\texttt{equivalentes}|hyperpage}{22}
+\indexentry{\texttt{equivalentesKB}|hyperpage}{22}
+\indexentry{\texttt{cuadrado}|hyperpage}{77}

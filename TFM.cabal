@@ -32,7 +32,10 @@ library
       Transformaciones
       Derivada
       Regla
+      Preprocesado
+      Saturacion
   other-modules:
+      Heuristics
       PFH
       SAT_Solver
       Paths_TFM
@@ -61,10 +64,13 @@ executable TFM-exe
       Derivada
       F2
       Haskell4Maths
+      Heuristics
       Logica
       PFH
+      Preprocesado
       Regla
       SAT_Solver
+      Saturacion
       Transformaciones
   default-language: Haskell2010
 
