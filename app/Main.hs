@@ -1,8 +1,10 @@
 module Main where
 
-import Logica
-import Haskell4Maths
-import F2
+import Heuristicas
 
-main :: IO ()
-main = print "Everything OK :-)"
+import System.Environment
+
+main = do
+  [f] <- getArgs :: IO [FilePath]
+  sol <- satSolver heuristicaFrecuencia f
+  print sol
