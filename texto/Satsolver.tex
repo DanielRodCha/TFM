@@ -34,7 +34,7 @@ Con el objetivo de regular dicha competición, así como de identificar y promov
 
 Enmarcando el trabajo aquí presente en el contexto actual, éste pretende sentar las bases de un programa que resuelva el problema $SAT$ en un tiempo eficiente y que cumpla los estándares de dicha competición. Es por lo que a partir de este punto, la eficiencia será una máxima.\\
 
- Además, para poder participar en dicha competición se deben seguir un estándar. Principalmente, que la fórmula (o base de conocimiento) de entrada está escrita en un fichero de texto en forma normal conjuntiva.
+ Además, para poder participar en dicha competición se debe seguir un estándar, cuya regla principal es que la fórmula (o base de conocimiento) de entrada está escrita en un fichero de texto en forma normal conjuntiva utilizando el formato $DIMACS$ (se tratará con detalle más adelante).
  
  
 
@@ -42,15 +42,70 @@ Enmarcando el trabajo aquí presente en el contexto actual, éste pretende senta
 
 %\subsection{Implicaciones}
 
+\newpage
+
 \section{Gestión del proyecto}
+Es comúnmente aceptado que el proceso de creación de un programa consta de 5 etapas principales:
 
-\subsection{Lenguaje Haskell}
+\begin{enumerate}
+\item El desarrollo lógico del programa para resolver un problema en particular.
+\item Escritura de la lógica del programa empleando un lenguaje de programación específico (codificación del programa).
+\item Ensamblaje o compilación del programa hasta convertirlo en lenguaje de máquina.
+\item Prueba y depuración del programa.
+\item Desarrollo de la documentación.
+\end{enumerate}
 
-\subsubsection{Haskell Literario}
+En esta sección se tratarán las tecnologías auxiliares usadas en las distintas etapas a fin de comprender su importancia dentro del proyecto, así como la necesidad (ya comentada anteriormente) de usar las herramientas que están a disposición del programador para desarrollar una aplicación de mayor calidad en menor tiempo.\\
 
-\subsection{GitHub}
+El lenguaje de programación escogido es el lenguaje funcional Haskell, ya que encaja perfectamente con las necesidades del proyecto. Según la propia página web de Haskell, es un lenguaje que combina un fuerte sistema de tipos, inferencia de tipos y código de alto nivel, lo que afirman que ofrece al usuario la velocidad de desarrollo de lenguajes como Python o Ruby, además de una mayor robustez que lenguajes como Java o C++ .\\
 
-\subsection{Stack}
+A esto se le debe añadir que goza de una comunidad muy activa y un ecosistema de librerías muy rico, con multitud de librerías centradas en las matemáticas, y por ende, en los polinomios. Además, al ser objetivo del proyecto el definir diversas funciones matemáticas que actúen sobre el cuerpo $\mathbb{F} [\textbf{x}]$, resulta natural escoger un lenguaje funcional tipado.\\
+
+En lo que refiere a la tercera etapa, destacar la herramienta \texttt{stack} que, definiendo una jerarquía específica de ficheros en nuestro proyecto, asiste el ensamblado y compilación. Esto permite usar el programa en cualquier computador sin la necesidad de instalar librerías auxiliares ya que con \texttt{stack} es suficiente. Sin embargo, el compilador primario que usa Haskell es GHC (Glasgow Haskell Compiler), un compilador en la vanguardia tecnológica, y de código libre, diseñado específicamente para Haskell.\\
+
+Para la comprobación de la aplicación, el sistema de tipos de Haskell garantiza una cierta robustez, y es que asegura que cada función se utilice sobre los tipos para los que está diseñada. Por ejemplo, si intentamos calcular la suma de dos caracteres se devolverá un error al compilar.\\
+
+Otro detalle a destacar de \texttt{stack} es que está diseñado de forma que la comprobación de los ejemplos sea muy natural y se haga automáticamente al compilar, con ayuda de la librería \texttt{doctest}. Cada vez que en el código hay ($>>>$) se ejecuta lo escrito a continuación y se corrobora si devuelve lo que aparezca en la línea siguiente (si es que se devolviese algo). Por ejemplo, en
+
+\begin{code}
+-- | 
+-- >>> 2+2
+-- 4
+\end{code}
+
+se comprueba si 2+2 devuelve 4. Notar que esto concede al proyecto de mucha robustez frente a modificaciones. Es decir, si se cambia el código de cierta función $f$ buscando una mayor eficiencia pero se comete algún error, se puede detectar al hacer las comprobaciones de los casos base, tanto de esta función como de alguna otra en la que intervenga $f$.\\
+
+Otra ventaja, relacionada con las comprobaciones, que ofrece el lenguaje Haskell es la posibilidad de implementar propiedades matemáticas de las funciones o los tipos. Estas propiedades pueden ser esenciales en el desarrollo teórico pues pueden justificar, por ejemplo, la corrección de la aplicación o parte de ella.\\
+
+Por lo tanto, es parte fundamental del proyecto verificar dichas propiedades mediante la librería \texttt{quickCheck}. Esta librería manda ejecutar 100 ejemplos y casos límites (el número 0, listas vacías, etc) para ver si sobre ellos se sigue verificando la propiedad. En el proyecto se comprobarán estas propiedades cada vez que se compile ya que junto a cada propiedad $prop$ se ha incluido:
+
+\begin{code}
+-- | 
+-- >>> quickCheck prop
+--  +++ OK, passed 100 tests
+\end{code}
+
+Así que, si en algún momento del desarrollo se deja de cumplir dicha propiedad para alguna instancia, el sistema devuelve el error.\\
+
+En la etapa de documentación se ha utilizado una versión modificada del lenguaje Haskell, llamada Haskell literario. Ésta permite escribir código \LaTeX en el mismo archivo en el que se escribe el código Haskell. Por ejemplo, si se escribe en el archivo \texttt{.lhs}:
+
+\begin{codigo}
+Es un ejemplo
+\begin{code}
+ejemplo = "helloworld"
+\end{code}
+\end{codigo}
+
+Al compilar se verá lo siguiente en el pdf:\\
+
+Es un ejemplo
+\begin{code}
+ejemplo = "helloworld"
+\end{code}
+
+Con la ventaja principal de que la función $ejemplo$ se puede utilizar normalmente, como si se hubiese escrito en un archivo \texttt{.hs} típico.
+
+Por último, se ha utilizado la herramienta \texttt{git} de control de versiones, que junto a la plataforma \texttt{GitHub} ha sido de gran ayuda en la depuración del código y la búsqueda de eficiencia.
 
 \section{La herramienta}
 A continuación, se describirán los distintos módulos de la herramienta, detallando los procesos más relevantes. Es importante destacar que los cálculos llevados a cabo por el programa se dividen principalmente en dos etapas:
@@ -342,7 +397,7 @@ True
 Interrupted.
 \end{code}
 
-Tras varios minutos de espera queda patente que la tercera heurística no es nada eficiente. Si se prueba la segunda (\texttt{heuristicaFrecuencia}) con el ejemplo 7 y con \texttt{unsat250.cnf}
+Tras varios minutos de espera queda patente que la tercera heurística no es eficiente. Si se prueba la segunda (\texttt{heuristicaFrecuencia}) con el ejemplo 7 y con \texttt{unsat250.cnf}
 
 \begin{code}
 >>> satSolver heuristicaFrecuencia "exDIMACS/medium/exampleSat3.txt"

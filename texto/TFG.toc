@@ -37,30 +37,26 @@
 \contentsline {chapter}{\numberline {4}Herramienta $\mathtt {SAT\_Solver}$}{65}{chapter.4}
 \contentsline {section}{\numberline {4.1}El problema $SAT$}{66}{section.4.1}
 \contentsline {section}{\numberline {4.2}Gesti\IeC {\'o}n del proyecto}{68}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Lenguaje Haskell}{68}{subsection.4.2.1}
-\contentsline {subsubsection}{Haskell Literario}{68}{section*.23}
-\contentsline {subsection}{\numberline {4.2.2}GitHub}{68}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Stack}{68}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}La herramienta}{68}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Fichero de entrada y el formato \texttt {DIMACS}}{68}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Preprocesado}{70}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Saturaci\IeC {\'o}n}{73}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}An\IeC {\'a}lisis de la herramienta}{76}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Directorio \texttt {easy}}{76}{subsection.4.4.1}
-\contentsline {subsubsection}{Ejemplo 1}{76}{section*.25}
-\contentsline {subsubsection}{Ejemplo 2}{76}{section*.26}
-\contentsline {subsubsection}{Ejemplo 3}{77}{section*.27}
-\contentsline {subsubsection}{Ejemplo 4}{77}{section*.28}
-\contentsline {subsection}{\numberline {4.4.2}Directorio \texttt {medium}}{79}{subsection.4.4.2}
-\contentsline {subsubsection}{Ejemplo 0}{79}{section*.29}
-\contentsline {subsubsection}{Ejemplo 5}{80}{section*.30}
-\contentsline {subsubsection}{Ejemplo 6}{80}{section*.31}
-\contentsline {subsection}{\numberline {4.4.3}Directorio \texttt {hard}}{80}{subsection.4.4.3}
-\contentsline {subsubsection}{Archivo \texttt {sat100.cnf}}{80}{section*.32}
-\contentsline {subsubsection}{Archivo \texttt {sat250.cnf}}{80}{section*.33}
-\contentsline {subsubsection}{Archivo \texttt {unsat250.cnf}}{81}{section*.34}
-\contentsline {subsection}{\numberline {4.4.4}Heur\IeC {\'\i }sticas}{81}{subsection.4.4.4}
-\contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{85}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{85}{section.5.1}
-\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{86}{section.5.1}
-\contentsline {chapter}{Indice de definiciones}{87}{chapter*.35}
+\contentsline {section}{\numberline {4.3}La herramienta}{70}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Fichero de entrada y el formato \texttt {DIMACS}}{70}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Preprocesado}{72}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Saturaci\IeC {\'o}n}{75}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}An\IeC {\'a}lisis de la herramienta}{78}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Directorio \texttt {easy}}{78}{subsection.4.4.1}
+\contentsline {subsubsection}{Ejemplo 1}{78}{section*.24}
+\contentsline {subsubsection}{Ejemplo 2}{78}{section*.25}
+\contentsline {subsubsection}{Ejemplo 3}{79}{section*.26}
+\contentsline {subsubsection}{Ejemplo 4}{79}{section*.27}
+\contentsline {subsection}{\numberline {4.4.2}Directorio \texttt {medium}}{81}{subsection.4.4.2}
+\contentsline {subsubsection}{Ejemplo 0}{81}{section*.28}
+\contentsline {subsubsection}{Ejemplo 5}{82}{section*.29}
+\contentsline {subsubsection}{Ejemplo 6}{82}{section*.30}
+\contentsline {subsection}{\numberline {4.4.3}Directorio \texttt {hard}}{82}{subsection.4.4.3}
+\contentsline {subsubsection}{Archivo \texttt {sat100.cnf}}{82}{section*.31}
+\contentsline {subsubsection}{Archivo \texttt {sat250.cnf}}{82}{section*.32}
+\contentsline {subsubsection}{Archivo \texttt {unsat250.cnf}}{83}{section*.33}
+\contentsline {subsection}{\numberline {4.4.4}Heur\IeC {\'\i }sticas}{83}{subsection.4.4.4}
+\contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{87}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{87}{section.5.1}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{88}{section.5.1}
+\contentsline {chapter}{Indice de definiciones}{89}{chapter*.34}
