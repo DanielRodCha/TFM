@@ -59,4 +59,3 @@
 \contentsline {chapter}{\numberline {5}Conclusi\IeC {\'o}n}{87}{chapter.5}
 \contentsline {section}{\numberline {5.1}Introducci\IeC {\'o}n a Haskell}{87}{section.5.1}
 \contentsline {chapter}{Bibliograf\IeC {\'\i }a}{88}{section.5.1}
-\contentsline {chapter}{Indice de definiciones}{89}{chapter*.34}

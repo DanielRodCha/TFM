@@ -35,12 +35,6 @@ Con el objetivo de regular dicha competición, así como de identificar y promov
 Enmarcando el trabajo aquí presente en el contexto actual, éste pretende sentar las bases de un programa que resuelva el problema $SAT$ en un tiempo eficiente y que cumpla los estándares de dicha competición. Es por lo que a partir de este punto, la eficiencia será una máxima.\\
 
  Además, para poder participar en dicha competición se debe seguir un estándar, cuya regla principal es que la fórmula (o base de conocimiento) de entrada está escrita en un fichero de texto en forma normal conjuntiva utilizando el formato $DIMACS$ (se tratará con detalle más adelante).
- 
- 
-
-
-
-%\subsection{Implicaciones}
 
 \newpage
 
@@ -56,7 +50,7 @@ Es comúnmente aceptado que el proceso de creación de un programa consta de 5 e
 \end{enumerate}
 
 En esta sección se tratarán las tecnologías auxiliares usadas en las distintas etapas a fin de comprender su importancia dentro del proyecto, así como la necesidad (ya comentada anteriormente) de usar las herramientas que están a disposición del programador para desarrollar una aplicación de mayor calidad en menor tiempo.\\
-
+-
 El lenguaje de programación escogido es el lenguaje funcional Haskell, ya que encaja perfectamente con las necesidades del proyecto. Según la propia página web de Haskell, es un lenguaje que combina un fuerte sistema de tipos, inferencia de tipos y código de alto nivel, lo que afirman que ofrece al usuario la velocidad de desarrollo de lenguajes como Python o Ruby, además de una mayor robustez que lenguajes como Java o C++ .\\
 
 A esto se le debe añadir que goza de una comunidad muy activa y un ecosistema de librerías muy rico, con multitud de librerías centradas en las matemáticas, y por ende, en los polinomios. Además, al ser objetivo del proyecto el definir diversas funciones matemáticas que actúen sobre el cuerpo $\mathbb{F} [\textbf{x}]$, resulta natural escoger un lenguaje funcional tipado.\\
@@ -170,7 +164,29 @@ Las funciones que intervienen en el preprocesado tratan de transformar un archiv
 
 \entrada{Preprocesado}
 
+Con el objetivo de comprender las dimensiones del problema con el que se trabaja, se muestra a continuación un ejemplo del uso de la función \texttt{dimacsAPolinomios} en el fichero (no trivial) de menor tamaño:
+
+\begin{code}
+> dimacsAPolinomios "exDIMACS/medium/exampleSat0.txt"
+(fromList [x1x10x38+x1x10+x1x38+x1+x10x38+x10+x38,
+x10x48x59+x10x59+x48x59+x59+1,x10x76x88+x10x76+x76x88+x76+1,
+x14x34x50+x14x34+x14x50+x14+1,x14x59x87+x59x87+1,
+x16x28x84+x16x28+x16x84+x16+x28x84+x28+x84,x18x55x64+x55x64+1,
+x19x3x30+x19x3+1,x19x57x93+x19x57+x19x93+x19+1,x2x21x98+x21x98+1,
+x20x4x80+x20x80+1,x23x7x72+x23x72+1,x28x60x8+x28x60+1,x3x35x96+x35x96+1,
+x31x42x89+x31x42+x42x89+x42+1,x31x5x97+x5x97+1,x35x47x64+x35x47+1,
+x35x48x58+x35x48+x35x58+x35+1,x36x56x78+x36x78+x56x78+x78+1,
+x4x65x94+x4x65+x4x94+x4+1,x44x76x78+x44x78+1,x48x52x63+x48x63+1,
+x52x94x99+x52x94+x94x99+x94+1,x55x63x90+x55x63+1,
+x59x75x9+x59x75+x59x9+x59+x75x9+x75+x9,x65x83x89+x65x83+x65x89+x65+1,
+x68x84x88+x68x88+1,x75x86x89+x75x86+1,x81x88x92+x81x88+1,1],
+[x1,x10,x14,x16,x18,x19,x2,x20,x21,x23,x28,x3,x30,x31,x34,x35,x36,x38,
+x4,x42,x44,x47,x48,x5,x50,x52,x55,x56,x57,x58,x59,x60,x63,x64,x65,x68,
+x7,x72,x75,x76,x78,x8,x80,x81,x83,x84,x86,x87,x88,x89,x9,x90,x92,x93,
+x94,x96,x97,x98,x99])
+\end{code}
 \newpage
+
 \subsection{Saturación}
 
 Una vez que se tiene el conjunto de polinomios basta saturar dicho conjunto usando la regla de independencia. Las funciones encargadas de realizar este proceso son: \texttt{omiteVariableKB} y \texttt{saturaKB}. El módulo en el que se implementan estas se llama \texttt{Saturacion}.
@@ -370,10 +386,10 @@ Se define el módulo \texttt{Heuristicas}, en el que se implementarán dichas he
 
 \entrada{Heuristicas}
 
-Quedando la resolución del ejemplo 5:
+Quedando la solución del ejemplo 5:
 
 \begin{code}
->>> satSolver heuristicaLex "exDIMACS/medium/exampleSat1.txt"
+>>> satSolver heuristicaOrdMon "exDIMACS/medium/exampleSat1.txt"
 True
 (5.82 secs, 2,122,150,944 bytes)
 >>> satSolver heuristicaFrecuencia "exDIMACS/medium/exampleSat1.txt"
@@ -387,7 +403,7 @@ True
 Mientras que la del ejemplo 6:
 
 \begin{code}
->>> satSolver heuristicaLex "exDIMACS/medium/exampleSat2.txt"
+>>> satSolver heuristicaOrdMon "exDIMACS/medium/exampleSat2.txt"
 True
 (137.98 secs, 34,754,335,488 bytes)
 >>> satSolver heuristicaFrecuencia "exDIMACS/medium/exampleSat2.txt"
@@ -397,7 +413,7 @@ True
 Interrupted.
 \end{code}
 
-Tras varios minutos de espera queda patente que la tercera heurística no es eficiente. Si se prueba la segunda (\texttt{heuristicaFrecuencia}) con el ejemplo 7 y con \texttt{unsat250.cnf}
+Tras varios minutos de espera queda patente que la tercera heurística no es eficiente.  La segunda (\texttt{heuristicaFrecuencia}) con el ejemplo 7 y con \texttt{unsat250.cnf} da los siguientes resultados:
 
 \begin{code}
 >>> satSolver heuristicaFrecuencia "exDIMACS/medium/exampleSat3.txt"

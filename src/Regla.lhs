@@ -21,6 +21,7 @@ import qualified Data.Set as S
  aplicar la regla de Independencia a los polinomios $a1$ y $a2$, respecto de la
  variable $x$.
 
+\index{\texttt{reglaIndependencia}}
 \begin{code}
 -- | Por ejemplo,
 -- >>> [x1,x2,x3,x4] = (map var ["x1","x2","x3","x4"]) :: [PolF2]
@@ -106,6 +107,7 @@ $$\partial_p (F_1,F_2) := \Theta (\partial_{x_p} (\pi (F_1), \pi (F_2))) $$
 
 Mientras que su implementación es:
 
+\index{\texttt{reglaIndForm}}
 \begin{code}
 reglaIndForm :: VarProp -> FProp -> FProp -> FProp
 reglaIndForm p f1 f2 = theta $ reglaIndependencia x p1 p2
@@ -320,6 +322,7 @@ Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto par
  coordenada al polinomio $p$ y con la segunda coordenada se recorre el conjunto
  de polinomios $ps$.
 
+\index{\texttt{reglaIndependenciaAux}}
 \begin{code}
 reglaIndependenciaAux :: PolF2 -> PolF2 -> S.Set PolF2 ->
                             S.Set PolF2 -> S.Set PolF2
@@ -349,6 +352,7 @@ reglaIndependenciaAux v p ps acum
  $\texttt{pps}$ y une todas las fórmulas obtenidas a las del conjunto
  \texttt{acum}.
 
+\index{\texttt{reglaIndependenciaKB}}
 \begin{code}
 reglaIndependenciaKB :: PolF2 -> S.Set PolF2 ->
                   S.Set PolF2 -> S.Set PolF2

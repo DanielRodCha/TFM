@@ -40,6 +40,7 @@ import Preprocesado
 
 Quedando la implementación de dicha función tal y como sigue:
 
+\index{\texttt{reglaIndependenciaAux}}
 \begin{code}
 reglaIndependenciaAux :: PolF2 -> PolF2 -> S.Set PolF2 ->
                             S.Set PolF2 -> S.Set PolF2
@@ -62,6 +63,7 @@ reglaIndependenciaAux v p ps acum
 
  Y por tanto, la función queda:
 
+\index{\texttt{reglaIndependenciaKB}}
 \begin{code}
 reglaIndependenciaKB :: PolF2 -> S.Set PolF2 ->
                   S.Set PolF2 -> S.Set PolF2
@@ -82,6 +84,7 @@ reglaIndependenciaKB v pps acum
  resultado de aplicar dicha regla se obtenga el polinomio cero, los cálculos se
  detendrán y se devolverá un conjunto unitario cuyo único elemento sea el cero.
 
+\index{\texttt{omiteVariableKB}}
 \begin{code}
 -- | Por ejemplo,
 -- >>> x1 = (var "x1") :: PolF2
@@ -105,6 +108,7 @@ omiteVariableKB v ps = reglaIndependenciaKB v ps1 ps2
  devuelve \texttt{True} si la fórmula original de la que proviene el conjunto
  de polinomios $ps$ es satisfacible, y \texttt{False} si es insatisfacible.
 
+\index{\texttt{satura}}
 \begin{code}                            
 -- | Por ejemplo,
 --
@@ -127,6 +131,7 @@ saturaKB (ps,v:vs) | S.member 0 ps = False
  fórmula en formato \texttt{DIMACS} y devuelve \texttt{True} si dicha fórmula
  es satisfacible y \texttt{False} en caso contrario.
 
+\index{\texttt{satSolver}}
 \begin{code}
 -- | Por ejemplo,
 --

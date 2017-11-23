@@ -26,6 +26,8 @@ import Test.QuickCheck ( Arbitrary
  $\mathbb{F}_2[\textbf{x}]$ (\texttt{PolF2}) , así como sus variables
  (\texttt{VarF2}):
 
+\index{\texttt{VarF2}}
+\index{\texttt{PolF2}}
 \begin{code}
 newtype VarF2 = Box (Vect F2 (Lex String))
   deriving (Eq, Ord)
@@ -42,6 +44,7 @@ type PolF2 = Vect F2 (Lex String)
  Sin embargo, es necesario definir la función auxiliar \texttt{(unbox
  x)} que saca a $x$ de la mónada \texttt{Var}:
 
+\index{\texttt{unbox}}
 \begin{code}
 unbox :: VarF2 -> PolF2
 unbox (Box x) = x
@@ -50,6 +53,7 @@ unbox (Box x) = x
  Para poder mostrar por consola las variables de forma estética; es decir, sin
  mostrar el constructor \texttt{Box}, declaramos la instancia \texttt{Show}:
 
+\index{\texttt{VarF2}}
 \begin{code}
 instance Show VarF2 where
   show = show . unbox
@@ -61,6 +65,7 @@ instance Show VarF2 where
  comenzará por el tipo \texttt{VarF2} ya que servirá como apoyo para el de los
  polinomios:
 
+\index{\texttt{VarF2}}
 \begin{code}
 instance Arbitrary VarF2 where
   arbitrary = varGen
@@ -68,6 +73,7 @@ instance Arbitrary VarF2 where
 
  La función \texttt{varGen} es un generador de variables:
 
+\index{\texttt{varGen}}
 \begin{code}
 varGen :: Gen VarF2
 varGen = do
@@ -78,6 +84,7 @@ varGen = do
  Se declara la instancia \texttt{Arbitrary} para el tipo de dato de los
  polinomios:
 
+\index{\texttt{PolF2}}
 \begin{code}
 instance Arbitrary PolF2 where
   arbitrary = polGen
@@ -88,6 +95,9 @@ instance Arbitrary PolF2 where
  que se formarán monomios. A partir de la suma de éstos se obtendrán los
  polinomios:
 
+\index{\texttt{varExpGen}}
+\index{\texttt{monGen}}
+\index{\texttt{polGen}}
 \begin{code}
 varExpGen :: Gen (PolF2,Int)
 varExpGen = do

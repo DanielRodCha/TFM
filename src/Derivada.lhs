@@ -30,6 +30,7 @@ import Test.QuickCheck
  respecto de la variable $v$, siempre que el exponente de todas sus variables
  sea menor o igual que 1.\\
 
+\index{\texttt{derivaMonomio}}
 \begin{code}
 -- | Por ejemplo,
 --
@@ -62,6 +63,7 @@ derivaMononomio m v
  la variable $v$, siempre que el exponente de todas sus variables sea menor o
  igual que 1.
 
+\index{\texttt{derivaPol}}
 \begin{code}
 -- | Por ejemplo,
 -- >>> [x1,x2,x3,x4] = (map var ["x1","x2","x3","x4"]) :: [PolF2]

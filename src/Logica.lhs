@@ -98,6 +98,7 @@ data FProp = T
  Por razones estéticas además de facilitar el uso de este tipo de dato
  se declara el procedimiento de escritura de las fórmulas:
 
+\index{\texttt{FProp}}
 \begin{code}
 instance Show FProp where
     show (T)        = "⊤"
@@ -177,6 +178,8 @@ infixr 2 ↔
  comprobarlas. Sin embargo, como las fórmulas proposicionales se han definido
  por el usuario el sistema no es capaz de generarlas automáticamente. Es
  necesario declarar que \texttt{FProp} sea una instancia de Arbitrary:
+
+\index{\texttt{FProp}}
 \begin{code}
 instance Arbitrary FProp where
   arbitrary = sized prop
@@ -333,6 +336,7 @@ modelosFormula f = [i | i <- interpretacionesForm f, esModeloFormula i f]
  \defn Una fórmula $F$ se dice válida si toda interpretación $i$ de $F$ es
  modelo de la fórmula. La función \texttt{(esValida f)} se verifica si la
  fórmula f es válida.
+
 \index{\texttt{esValida}}
 \begin{code}
 -- | Por ejemplo,
@@ -385,6 +389,7 @@ esSatisfacible = not . null . modelosFormula
  finito de fórmulas proposicionales. Se define el tipo de dato \texttt{KB}
  como:
 
+\index{\texttt{KB}}
 \begin{code}
 type KB = S.Set FProp
 \end{code}
@@ -488,7 +493,7 @@ esConsistente = not . null . modelosKB
  La función \texttt{(esInconsistente k)} se verifica si la base de conocimiento
  $k$ es inconsistente.
 
- \index{\texttt{esInconsistente}}
+\index{\texttt{esInconsistente}}
 \begin{code}
 -- |Por ejemplo,
 --
@@ -519,7 +524,7 @@ esInconsistente = null . modelosKB
  La función \texttt{(esConsecuencia k f)} se verifica si la fórmula proposicional
  f es consecuencia lógica de la base de conocimiento o conjunto de fórmulas k.
 
- \index{\texttt{esConsecuencia}}
+\index{\texttt{esConsecuencia}}
 \begin{code}
 -- |Por ejemplo,
 --
@@ -572,7 +577,7 @@ prop_esConsecuencia k f =
  función \texttt{(esConsecuenciaKB k k')} se verifica si todas las fórmulas del
  conjunto k' son consecuencia de las del conjunto k.
 
- \index{\texttt{esConsecuenciaKB}}
+\index{\texttt{esConsecuenciaKB}}
 \begin{code}
 -- |Por ejemplo,
 --
@@ -593,7 +598,7 @@ esConsecuenciaKB k = all (esConsecuencia k)
  La función \texttt{(equivalentes f g)} se verifica si las fórmulas
  proposicionales son equivalentes.
 
- \index{\texttt{equivalentes}}
+\index{\texttt{equivalentes}}
 \begin{code}
 -- |Por ejemplo,
 --
@@ -611,7 +616,7 @@ equivalentes f g = esValida (f ↔ g)
  La función \texttt{(equivalentesKB k k')} se verifica si las bases de
  conocimiento k y k' son equivalentes.
 
- \index{\texttt{equivalentesKB}}
+\index{\texttt{equivalentesKB}}
 \begin{code}
 -- |Por ejemplo,
 --

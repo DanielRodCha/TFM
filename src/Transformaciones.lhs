@@ -55,6 +55,8 @@ import Test.QuickCheck
  proposicional del tipo \texttt{FProp} y devuelve un polinomio con coeficientes
  en $\mathbb{F}_2$, es decir, del tipo \texttt{PolF2}.
 
+
+\index{\texttt{tr}}
 \begin{code}
 -- | Por ejemplo,
 --
@@ -94,6 +96,7 @@ tr (Equi a b)      = 1 + tr a + tr b
  La función (\texttt{theta p}) transforma el polinomio \texttt{p} en la
  fórmula proposicional que le corresponde según la definición anterior.
 
+\index{\texttt{theta}}
 \begin{code}
 -- | Por ejemplo,
 --
@@ -241,6 +244,7 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
  siendo $\mathbb{I}_2 = \{x_1+x_1^2,...,x_n+x_n^2\}$ y $n\in \mathbb{N}$ el
  número total de variables. 
 
+\index{\texttt{phi}}
 \begin{code}
 -- | Por ejemplo,
 -- >>> let [x1,x2] = [var "x1", var "x2"] :: [PolF2]
@@ -255,6 +259,7 @@ phi = linear (\m -> product [ var x | (x,i) <- mindices m])
  generadores) respecto al cual se calcula el grupo cociente para buscar el
  representante.
 
+\index{\texttt{ideal}}
 \begin{code}
 -- | Por ejemplo,
 --
@@ -287,6 +292,7 @@ prop_phi p = phi p == p %% (ideal p)
 
  La función \texttt{proyeccion p} es la implementación de la función $\pi (p)$:
 
+\index{\texttt{proyeccion}}
 \begin{code}
 -- | Por ejemplo,
 -- >>> let [p1,p2] = [Atom "p1",Atom "p2"]

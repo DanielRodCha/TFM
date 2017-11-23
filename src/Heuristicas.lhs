@@ -17,24 +17,26 @@ import Saturacion (omiteVariableKB)
  recibe un conjunto de polinomios y una lista de sus variables, y devuelve una
  lista ordenada de dichas variables.
 
+\index{\texttt{Heurisitica}}
 \begin{code}
 
 type Heuristica = S.Set PolF2 -> [PolF2] -> [PolF2]
 
 \end{code}
 
- La primera heurística, y la más natural, es la inducida por el orden
+ La primera heurística es la inducida por el orden monomial, en este caso el
  lexicográfico. Como por construcción, $vs$ ya está ordenada de tal forma, la
- heurística \texttt{(heuristicaLex ps vs)} devuelve invariante la lista $vs$.
+ heurística \texttt{(heuristicaOM ps vs)} devuelve invariante la lista $vs$.
 
+\index{\texttt{heuristicaOrdMon}}
 \begin{code}
 -- | Por ejemplo:
 --
 -- >>> [x1,x2] = map var ["x1","x2"] :: [PolF2]
--- >>> heuristicaLex (S.fromList [x1,x2,x1+1]) [x1,x2]
+-- >>> heuristicaOrdMon (S.fromList [x1,x2,x1+1]) [x1,x2]
 -- [x1,x2]
-heuristicaLex :: Heuristica
-heuristicaLex ps vs = vs
+heuristicaOrdMon :: Heuristica
+heuristicaOrdMon ps vs = vs
 
 \end{code}
 
@@ -42,6 +44,7 @@ heuristicaLex ps vs = vs
  con las variables de $vs$ ordenadas de menor a mayor frecuencia de aparición en los
  polinomios de $ps$.
 
+\index{\texttt{heuristicaFrecuencia}}
 \begin{code}
 -- | Por ejemplo:
 --
@@ -60,6 +63,7 @@ heuristicaFrecuencia ps vs = sortOn frecuencia vs
  lista con las variables de $vs$ ordenadas de mayor a menor frecuencia de aparición en
  los polinomios de $ps$.
 
+\index{\texttt{heuristicaFrecRev}}
 \begin{code}
 -- | Por ejemplo:
 --
@@ -77,6 +81,8 @@ heuristicaFrecRev ps = (reverse . heuristicaFrecuencia ps)
  y, por ejemplo, las frecuencias cambiarían. Es por esto que se redefinirá las
  funciones \texttt{saturaKB} y \texttt{satSolver} tal y como sigue:
 
+\index{\texttt{saturaKB}}
+\index{\texttt{satSolver}}
 \begin{code}
 saturaKB :: (S.Set PolF2,[PolF2]) -> Heuristica -> Bool
 saturaKB (ps,[])   h                 = S.notMember 0 ps

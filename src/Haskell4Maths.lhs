@@ -165,6 +165,7 @@ import Math.CommutativeAlgebra.Polynomial
 
  Veamos unos ejemplos de cómo se trabaja con los números racionales:
 
+\index{\texttt{Q}}
 \begin{code}
 -- |
 -- >>> (7/14 :: Q)
@@ -178,6 +179,7 @@ import Math.CommutativeAlgebra.Polynomial
  Para este trabajo, el cuerpo que nos interesa es $\mathbb{F}_2$, cuyos
  elementos pertenecen a la lista \texttt{f2}:
 
+\index{\texttt{f2}}
 \begin{code}
 -- |
 -- >>> f2
@@ -185,6 +187,8 @@ import Math.CommutativeAlgebra.Polynomial
 \end{code}
 
  Y cuyas operaciones aritméticas se definen de forma natural:
+
+\index{\texttt{F2}}
 \begin{code}
 -- |
 -- >>> (2 :: F2)
@@ -194,9 +198,12 @@ import Math.CommutativeAlgebra.Polynomial
 -- >>> (7 :: F2) * (1 :: F2)
 -- 1
 \end{code}
+
  Además, cuenta con la función auxiliar \texttt{fromInteger} para transformar
  números de tipo \texttt{Integer} en el tipo \texttt{Fp} dónde \texttt{p} es
  número de elementos del cuerpo:
+
+\index{\texttt{fromInteger}}
 \begin{code}
 -- |
 -- >>> (fromInteger (12345 :: Integer)) :: F2
@@ -220,6 +227,8 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
 
  La función \texttt{(zerov)} representa al vector cero independientemente del
  cuerpo $k$ y la base $b$. Por ejemplo,
+
+\index{\texttt{zerov}}
 \begin{code}
 -- |
 -- >>> zerov :: (Vect Q [a])
@@ -250,6 +259,7 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
  polinomios. Por ejemplo, si se quiere trabajar en $\mathbb{Q}[x,y,z]$,
  debemos definir:
 
+\index{\texttt{var}}
 \begin{code}
 -- |
 -- >>> [x,y,z] = map var ["x","y","z"] :: [GlexPoly Q String]
@@ -260,6 +270,9 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
  continuación se mostrarán diversos ejemplos de operaciones entre polinomios,
  variando el orden monomial y el cuerpo.
 
+\index{\texttt{LexPoly}}
+\index{\texttt{GlexPoly}}
+\index{\texttt{GrevlexPoly}}
 \begin{code}
 -- |
 -- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly Q String]
@@ -284,6 +297,8 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
  un coeficiente $i$ y una lista de pares. En el caso de los polinomios, un
  ejemplo de monomio es:
 
+\index{\texttt{monomio}}
+\index{\texttt{MonImpl}}
 \begin{code}
 -- |
 -- >>> monomio
@@ -296,6 +311,7 @@ monomio = (M 1 [("x",2),("y",1)])
  entender como los elementos canónicos que forman cada monomio de la base, así
  como su exponente:
 
+\index{\texttt{mindices}}
 \begin{code}
 -- |
 -- >>> mindices monomio
@@ -308,6 +324,7 @@ monomio = (M 1 [("x",2),("y",1)])
  importancia es \texttt{(vars p)}. Ésta devuelve la lista de variables que
  aparecen en el polinomio $p$.
 
+\index{\texttt{vars}}
 \begin{code}
 -- |Por ejemplo,
 --
@@ -320,6 +337,7 @@ monomio = (M 1 [("x",2),("y",1)])
  (término líder) que devuelve un par \texttt{(m,i)} donde $m$ es el monomio
  líder e $i$ su coeficiente ($i\in k$). 
 
+\index{\texttt{lt}}
 \begin{code}
 -- |
 -- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
@@ -330,6 +348,7 @@ monomio = (M 1 [("x",2),("y",1)])
  La tercera es la función \texttt{(lm p)} que devuelve el monomio líder del
  polinomio $p$: 
 
+\index{\texttt{lm}}
 \begin{code}
 -- |
 -- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
@@ -341,6 +360,7 @@ monomio = (M 1 [("x",2),("y",1)])
  \texttt{p} en el punto descrito por \texttt{vs}, siendo ésta una lista de
  pares variable-valor.
 
+\index{\texttt{eval}}
 \begin{code}
 -- |
 -- >>> [x,y] = map var ["x","y"] :: [LexPoly F2 String]
@@ -351,6 +371,7 @@ monomio = (M 1 [("x",2),("y",1)])
  Por último, destacar las función \texttt{(p \%\% xs)} que calcula la reducción
  del polinomio $p$ respecto de los polinomios de la lista $xs$.
 
+\index{\texttt{\%\%}}
 \begin{code}
 -- |
 -- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
