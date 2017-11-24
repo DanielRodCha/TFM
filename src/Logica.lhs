@@ -2,7 +2,8 @@
 
 En esta sección se introducirán brevemente los principales conceptos de la
 lógica proposicional, además de fijar la notación que se usará durante todo el
-trabajo.
+trabajo. Para su implementación en Haskell se define el módulo \texttt{Lógica}:
+
 \begin{code}
 module Logica where 
 \end{code}
@@ -14,8 +15,7 @@ module Logica where
 import Control.Monad ( liftM
                      , liftM2)
 import Data.List     ( union
-                     , subsequences
-                     )
+                     , subsequences)
 import Test.QuickCheck
 import qualified Data.Set as S
 \end{code}
@@ -23,17 +23,17 @@ import qualified Data.Set as S
 Antes de describir el lenguaje de la lógica proposicional es importante recordar las
 definiciones formales de alfabeto y lenguaje:
 
-\defn Un alfabeto es un conjunto finito de símbolos.
+\defn Un \textit{alfabeto} es un conjunto finito de símbolos.
 
 \defn Un \textit{lenguaje} es un conjunto de cadenas sobre un alfabeto.\\
 
 Especificando, un lenguaje formal es un lenguaje cuyos símbolos primitivos y
  reglas para unir esos símbolos están formalmente especificados. Al conjunto
- de las reglas se lo llama gramática formal o sintaxis. A las cadenas de
+ de las reglas se le denomina gramática formal o sintaxis. A las cadenas de
  símbolos que siguen las idicaciones de la gramática se les conoce como
  fórmulas bien formadas o simplemente fórmulas. \\
 
- Para algunos lenguajes formales existe además una semántica formal que puede
+ Para algunos lenguajes formales existe también una semántica formal que puede
  interpretar y dar significado a las fórmulas bien formadas del lenguaje. El
  lenguaje de la lógica proposicional es un caso particular de lenguaje formal
  con semántica.
@@ -48,9 +48,9 @@ símbolos auxiliares. \\
  representan proposiciones. Dichas proposiciones son sentencias que pueden ser
  declaradas como verdaderas o falsas, es por esto que se dice que las variables
  proposicionales toman valores discretos (True o False). Es comúnmente aceptado
- (y así será en este trabajo) llamar al conjunto de las variables ($\mathcal{L} =
+ (y así será en este trabajo) llamar al conjunto finito de las variables ($\mathcal{L} =
  \{p_1,...,p_n\}$) lenguaje proposicional. A la hora de implementar las
- variables proposicionales se representarán por cadenas:
+ variables proposicionales se representarán mediante cadenas:
 
 \index{\texttt{VarProp}}
 \begin{code}
@@ -79,8 +79,16 @@ $-$ Disyunción ($\vee$) & $-$ Bicondicional ($\leftrightarrow$)
  que se utilizan para indicar precedencia y ya vienen implementados en
  Haskell. \\
 
- Finalmente, se define el tipo de dato de las fórmulas proposicionales
- (\texttt{FProp}) de la siguiente manera:
+\defn Una fórmula proposicional es una cadena sobre el alfabeto de la lógica
+ proposicional descrito anteriormente (variables proposicionales, conectivas
+ lógicas y símbolos auxiliares). Destacar que se construyen de forma recursiva,
+ esto es, las variables se combinan mediante conectivas para formar fórmulas y
+ éstas, a su vez, se combinan dando lugar a nuevas fórmulas.
+
+ Con todo ello se define el tipo de dato de las fórmulas proposicionales
+ (\texttt{FProp}) usando constructores de tipo, es decir, una fórmula es
+ $\top$, $\bot$, una variable proposicional o una combinación mediante una
+ conectiva de dos fórmulas. En Haskell:
 
 \index{\texttt{FProp}}
 \begin{code}
@@ -95,7 +103,7 @@ data FProp = T
   deriving (Eq,Ord)
 \end{code}
 
- Por razones estéticas además de facilitar el uso de este tipo de dato
+ Por razones estéticas, además de facilitar el uso de este tipo de dato,
  se declara el procedimiento de escritura de las fórmulas:
 
 \index{\texttt{FProp}}
@@ -125,7 +133,8 @@ r  = Atom "r"
 
  Combinando las fórmulas atómicas mediante el uso de las conectivas lógicas
  anteriormente enumeradas obtenemos lo que se denomina como fórmulas
- compuestas. A continuación, implementaremos las conectivas lógicas como
+ compuestas. Aunque estén definidas en el propio tipo de dato, con el objetivo
+ de facilitar su uso, implementaremos las conectivas lógicas como
  funciones entre fórmulas:\\
 
  \texttt{(no f)} es la negación de la fórmula $f$.
@@ -177,7 +186,8 @@ infixr 2 ↔
  Haskell a la hora de trabajar es poder definir también dichas propiedades y
  comprobarlas. Sin embargo, como las fórmulas proposicionales se han definido
  por el usuario el sistema no es capaz de generarlas automáticamente. Es
- necesario declarar que \texttt{FProp} sea una instancia de Arbitrary:
+ necesario declarar que \texttt{FProp} sea una instancia de \texttt{Arbitrary}
+ y definir un generador de objetos del tipo \texttt{FProp} como sigue:
 
 \index{\texttt{FProp}}
 \begin{code}
@@ -203,9 +213,10 @@ instance Arbitrary FProp where
  $F\{p/G\}$ a la fórmula obtenida al sustituir cada ocurrencia de $p$ en $F$
  por la fórmula $G$. \\
 
- Se implementa $f\{p/g\}$ en la función \texttt{(sustituye f p g)}, donde f es la
+ Se implementa $f\{p/g\}$ mediante la función \texttt{(sustituye f p g)}, donde f es la
  fórmula original, p la variable proposicional a sustituir y g la fórmula
- proposicional por la que se sustituye:
+ proposicional por la que se sustituye. Al ser \texttt{FProp} un tipo recursivo
+ se hará dicha definición usando patrones:
 
 \index{\texttt{sustituye}}
 \begin{code}
@@ -266,9 +277,9 @@ significado (Equi f g) i = significado (Conj (Impl f g) (Impl g f)) i
 \end{code}
 
  Una interpretación $i$ es modelo de la fórmula $F\in Form(\mathcal{L})$ si hace
- verdadera la fórmula en el sentido clásico definido anteriormente. La función
- \texttt{(esModeloFormula i f)} se verifica si la interpretación i es un modelo
- de la fórmula f.
+ verdadera la fórmula en el sentido clásico definido
+ anteriormente. \texttt{(esModeloFormula i f)} se verifica si la interpretación
+ $i$ es un modelo de la fórmula $f$.
 
 \index{\texttt{esModeloFormula}}
 \begin{code}
@@ -282,8 +293,11 @@ esModeloFormula :: Interpretacion -> FProp -> Bool
 esModeloFormula i f = significado f i
 \end{code}
 
- Se denota por $Mod(F)$ al conjunto de modelos de $F$. Para implementarlo se
- necesitan dos funciones auxiliares.\\
+ Se denota por $Mod(F)$ al conjunto de modelos de $F$. La idea de la
+ implementación en Haskell es la siguiente: En primer lugar, extraer los
+ símbolos de $F$; posteriormente, calcular el conjunto potencia de los
+ símbolos, que corresponde a las interpretaciones. Finalmente, devolver las
+ interpretaciones que sean modelo de $F$.
 
  \texttt{(simbolosPropForm f)} es el conjunto formado por todos los símbolos
  proposicionales que aparecen en la fórmula f.
@@ -315,7 +329,7 @@ simbolosPropForm (Equi f g) = simbolosPropForm f `union` simbolosPropForm g
 -- >>> interpretacionesForm (p ∧ q → p)
 -- [[],[p],[q],[p,q]]
 interpretacionesForm :: FProp -> [Interpretacion]
-interpretacionesForm f = subsequences (simbolosPropForm f)
+interpretacionesForm = subsequences . simbolosPropForm
 \end{code}
 
  \texttt{(modelosFormula f)} es la lista de todas las interpretaciones de la
@@ -334,8 +348,8 @@ modelosFormula f = [i | i <- interpretacionesForm f, esModeloFormula i f]
 \subsection{Validez, satisfacibilidad e insatisfacibilidad}
 
  \defn Una fórmula $F$ se dice válida si toda interpretación $i$ de $F$ es
- modelo de la fórmula. La función \texttt{(esValida f)} se verifica si la
- fórmula f es válida.
+ modelo de la fórmula. \texttt{(esValida f)} se verifica si la fórmula f es
+ válida.
 
 \index{\texttt{esValida}}
 \begin{code}
@@ -364,7 +378,7 @@ esValida f = modelosFormula f == interpretacionesForm f
 -- >>> esInsatisfacible ((p → q) ∧ (q → r))
 -- False
 esInsatisfacible :: FProp -> Bool
-esInsatisfacible f = modelosFormula f == []
+esInsatisfacible = null . modelosFormula
 \end{code}
 
 \defn \label{def:sat} Una fórmula $F$ se dice satisfacible si existe al menos una
@@ -386,8 +400,11 @@ esSatisfacible = not . null . modelosFormula
 \subsection{Bases de conococimiento}
 
  \defn Una \textit{base de conocimiento} o \textit{Knowledge Basis} ($KB$) es un conjunto
- finito de fórmulas proposicionales. Se define el tipo de dato \texttt{KB}
- como:
+ finito de fórmulas proposicionales. Para la implementación, se importa de
+ forma cualificada la librería \texttt{Data.Set} como \texttt{S}. Esta es una
+ práctica muy común con esta librería y lo único que implica es que las
+ funciones de dicha librería deben ir precedidas por \texttt{S.}. Por lo que se
+ define el tipo de dato \texttt{KB} como:
 
 \index{\texttt{KB}}
 \begin{code}
@@ -429,9 +446,9 @@ interpretacionesKB = subsequences . simbolosPropKB
 \end{code}
 
  \defn Análogamente al caso de una única fórmula, se dice que $i$ es \textit{modelo} de
- $K$ ($i \vDash K$) si lo es de cada una de las fórmulas de $K$. La función
- texttt{(esModeloKB i k)} se verifica si la interpretación $i$ es un modelo de
- todas las fórmulas de la base de conocimiento $k$.
+ $K$ ($i \vDash K$) si lo es de cada una de las fórmulas de
+ $K$. \texttt{(esModeloKB i k)} se verifica si la interpretación $i$ es un 
+ modelo de todas las fórmulas de la base de conocimiento $k$.
 
 \index{\texttt{esModeloKB}}
 \begin{code}
@@ -445,8 +462,8 @@ esModeloKB :: Interpretacion -> KB -> Bool
 esModeloKB i = all (esModeloFormula i)
 \end{code}
 
- Al conjunto de modelos de $K$ se le denota por $Mod(K)$. \texttt{(modelosKB
- k)} es la lista de modelos de la base de conocimiento k.
+ Al conjunto de modelos de $K$ se le denota por $Mod(K)$. En Haskell,
+ \texttt{(modelosKB k)} es la lista de modelos de la base de conocimiento k.
 
 \index{\texttt{modelosKB}}
 \begin{code}
@@ -466,9 +483,7 @@ modelosKB s = [i | i <- interpretacionesKB s, esModeloKB i s]
  definir de dos maneras distintas:
 
  \defn Un conjunto de fórmulas se dice \textit{consistente} si y sólo si tiene
- al menos un modelo. Una definición alternativa es que dicho conjunto de
- fórmulas es \textit{consistente} si y sólo si para toda fórmula $f$ no es
- posible deducir tanto $f$ como $\neg f$ a partir de él.
+ al menos un modelo.\\
 
  La función \texttt{(esConsistente k)} se verifica si la base de conocimiento
  $k$ es consistente.
@@ -486,9 +501,7 @@ esConsistente = not . null . modelosKB
 \end{code}
 
  \defn Un conjunto de fórmulas se dice \textit{inconsistente} si y sólo si no
- tiene modelo. Una definición alternativa es que dicho conjunto de fórmulas es
- \textit{consistente} si y sólo si alguna fórmula $f$ es posible deducir tanto
- $f$ como $\neg f$ a partir de él.
+ tiene ningún modelo.\\
 
  La función \texttt{(esInconsistente k)} se verifica si la base de conocimiento
  $k$ es inconsistente.
@@ -509,17 +522,13 @@ esInconsistente = null . modelosKB
 
  La consecuencia lógica es la relación entre las premisas y la conclusión de lo
  que se conoce como un argumento deductivamente válido. Esta relación es un
- concepto fundamental en la lógica y aperecerá con asiduedad en el desarrollo
+ concepto fundamental en la lógica y aparecerá con asiduidad en el desarrollo
  del trabajo. \\
-
- Existe una manera de caracterizar la relación de consecuencia lógica basada en
- los axiomas y las reglas de inferencia. Sin embargo, se abordará la definición
- desde otra perspectiva, teniendo en cuenta su implementación.
 
  \defn Se dice que $F$ es \textit{consecuencia lógica} de $K$ ($K \vDash F$) si
  todo modelo de $K$ lo es a su vez de $F$, es decir, $Mod(K) \subseteq
  Mod(F)$. Equivalentemente, $K \vDash F$ si no es posible que las premisas sean
- verdaderas y la conclusión falsa.
+ verdaderas y la conclusión falsa.\\
 
  La función \texttt{(esConsecuencia k f)} se verifica si la fórmula proposicional
  f es consecuencia lógica de la base de conocimiento o conjunto de fórmulas k.
@@ -541,12 +550,13 @@ esConsecuencia k f =
 
  Con el objetivo de hacer más robusto el sistema se implementarán dos
  propiedades de la relación de \textit{ser consecuencia} en lógica
- proposicional. Dichas propiedades se comprobarán con la librería QuickCheck
- propia del lenguaje Haskell. Es importante saber que estas comprobaciones no
- son más que meros chequeos de que una propiedad se cumple para una batería de
- ejemplos. En ningún caso se puede confiar en que dicha propiedad se cumple
- el 100% de los casos, para ello sería necesaria una verificación formal, un
- problema más costoso y en ningún caso trivial.
+ proposicional. Dichas propiedades se comprobarán con la librería \texttt{QuickCheck}
+ propia del lenguaje Haskell. Es importante saber que estas evaluaciones de
+ propiedades con quickCheck son sólo comprobaciones de que la
+ propiedad se cumple para una batería de ejemplos. En ningún caso se puede
+ confiar en que dicha propiedad se cumple el 100% de los casos; para ello sería
+ necesaria una verificación formal, un problema más costoso y en ningún caso
+ trivial.
 
  \prop Una fórmula $f$ es válida si y sólo si es consecuencia del conjunto vacío.
 
@@ -592,8 +602,8 @@ esConsecuenciaKB k = all (esConsecuencia k)
 \subsection{Equivalencia}
 
  \defn Sean $F$ y $G$ dos fórmulas proposicionales, se dice que son
- equivalentes ($F \equiv G$) si tienen el mismo contenido lógico, es decir, si
- tienen el mismo valor de verdad en todas sus interpretaciones. 
+ equivalentes ($F \equiv G$) si tienen el mismo significado lógico, es decir,
+ si  tienen el mismo valor de verdad en todas sus interpretaciones.
 
  La función \texttt{(equivalentes f g)} se verifica si las fórmulas
  proposicionales son equivalentes.
@@ -657,8 +667,8 @@ prop_equivalentes f g =
  $$\forall F \in Form (\mathcal{L} (K')) \;\; [K' \vDash F \Rightarrow K \vDash
  F]$$
 
- Si nos restringimos a las fórmulas consecuencia de una base de conocimiento en
- el lenguaje de la otra:
+% Si nos restringimos a las fórmulas consecuencia de una base de conocimiento en
+% el lenguaje de la otra:
 
  \defn  Sean $K$ y $K'$ bases de conocimiento, se dice que $K$ es una
  \textit{extensión conservativa} de $K'$ si es una extensión tal que toda
@@ -679,5 +689,4 @@ $$[K,\mathcal{L}']=\{F\in Form(\mathcal{L}'): K \vDash F \}$$
 
  Esto es, $[K,\mathcal{L}']$ es el conjunto de $\mathcal{L}'$-fórmulas que son
  consecuencia de $K$. De hecho, cualquier retración conservativa sobre
- $\mathcal{L}'$ es equivalente a $[K,\mathcal{L}']$. El problema real es dar
- una axiomatización de dicho conjunto de fórmulas.
+ $\mathcal{L}'$ es equivalente a $[K,\mathcal{L}']$.

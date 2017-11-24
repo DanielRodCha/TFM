@@ -12,8 +12,9 @@
  corresponden con las conectivas booleanas \textit{o exclusivo} e \textit{y},
  respectivamente.\\
 
- Por tanto, el mapeo $P: Form (\mathcal{L} \rightarrow \mathbb{F}_2[x])$ que
- aparece en la página  \pageref{fig:esquema} se define por:
+ Por tanto, la función $P: Form (\mathcal{L} \rightarrow
+ \mathbb{F}_2[\textbf{x}])$ que aparece en la página  \pageref{fig:esquema} se
+ define por: 
 
 \begin{itemize}
 \item[•] $P(\perp)=0$, $P(p_i)=x_i$, $P(\neg F)=1+P(F)$
@@ -51,7 +52,7 @@ import Test.QuickCheck
 \end{code}
 
  La función encargada de hacer dicha traducción es la función \texttt{tr}., que
- equivale al mapeo $P$ descrito anteriormente. Ésta recibe una fórmula
+ equivale a la función $P$ descrita anteriormente. Ésta recibe una fórmula
  proposicional del tipo \texttt{FProp} y devuelve un polinomio con coeficientes
  en $\mathbb{F}_2$, es decir, del tipo \texttt{PolF2}.
 
@@ -82,8 +83,8 @@ tr (Impl a b)      = 1 + a' + a' * tr b
 tr (Equi a b)      = 1 + tr a + tr b
 \end{code}
 
- Para la transformación contraria (de polinomios a fórmulas) se usará la función
- $\Theta :\mathbb{F}_2[x] \rightarrow Form(\mathcal{L})$ definida por:
+ Para la transformación recíproca (de polinomios a fórmulas) se usará la función
+ $\Theta :\mathbb{F}_2[\textbf{x}] \rightarrow Form(\mathcal{L})$ definida por:
 
 \begin{itemize}
 \item[•] $\Theta (0) = \perp$
@@ -97,6 +98,7 @@ tr (Equi a b)      = 1 + tr a + tr b
  fórmula proposicional que le corresponde según la definición anterior.
 
 \index{\texttt{theta}}
+\index{\texttt{theta'}}
 \begin{code}
 -- | Por ejemplo,
 --
@@ -136,7 +138,7 @@ prop_theta_tr :: FProp -> Bool
 prop_theta_tr f = equivalentes (theta (tr f)) f
 \end{code}
 
- Notar que a la hora de chequear la propiedad anterior se ha acotado el tamaño
+ Notar que a la hora de comprobar la propiedad anterior se ha acotado el tamaño
  máximo de las fórmulas proposicionales ya que en caso contrario se demora
  demasiado en ejecutarse.\\
 
@@ -189,8 +191,8 @@ prop_tr_theta p = tr (theta p) == p
  $$V(a(\textbf{x})) = \{o\in  \mathbb{F}_2^n : a(o) = 0 \}$$
  \end{itemize}
 
- Por consiguiente, hay dos mapeos entre el conjunto de interpretaciones o
- valoraciones y los pontos de $\mathbb{F}_2^n$, que definen biyecciones entre
+ Por consiguiente, hay dos transformaciones entre el conjunto de interpretaciones o
+ valoraciones y los puntos de $\mathbb{F}_2^n$, que definen biyecciones entre
  modelos de $F$ y puntos de la variedad algebraica $\mathcal{V}(1+P(F))$;
 
 \begin{table}[h]
@@ -202,7 +204,7 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
 \end{tabular}
 \end{table}
 
- Por ejemplo, sea la fórmula $F=p_1\rightarrow p_2 \wedge p_3$. El polinomio
+ Por ejemplo, consideremos la fórmula $F=p_1\rightarrow p_2 \wedge p_3$. El polinomio
  asociado es $P(F)=1+x_1+x_1x_2x_3$ . La valoración $v=\{(p_1,0), (p_2,1),
  (p_3,0)\}$ es modelo de $F$ e induce el punto $o_v = (0,1,0) \in
  \mathbb{F}_2^3$ que a su vez pertenece a
@@ -223,7 +225,7 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
 \subsection{Proyección polinomial}
  Consideremos ahora la parte derecha de la figura \ref{fig:esquema}. Para
  simplificar la relación entre la semántica de la lógica proposicional y la
- geometría sobre cuerpos finitos se usará el mapa:
+ geometría sobre cuerpos finitos se usará la función:
 
  $$\Phi:\mathbb{F}_2[\textbf{x}] \rightarrow \mathbb{F}_2[\textbf{x}]$$
  $$\Phi (\sum\limits_{\alpha \in I} \textbf{x}^{\alpha} ) := \sum\limits_{\alpha
@@ -236,7 +238,7 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
  representante de un polinomio un el grupo cociente por un ideal. Esta es la
  función \texttt{(\%\%)}. Sin embargo, ya que la búsqueda de la eficiencia es una
  máxima en este trabajo, se aprovechará el hecho de que calcular dicho
- representante equivale a reeplazar cada ocurrencia de $x_i^k$ (con
+ representante equivale a reemplazar cada ocurrencia de $x_i^k$ (con
  $k\in\mathbb{N}$) por $x_i$.\\ 
 
  La función \texttt{(phi p)} calcula el representante de menor grado del
@@ -331,7 +333,7 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
 \subsection{Bases de conocimiento e ideales}
 
  En esta subsección se recordará la correspondencia entre conjuntos
- algebraicos e ideales polinomiales (enfocado al cuerpo de coeficientes
+ algebraicos e ideales polinomiales (en el cuerpo de coeficientes
  $\mathbb{F}_2$) y la lógica proposicional.\\
 
  \defn Dado un subconjunto $X \subseteq (\mathbb{F}_2)^n$, se denota por $I(X)$
@@ -346,34 +348,36 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  para cualquier } \; a(\mathbf{x}) \in J\} $$
 
  Antes de enunciar y demostrar el teorema de Nullstellensatz para cuerpos
- finitos \cite{Agudelo-15} (concretamente $\mathbb{F}_2$) es necesario un lema:
- \\
+ finitos \cite{Agudelo-15} (concretamente el cuerpo $\mathbb{F}_2$) es
+ necesario un lema: \\
 
  \lem \label{lem1} Sea un polinomio $p \in \mathbb{F}_2[\textbf{x}]$, entonces
  $p \in \mathbb{I}_2^n \; \Leftrightarrow \; p(\textbf{z}) = 0 \; \forall
  \textbf{z} \in (\mathbb{F}_2)^n $ \\
 
- \noindent \textbf{Prueba:} La implicación hacia la derecha es trivial ya que
- si $p \in \mathbb{I}_2^n$ entonces $p \in \langle x_1^2+x_1 , \dots ,
- x_n^2+x_n \rangle $ , es decir, $p = \sum_{i=0}^n q_i (x_i^2+x_i)$ donde $q_i
- \in \mathbb{F}_2[\textbf{x}]$ con $i=1,\dots ,n $. Como todos los
- $(x_i^2+x_i)$ se anulan en todo punto de $\mathbb{F}_2[\textbf{x}]$ entonces
- $p$ también. 
+ \noindent \textbf{Prueba:} La implicación hacia la derecha es trivial ya que: \\
+ Si $p \in \mathbb{I}_2^n$ entonces $p \in \langle x_1^2+x_1 , \dots ,
+ x_n^2+x_n \rangle $, es decir: $$p = \sum_{i=0}^n q_i (x_i^2+x_i)$$
+ donde $q_i \in \mathbb{F}_2[\textbf{x}]$ con $i=1,\dots ,n $. \\
+ Como todos los $(x_i^2+x_i)$ se anulan en todo punto de $(\mathbb{F}_2)^n$ entonces $p$ también. \\
 
  \noindent La implicación hacia la izquierda se probará por inducción en el
  número de variables. En el caso de una única variable ($n=1$), la división
- euclídea de $p$ por $\mathbb{I}_2^1 = x_1^2+x_1$ queda $p=a*(x_1^2+x_1 + b)$
- con $b=b_0+b_1x_1$. De la hipótesis tenemos que $b(0)=b(1)=0$, luego $b=0$ y
+ euclídea de $p$ por $\mathbb{I}_2^1 = x_1^2+x_1$ queda: $$p=a*(x_1^2+x_1) + b 
+ \text{ con } a\in \mathbb{F}_2[\textbf{x}] \text{ y } b=b_0+b_1x_1$$
+ De la hipótesis tenemos que $b(0)=b(1)=0$; luego $b=0$, y
  por tanto $p \in \mathbb{I}_2^1$.
 
- \noindent Sea $n \geq 1$, se usa también la división respecto $\mathbb{I}_1$
- por lo que $p = a*\mathbb{I}_2^1 + b$ donde $b = b_0+b_1x$; $b_0, b_1 \in
- \mathbb{F}_2[x_2,\dots ,x_n]$. Fijando un punto cualquiera $z=(z_2,\dots
- ,z_n)\in \mathbb{F}_2^{n-1}$, el polinomio $b$ respecto de la variable $x_1$
- queda: $b_0(z)+b_1(z)x_1=0$ para $x_1=0$ y para $x_1=1$. Como, $b(z)(x_1)$ es
- de grado 1 y tiene 2 raíces, entonces $b_0(z)=b_1(z)=0$. Aplicando la
- hipótesis de inducción $b_0 , b_1 \in \langle x_2^2+x_2 ,\dots ,x_n^2+x_n
- \rangle$ luego $p \in \mathbb{I}_2^n$. $\;\;\;\;\;\,\square$
+ \noindent Sea $n \geq 1$. Se usará también la división respecto $\mathbb{I}_1$,
+ por lo que $$p = a*\mathbb{I}_2^1 + b$$ donde $b = b_0+b_1x$; $b_0, b_1 \in
+ \mathbb{F}_2[x_2,\dots ,x_n]$.\\
+ Fijando un punto cualquiera $z \in \mathbb{F}_2^{n-1}$ tal que $z=(z_2,\dots
+ ,z_n)$, el polinomio $b$ respecto de la variable $x_1$
+ queda: $$b_0(z)+b_1(z)x_1=0$$
+ para $x_1=0$ y para $x_1=1$. Como, $b(z)(x_1)$ es de grado 1 y tiene 2 raíces,
+ entonces $$b_0(z)=b_1(z)=0$$ 
+ Aplicando la hipótesis de inducción $b_0 , b_1 \in \langle x_2^2+x_2 ,\dots
+ ,x_n^2+x_n \rangle$ luego $p \in \mathbb{I}_2^n$. $\;\;\;\;\;\,\square$
   
  \thm Teorema de Nullstellensatz con coeficientes en el cuerpo
  $\mathbb{F}_2$
@@ -386,36 +390,40 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
 
  \noindent \textbf{Prueba:} 
   \begin{enumerate}
- \item Se prueba por doble contención. La primera ($A \subseteq
- \mathcal{V}(I(A))$) es trivial: sea $a \in A$ entonces por definición de $I$
- se tiene que $\forall p \in I(A),\; p(a)=0$; y, por lo tanto, $a \in
- \mathcal{V}(I(A))$. \\
- La contención contraria ($\mathcal{V}(I(A)) \subseteq A$) se probará por
+ \item Se prueba por doble contención:\\
+ La primera ($A \subseteq \mathcal{V}(I(A))$) es trivial ya que si $a \in A$,
+ por definición de $I$, se tiene que $$\forall p \in I(A),\; p(a)=0$$ Y por lo
+ tanto, $a \in \mathcal{V}(I(A))$. \\
+ La prueba de $\mathcal{V}(I(A)) \subseteq A$ se hará por
  \textit{reductio ad absurdum}. Supongamos que existe un punto $a \in
- \mathcal{V}(I(A))$ pero que $a \notin A$. Sea el polinomio $p_A(\textbf{x}) = 1 +
- \sum_{\alpha \in A}\prod_{i=1}^{n}(x_i+\alpha_i+1)$. Es fácil ver que
- $p_A(u) = 0$ sii $u \in A$. De la hipótesis se tiene que $p_A(a) \neq 0$,
- y de la definición de $p_A$ que $p_A \in I(A)$. De esto se deduce que $a
- \notin \mathcal{V}(I(A))$, lo cual es una contradicción. \hspace{4cm} $\square$
- \item Del teorema de las bases de Hilbert se deduce que existen $j_1,\dots,j_s
- \in \mathbb{F}_2[\textbf{x}]$ tales que $\mathfrak{J} = \langle j_1, \dots
- ,j_s\rangle$. Entonces, la prueba de la contención hacia la izquierda,
- $J+\mathbb{I}_2 \subseteq I(\mathcal{V}(\mathfrak{J}))$, es inmediata porque 
- todos los polinomios $j_k$ e $i_{k'}$ con $1 \leq k \leq s$, $1 \leq k' \leq
+ \mathcal{V}(I(A))$ pero que $a \notin A$. Sea el polinomio $$p_A(\textbf{x}) = 1 +
+ \sum_{\alpha \in A}\prod_{i=1}^{n}(x_i+\alpha_i+1)$$ Es fácil ver que
+ $$p_A(u) = 0 \text{ si y sólo si } u \in A$$ De la hipótesis, se tiene que
+ $p_A(a) \neq 0$, y de la definición de $p_A$ que $p_A \in I(A)$. De esto se
+ deduce que $a \notin \mathcal{V}(I(A))$, lo cual es una
+ contradicción. \hspace{2.5cm} $\square$ 
+ 
+ \item Del teorema de las bases de Hilbert se deduce que $$\exists j_1,\dots,j_s
+ \in \mathbb{F}_2[\textbf{x}] \text{ tales que } \mathfrak{J} = \langle j_1, \dots
+ ,j_s\rangle$$
+ Entonces, la prueba de $J+\mathbb{I}_2 \subseteq
+ I(\mathcal{V}(\mathfrak{J}))$, es inmediata porque todos los polinomios $j_k$
+ e $i_{k'}$ con $1 \leq k \leq s$, $1 \leq k' \leq 
  n$ se anulan en $\mathcal{V}(\mathfrak{J})$.\\
- Para probar la contención inversa se fijan el polinomio $p \in
- I(\mathcal{V}(\mathfrak{J}))$ y el subconjunto $A \subseteq (\mathbb{F}_2)^n$
- definido como $A := (\mathbb{F}_2)^n \setminus
- \mathcal{V}(\mathfrak{J})$. Además se tiene que para todo $a=(a_1, \dots , a_n)
- \in A$ existe un índice $i_a$ tal que $j_{i_a} \neq 0$. Entonces, el polinomio
- $g = p \cdot (\prod_{a \in A}(j_{i_a}-j_{i_a}(a)))$ se anula en todo
+ Para probar $I(\mathcal{V}(\mathfrak{J})) \subseteq J+\mathbb{I}_2$, se fijan
+ el polinomio $p \in I(\mathcal{V}(\mathfrak{J}))$ y el subconjunto $A
+ \subseteq (\mathbb{F}_2)^n$ definido como
+ $$A := (\mathbb{F}_2)^n \setminus \mathcal{V}(\mathfrak{J})$$
+ Además se tiene que $$\forall a=(a_1, \dots , a_n) \in A \;,\; \exists i_a \in \{
+ 1,\dots ,s \} \text{ tal que } j_{i_a} \neq 0$$ 
+ Entonces, el polinomio
+ $$g = p \cdot (\prod_{a \in A}(j_{i_a}-j_{i_a}(a)))$$ se anula en todo
  $(\mathbb{F}_2)^n$ (porque $p$ se anula en $\mathcal{V}(\mathfrak{J})$ y
- $\prod_{a \in A}(j_{i_a}-j_{i_a}(a))$ en $A$). Por el lema \ref{lem1}, $g \in
- \mathbb{I}_2^n$. Desarrollando el producto en $g$ se puede escribir el
- polinomio como $g=bp+h$, donde $h\in \mathfrak{J}$ y $b=\prod_{a \in
- A}(-j_{i_a}(a))$. Por tanto, $bp=g-h \in \mathfrak{J}+\mathbb{I}_2^n$ y $b\neq
- 0$. De esto se sigue que $p \in \mathfrak{J}+\mathbb{I}_2^n$. \hspace{13cm}
- $\square$ 
+ $\prod_{a \in A}(j_{i_a}-j_{i_a}(a))$ en $A$). Además, por el lema \ref{lem1}, $g \in
+ \mathbb{I}_2^n$. Y desarrollando el producto en $g$ se puede escribir el
+ polinomio como $$g=bp+h$$, donde $h\in \mathfrak{J}$ y $b=\prod_{a \in
+ A}(-j_{i_a}(a))$.\\ Por tanto, $bp=g-h \in \mathfrak{J}+\mathbb{I}_2^n$ y $b\neq
+ 0$. De esto se sigue que $p \in \mathfrak{J}+\mathbb{I}_2^n$. \hspace{1cm} $\square$ 
  \end{enumerate}
 
  Del teorema de Nullstellensatz se sigue que:
@@ -432,17 +440,18 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
 
  \noindent \textbf{Prueba:} La implicación hacia la derecha ($\Rightarrow$) es
  trivial ya que $P_i(a) = 0$ y $a_j^2+a_j = 0$ para todo $i=1,\dots ,m$ y $j=1,
- \dots , n$. Para la otra implicación ($\Leftarrow$), se define el conjunto $B =
- \mathbb{F}_2)^n \setminus A$. Entonces $\forall z \in B$ existe un índice $i_z
- \in \{1, \dots ,m \}$ tal que $P_{i_z}(z) \neq 0$. Se define el polinomio $S=R
- \cdot \prod_{z \in B} (P_{i_z}-P_{i_z}(z))$. Notar que este polinomio se anula
- en todo $(\mathbb{F}_2)^n$ ya que es producto de $R$, que se anula en $A$; y
- de $\prod_{z \in B} (P_{i_z}-P_{i_z}(z))$, que se anula en $B$. El lema
- \ref{lem1} implica que $S \in \mathbb{I}_2^n$. Si se reescribe $S$
- desarrollando el producto: $S=b\cdot R + P'$, con $P' \in \mathfrak{J}$ y $b =
- \prod_{z \in B}(-P_{i_z}(z)) \in \mathbb{F}_2$; se deduce que $b\cdot R=S-P'
- \in \mathfrak{J} + \mathbb{I}_2^n=\mathcal{R}$. Finalmente, como $b \neq 0$,
- se tiene que $R \in \mathcal{R}$. \hspace{2cm} $\square$ \\
+ \dots , n$.\\
+ Para la otra implicación ($\Leftarrow$), se define el conjunto $B =
+ (\mathbb{F}_2)^n \setminus A$ de forma que $$\forall z \in B \;,\; \exists i_z
+ \in \{1, \dots ,m \} \text{ tal que } P_{i_z}(z) \neq 0$$ A continuación, se
+ define el polinomio $$S=R \cdot \prod_{z \in B} (P_{i_z}-P_{i_z}(z))$$
+ Notar que este polinomio se anula en todo $(\mathbb{F}_2)^n$, ya que es producto de
+ $R$, que se anula en $A$; y de $\prod_{z \in B} (P_{i_z}-P_{i_z}(z))$, que se
+ anula en $B$. El lema \ref{lem1} implica que $S \in \mathbb{I}_2^n$. Por lo que si se
+ reescribe $S$ desarrollando el producto: $$S=b\cdot R + P' \text{, con } P' \in
+ \mathfrak{J} \text{ y } b = \prod_{z \in B}(-P_{i_z}(z)) \in \mathbb{F}_2$$ se deduce
+ que $$b\cdot R=S-P' \in \mathfrak{J} + \mathbb{I}_2^n=\mathcal{R}$$
+ Finalmente, como $b \neq 0$, se tiene que $R \in \mathcal{R}$. \hspace{7cm} $\square$ \\
 
 
  El siguiente teorema resume la relación entre la lógica proposicional y
@@ -467,8 +476,8 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  %% \cite{Winkler96}. Además, en \cite{Laita99}, se estudia el uso de las bases de
  %% Gröbner para la lógica porposicional.\\
 
- \noindent \textbf{Prueba:} La estructura que se seguirá es ver que la segunda
- condición se cumple si y sólo si las otras dos lo hacen. Por el lema \ref{lem2}:
+ \noindent \textbf{Prueba:} La estructura que se seguirá es probar $(2
+ \Leftrightarrow 1)$ y $(2 \Leftrightarrow)$. Por el lema \ref{lem2}:
 
  $$ 1+P(G) \in \langle 1+P(F_1), \dots ,1+P(F_m) \rangle + \mathbb{I}_2
  \Longleftrightarrow $$

@@ -1,14 +1,19 @@
 \subsection{$\mathbb{F}_2[\textbf{x}]$ en Haskell}
 
  En esta subsección se realizarán las implementaciones necesarias para poder
- trabajar en Haskell con $\mathbb{F}_2[\textbf{x}]$.
+ trabajar en Haskell con $\mathbb{F}_2[\textbf{x}]$, definiendo el módulo
+ \texttt{F2}:
 
 \begin{code}
 {-# LANGUAGE FlexibleInstances, FlexibleContexts #-}
 module F2 ( VarF2
           , PolF2
           , unbox ) where
+\end{code}
 
+ Que importa las librerías:
+
+\begin{code}
 import Haskell4Maths ( Vect
                      , Lex
                      , F2
@@ -21,10 +26,12 @@ import Test.QuickCheck ( Arbitrary
                        , quickCheck)
 \end{code}
 
- El primer paso tras el análisis realizado sobre la librería HaskellForMaths en
- el apartado anterior es definir el tipo de dato que representa
- $\mathbb{F}_2[\textbf{x}]$ (\texttt{PolF2}) , así como sus variables
- (\texttt{VarF2}):
+ El primer paso tras el análisis realizado sobre la librería HaskellForMaths,
+ es definir el tipo de dato que representa $\mathbb{F}_2[\textbf{x}]$
+ (\texttt{PolF2}) , así como sus variables (\texttt{VarF2}). Para ello se
+ representarán los polinomios en un espacio vectorial cuya base son los
+ monomios (\texttt{Lex String}) y sus coeficientes están en $\mathbb{F}_2$
+ (\texttt{F2}).
 
 \index{\texttt{VarF2}}
 \index{\texttt{PolF2}}
@@ -37,8 +44,8 @@ type PolF2 = Vect F2 (Lex String)
 
  Notar que el tipo de las variables es simplemente un cambio de nombre respecto
  a los polinomios que ha sido metido dentro del constructor \texttt{Box}. Este
- artificio es necesario ya que no se pueden declarar instancias (como se hará a
- continuación) repetidas sobre un mismo tipo de dato aunque tengan nombres
+ artificio es necesario ya que no se pueden declarar instancias repetidas (como
+ se hará a continuación) sobre un mismo tipo de dato aunque tengan nombres
  distintos. \\
 
  Sin embargo, es necesario definir la función auxiliar \texttt{(unbox
@@ -125,8 +132,9 @@ polGen = do
  propiedades. Se comprobarán las propiedades de la suma y del producto de
  polinomios de $\mathbb{F}_2[\textbf{x}]$:
 
- La suma de polinomios es conmutativa, $\forall p,q \in
- \mathbb{F}_2[\textbf{x}] (p+q = q+p)$.
+ La suma de polinomios es conmutativa,
+$$\forall p,q \in \mathbb{F}_2[\textbf{x}] (p+q = q+p)$$
+ En Haskell:
 
 \begin{code}
 -- |
@@ -136,8 +144,9 @@ prop_suma_conmutativa :: PolF2 -> PolF2 -> Bool
 prop_suma_conmutativa p q = p+q == q+p
 \end{code}
 
- La suma de polinomios es asociativa: $\forall p,q,r \in
- \mathbb{F}_2[\textbf{x}] (p+(q+r) = (p+q)+r)$.
+ La suma de polinomios es asociativa:
+$$\forall p,q,r \in \mathbb{F}_2[\textbf{x}] (p+(q+r) = (p+q)+r)$$
+ En Haskell:
 
 \begin{code}
 -- |
@@ -147,7 +156,11 @@ prop_suma_asociativa :: PolF2 -> PolF2 -> PolF2 -> Bool
 prop_suma_asociativa p q r = p+(q+r) == (p+q)+r
 \end{code}
 
- El cero es el elemento neutro de la suma de polinomios: 
+ El cero es el elemento neutro de la suma de polinomios:
+
+$$\forall p \in \mathbb{F}_2[\textbf{x}] p+0 = 0+p = p$$
+
+ En Haskell:
 
 \begin{code}
 -- |
@@ -157,8 +170,9 @@ prop_suma_neutro :: PolF2 -> Bool
 prop_suma_neutro p = (p + 0 == p) && (0 + p == p)
 \end{code}
 
- Todo polinomio es simétrico de sí mismo respecto a la suma: $\forall p \in
- \mathbb{F}_2[\textbf{x}] : p+p = 0$. 
+ Todo polinomio es simétrico de sí mismo respecto a la suma:
+$$\forall p \in \mathbb{F}_2[\textbf{x}] : p+p = 0$$
+ En Haskell:
 
 \begin{code}
 -- |
@@ -168,8 +182,9 @@ prop_suma_simetrico :: PolF2 -> Bool
 prop_suma_simetrico p = p+p == 0
 \end{code}
 
- La multiplicación de polinomios es conmutativa: $\forall p,q \in
- \mathbb{F}_2[\textbf{x}] (p*q = q*p)$.
+ La multiplicación de polinomios es conmutativa:
+$$\forall p,q \in \mathbb{F}_2[\textbf{x}] (p*q = q*p)$$
+ En Haskell:
 
 \begin{code}
 -- |
@@ -179,8 +194,9 @@ prop_prod_conmutativa :: PolF2 -> PolF2 -> Bool
 prop_prod_conmutativa p q = p*q == q*p
 \end{code}
 
- El producto es asociativo: $\forall p,q,r \in
- \mathbb{F}_2[\textbf{x}] (p*(q*r) = (p*q)*r)$.
+ El producto es asociativo:
+$$\forall p,q,r \in \mathbb{F}_2[\textbf{x}] (p*(q*r) = (p*q)*r)$$
+ En Haskell:
 
 \begin{code}
 -- |
@@ -191,6 +207,9 @@ prop_prod_asociativo p q r = p*(q*r) == (p*q)*r
 \end{code}
 
  El 1 es el elemento neutro de la multiplicación de polinomios:
+$$\forall p \in \mathbb{F}_2[\textbf{x}] p*1 = 1*p = p$$
+ En Haskell:
+
 \begin{code}
 -- |
 -- >>> quickCheck prop_prod_neutro
@@ -199,8 +218,9 @@ prop_prod_neutro :: PolF2 -> Bool
 prop_prod_neutro p = (p * 1 == p) && (1 * p == p)
 \end{code}
 
- Distributividad del producto respecto la suma: $\forall p,q,r \in
- \mathbb{F}_2[\textbf{x}] (p*(q+r) = p*q + p*r)$
+ Distributividad del producto respecto la suma:
+$$\forall p,q,r \in \mathbb{F}_2[\textbf{x}] (p*(q+r) = p*q + p*r)$$
+ En Haskell:
 
 \begin{code}
 -- |

@@ -56,7 +56,7 @@ reglaIndependencia x a1 a2 = aux + a1a2 + aux2
  eficiente que realizar las operaciones necesarias y finalmente
  aplicarla.\\
 
- Como caso particular, si los polinomios $a_i = b_i + x_p \cdot c_i$, con
+ Como caso particular, dados los polinomios $a_i = b_i + x_p \cdot c_i$, con
  $deg_{x_p} (b_i) = deg_{x_p} (c_i) = 0$ para $i=1,2$, la regla se puede
  reescribir de la siguiente forma:
  $$ \partial_{x_p}(a_1,a_2) = \Phi [1+(1+b_1 \cdot b_2) \cdot
@@ -155,8 +155,8 @@ Siguiendo con el ejemplo anterior,
  \bot$.
  \end{itemize}
 
- Ambas características son consecuencia de la transformación a polinomios, y es
- que las fórmulas polinomiales que corresponden a tautologías o inconsistencias
+ Ambas características son consecuencia de la transformación a polinomios, pues
+ las fórmulas polinomiales que corresponden a tautologías o inconsistencias
  son algebraicamente simplificadas a 1 ó 0 en $\mathbb{F}_2 [\textbf{x}] /
  \mathbb{I}_2$, respectivamente. De hecho, se trabaja con las proyecciones
  polinomiales para explotar dicha propiedad. Por ejemplo,
@@ -171,7 +171,9 @@ Siguiendo con el ejemplo anterior,
 \end{code}
 
 \vspace{0.5cm}
-A continuación, se expondrán diversos resultados sobre la regla de independencia, que justificarán usar la misma como herramienta para probar teoremas.
+ A continuación, se expondrán diversos resultados sobre la regla de
+ independencia, que justificarán el uso de la misma como herramienta para
+ probar teoremas.
 
 \prop Sea $p$ una variable proposicional, entonces $\partial_p$ es robusto.
 
@@ -186,7 +188,7 @@ A continuación, se expondrán diversos resultados sobre la regla de independenc
 
 Ahora se pueden distinguir dos casos:
 \begin{itemize}
-\item[•] La coordenada $p$-ésima de \textbf{u} es 0, entonces por \ref{eq} se tiene que 
+\item[•] La coordenada $p$-ésima de \textbf{u} es 0. Entonces por \ref{eq} se tiene que 
 $$b_1 |_{x=u}=b_2 |_{x=u} = 1$$
 Y por lo tanto, $1+b_1b_2 |_{x=u} = 0$
 \item[•] La coordenada $p$-ésima de \textbf{u} es 1. En este caso, $(b_1+c_1)(b_2+c_2) |_{x=u} = 1$
@@ -196,21 +198,28 @@ Examinando la definición de $\partial_p$ se concluye que en ambos casos
 $$\partial_{x_p}(\pi (F_1) , \pi (F_2))|_{x=u} =1$$
 así que $\textbf{u} \in \mathcal{V} (1+\partial_{x_p} (\pi (F_1) , \pi (F_2)))$ . \hspace{8.5cm} $\square$ \\
 
-El siguiente resultado es,
+El siguiente resultado es
 
 \thm \label{thm:opOmision} $\partial_p$ es un operador de omisión.
 
 \noindent \textbf{Prueba:} El objetivo es probar que
 $$[\{ F_1 , F_2 \} , \mathcal{L} \setminus \{ p \}] \equiv \partial_p (F_1 , F_2)$$
 
-Se supone que $F_1,F_2 \in Form(\mathcal{L})$ y que $\pi (F_i) = b_i + x_pc_i$ con $i=1,2$, y donde $b_i$ y $c_i$ son polinomios sin la variable $x_p$. Recordar que en este caso la expresión de la regla es:
+ Se supone que $F_1,F_2 \in Form(\mathcal{L})$ y que $\pi (F_i) = b_i + x_pc_i$
+ con $i=1,2$, donde $b_i$ y $c_i$ son polinomios sin la variable
+ $x_p$. Recordar que en este caso la expresión de la regla es: 
 
 $$ \partial_{x_p}(\pi (F_1), \pi (F_2)) = \Phi [1+(1+b_1 \cdot b_2) \cdot
  [1+(b_1+c_1)(b_2+c_2)]]$$
  
-Como se ha probado la robustez del operador $\partial_p$ en la proposición anterior, por el corolario \ref{cor:robusto} es suficiente probar que cualquier valoración $v$ sobre $\mathcal{L} \setminus \{ p \}$ que sea modelo de $\partial_p (F_1 , F_2)$ se puede extender a $\hat{v} \vDash \{ F_1,F_2 \} $ .\\
+ Como se ha probado la robustez del operador $\partial_p$ en la proposición
+ anterior, por el corolario \ref{cor:robusto} es suficiente probar que
+ cualquier valoración $v$ sobre $\mathcal{L} \setminus \{ p \}$ que sea modelo
+ de $\partial_p (F_1 , F_2)$ se puede extender a $\hat{v} \vDash \{ F_1,F_2 \}
+ $ .\\ 
 
-Sea $v \vDash \partial_p (F_1, F_2)$. Se considerará el punto de $\mathbb{F}^n_2$ asociado a   $v$, $o_v$. Se sigue que,
+ Sea $v \vDash \partial_p (F_1, F_2)$. Se considerará el punto de
+ $\mathbb{F}^n_2$ asociado a   $v$, $o_v$. Se sigue que, 
 
 \begin{table}[h]
 \centering
@@ -224,7 +233,8 @@ Sea $v \vDash \partial_p (F_1, F_2)$. Se considerará el punto de $\mathbb{F}^n_
 luego
 $$((1+b_1 \cdot b_2)[1+(b_1+c_1)(b_2+c_2)]) |_{x=o_v} = 0$$
 
-Con el objetivo de construir la extensión requerida $\hat{v}$, se distinguen dos casos:
+ Con el objetivo de construir la extensión requerida $\hat{v}$, se distinguen
+ dos casos: 
 
 \begin{itemize}
 \item[•] Si $(1+b_1\cdot b_2) |_{x=o_v} = 0$, entonces $$\hat{v} = v \cup \{ (x_p,0) \} \vDash F_1 \wedge F_2 $$
@@ -232,7 +242,11 @@ Con el objetivo de construir la extensión requerida $\hat{v}$, se distinguen do
 \end{itemize}
 \hspace{15.5cm} $\square$ \\
 
-Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto para denotar lo definido en \ref{def:prueba} como para la noción equivalente que en lugar de ser para fórmulas es para polinomios. De esta forma, se pueden describir $\vdash_{\partial}$-pruebas sobre polinomios. Por ejemplo, una $\partial$-refutación para el conjunto $\pi [\{ p \rightarrow q , q \vee r \rightarrow s, \neg (p \rightarrow s) \}]$ es:
+ Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto para
+ fórmulas (\ref{def:prueba}) como para polinomios. De esta forma, se pueden
+ describir $\vdash_{\partial}$-pruebas sobre polinomios. Por ejemplo, una
+ $\vdash_{\partial}$-refutación para el conjunto $\pi [\{ p \rightarrow q , q \vee r
+ \rightarrow s, \neg (p \rightarrow s) \}]$ es: 
 
 \begin{table}[h]
 \centering
@@ -310,15 +324,15 @@ Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto par
  $$\partial_{\mathcal{L} \setminus \{ p_3, p_4 \}} [K] \equiv \partial_{p_1}
  [\partial_{p_2} [\partial_{p_5}]]$$
 
- Previamente a ver los cálculos y debido a la manifiesta necesidad de extender
+ Previamente a los cálculos y debido a la manifiesta necesidad de extender
  la definición en Haskell de la regla de independencia, se procede a la
  implementación de la misma. Para lo cual, será necesaria la siguiente función 
  auxiliar. \\ 
 
  La función \texttt{(reglaIndependenciaAux v p ps)} aplica la regla de
  independecia respecto de la variable \texttt{v} a todos los pares de
- polinomios  $(\texttt{p},p_i)$, con $p_i \in \texttt{ps}$; y las une a las que
- hubiera en el conjunto \texttt{acum}. Es decir, se fija en la primera
+ polinomios  $(\texttt{p},p_i)$, con $p_i \in \texttt{ps}$; y las incluye en el
+ conjunto \texttt{acum}. Es decir, se fija en la primera
  coordenada al polinomio $p$ y con la segunda coordenada se recorre el conjunto
  de polinomios $ps$.
 
@@ -391,7 +405,7 @@ reglaIndependenciaKB v pps acum
 -- fromList [1]
 \end{code}
 
- Así que:
+ Por tanto:
 $$[K, \mathcal{L} \setminus \{ p_3, p_4 \}] \equiv \{ \top \} \nvDash G $$
 
  Se considerará ahora la fórmula $F = p_1 \wedge p_2 \wedge p_5 \rightarrow

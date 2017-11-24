@@ -52,7 +52,7 @@ reglaIndependenciaAux v p ps acum
                       dR       = reglaIndependencia v p p'
 \end{code}
 
- En cuanto a la función \texttt{(reglaIndependenciaKB}, si en algún momento de
+ En cuanto a la función \texttt{reglaIndependenciaKB}, si en algún momento de
  la computación el acumulador es el conjunto cuyo único elemento es el 0,
  querrá decir que se ha obtenido al aplicar la regla de independencia. Por
  tanto la base de conocimiento de la que proviene dicho conjunto de polinomios

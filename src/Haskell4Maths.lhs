@@ -44,13 +44,13 @@ la
 
  Seguidamente se comentarán los detalles más relevantes de las distintas
  librerías estudiadas, centrando la atención en los detalles prácticos como la 
- empleabilidad y la eficiencia.
+ utilidad y la eficiencia.
 
  \subsubsection{Cryptol}
  Cryptol es un lenguaje de programación especialmente desarrollado para
  implementar algoritmos criptográficos. Su ventaja es su similitud con el
  lenguaje matemático respecto a un lenguaje de propósito general. Está escrito
- en Haskell, siendo un trabajo muy pulido con un tutarial muy completo.\\
+ en Haskell, siendo un trabajo muy pulido con un tutorial muy completo.\\
 
  Sin embargo, no resulta intuitivo aislar la librería de polinomios por lo que
  para realizar las pruebas se ha optado por cargar todo el paquete apoyándonos en
@@ -71,10 +71,9 @@ la
  elementos de la lista (\texttt{[a]}), formando lo que se denomina como tipo
  polinomio (\texttt{Poly a}).\\
 
- La librería se centra en definir distintos tipos de polinomios de la
- literatura matemática clásica como los polinomios de Hermite, de Bernouilli,
- las bases de Newton o las bases de Lagrange. Finalmente, destacar que la
- documentación no es escasa por lo que su uso resulta tedioso.
+ La librería, poco documentada, se centra en definir distintos tipos de
+ polinomios de la literatura matemática clásica como los polinomios de Hermite,
+ de Bernouilli, las bases de Newton o las bases de Lagrange.
 
  \subsubsection{ToySolver.Data.Polynomial}
  Este módulo se enmarca en una librería que trata de implementar distintos
@@ -131,7 +130,7 @@ la
  \subsection{Introducción a HaskellForMaths}
 
  Se muestran a continuación diversos ejemplos de funciones de
- \texttt{Haskell4Maths} que aparecerán de forma recurrente en el resto del
+ \texttt{HaskellForMaths} que aparecerán de forma recurrente en el resto del
  trabajo.
 
 \begin{code}
@@ -238,7 +237,7 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
 \end{code}
 
  Una función que conviene destacar es la función \texttt{(linear f v)}, que es
- un mapeo lineal entre dos espacios vectoriales ($A = \texttt{Vect k a}$ y $B =
+ una función lineal entre dos espacios vectoriales ($A = \texttt{Vect k a}$ y $B =
  \texttt{Vect k b}$). La función \texttt{f :: a -> Vect k b} va de los
  elementos de la base de $A$ a $B$. Por lo que \texttt{(linear)} es muy útil si
  se necesita transformar vectores de forma interna.
@@ -246,7 +245,7 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
  \subsubsection{Math.ConmutativeAlgebra.Polynomial}
 
  En el siguiente módulo se define el álgebra conmutativa de los polinomios
- sobre el cuerpo $jk$. Los polinomios se representan como el espacio de
+ sobre el cuerpo $k$. Los polinomios se representan como el espacio de
  $k$-vectores libres con los monomios como su base. \\
 
  Para poder trabajar con los polinomios es necesario especificar un orden
@@ -307,8 +306,8 @@ monomio :: MonImpl [Char]
 monomio = (M 1 [("x",2),("y",1)])
 \end{code}
  
- Dichos pares se obtienen mediante la función \texttt{(mindices m)} y se pueden
- entender como los elementos canónicos que forman cada monomio de la base, así
+ Dichos pares se obtienen mediante la función \texttt{(mindices m)} y
+ representan los elementos canónicos que forman cada monomio de la base, así
  como su exponente:
 
 \index{\texttt{mindices}}

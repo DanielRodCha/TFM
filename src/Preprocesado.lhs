@@ -62,7 +62,7 @@ clausulaAPolinomio cs = aux $ foldl' (\acc x -> disj (literalAPolinomio x) acc)
 \end{code}
 
 \index{\texttt{readFile}}
- Además de las anteriores, serán necesaria tres funciones predefindas de
+ Además de las anteriores, serán necesarias tres funciones predefindas de
  Haskell. La primera es la función \texttt{readFile}, que transforma el
  archivo \texttt{.txt} en una cadena de caracteres.\\
 
