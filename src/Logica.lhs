@@ -168,6 +168,8 @@ infixr 5 ∨
 infixr 4 ∧
 \end{code}
 
+\newpage
+
 \texttt{(f → g)} es la implicación de la fórmula f a la fórmula g.
 
 \index{\texttt{→}}
@@ -222,6 +224,8 @@ instance Arbitrary FProp where
  fórmula original, p la variable proposicional a sustituir y g la fórmula
  proposicional por la que se sustituye. Al ser \texttt{FProp} un tipo recursivo
  se hará dicha definición usando patrones:
+
+\newpage
 
 \index{\texttt{sustituye}}
 \begin{code}
@@ -337,6 +341,8 @@ interpretacionesForm :: FProp -> [Interpretacion]
 interpretacionesForm = subsequences . simbolosPropForm
 \end{code}
 
+\newpage
+
  \texttt{(modelosFormula f)} es la lista de todas las interpretaciones de la
  fórmula f que son modelo de la misma.
 
@@ -387,8 +393,12 @@ esInsatisfacible = null . modelosFormula
 \end{code}
 
 \defn \label{def:sat} Una fórmula $F$ se dice satisfacible si existe al menos una
- interpretación $i$ de $F$ que sea modelo de la fórmula. La función
- \texttt{(esSatisfacible f)} se verifica si la fórmula f es satisfacible.
+ interpretación $i$ de $F$ que sea modelo de la fórmula.
+
+\newpage
+
+ La función \texttt{(esSatisfacible f)} se verifica si la fórmula f es
+ satisfacible.
 
 \index{\texttt{esSatisfacible}}
 \begin{code}
@@ -407,7 +417,7 @@ esSatisfacible = not . null . modelosFormula
  \defn Una \textit{base de conocimiento} o \textit{Knowledge Basis} ($KB$) es un conjunto
  finito de fórmulas proposicionales. Para la implementación, se importa de
  forma cualificada la librería \texttt{Data.Set} como \texttt{S}. Esta es una
- práctica muy común con esta librería y lo único que implica es que las
+ práctica muy común con esta librería y lo único que ces que las
  funciones de dicha librería deben ir precedidas por \texttt{S.}. Por lo que se
  define el tipo de dato \texttt{KB} como:
 

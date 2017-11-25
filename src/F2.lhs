@@ -99,25 +99,32 @@ instance Arbitrary PolF2 where
 
  El generador aleatorio de polinomios seguirá la siguiente estructura: en
  primer lugar se generarán aleatoriamente pares de variable-exponente, con los
- que se formarán monomios. A partir de la suma de éstos se obtendrán los
- polinomios:
+ que se formarán monomios. Por último, se suman éstos para obtener los
+ polinomios. En Haskell, \texttt{varExpGen} es el generador de pares:
 
 \index{\texttt{varExpGen}}
-\index{\texttt{monGen}}
-\index{\texttt{polGen}}
 \begin{code}
 varExpGen :: Gen (PolF2,Int)
 varExpGen = do
   Box x <- varGen
   i <- choose ((1::Int),5)
   return $ (x,i)
+\end{code}
 
+El generador de monomios \texttt{monGen} se implementa de la siguiente forma:
+
+\index{\texttt{monGen}}
+\begin{code}
 monGen :: Gen PolF2
 monGen = do
   n <- choose ((1::Int),5)
   xs <- vectorOf n varExpGen
   return $ product [ x ^ i | (x,i) <- xs]
+\end{code}
 
+Finalmente, el generador de polinomios \texttt{polGen} se implementa tal y como y sigue: 
+\index{\texttt{polGen}}
+\begin{code}
 polGen :: Gen PolF2
 polGen = do
   n <- choose ((1::Int),5)

@@ -38,6 +38,8 @@ heuristicaOrdMon ps vs = vs
 
 \end{code}
 
+\newpage
+
  La segunda heurística \texttt{(heuristicaFrecuencia ps vs)} devuelve una lista
  con las variables de $vs$ ordenadas de menor a mayor frecuencia de aparición en los
  polinomios de $ps$.

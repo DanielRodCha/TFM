@@ -24,6 +24,8 @@ Como consecuencia, el problema de determinar si es posible resolver estos proble
 
 Para comprender algo mejor la importancia del problema ¿$P=NP$? es importante conocer las consecuencias de su resolución. Si resultara que no son iguales, el impacto en la sociedad sería mínimo ya que únicamente se dejarían de buscar algoritmos de complejidad polinomial para resolver problemas de la clase $NP$.\\
 
+\newpage
+
 Sin embargo, si se demostrase que ambas clases de complejidad son iguales, las implicaciones para la sociedad actual serían de una magnitud incomparable. Esto se debe a que la robustez de los sistemas criptográficos actuales se basan en la intratabilidad de ciertos problemas de la clase $NP$. Si éstos fueran resolubles en tiempo polinomial peligrarían todas las comunicaciones y las claves bancarias dejarían de ser seguras. Por otro lado, no todas las consecuencias son negativas ya que multitud de problemas de ámbito empresarial o social serían tratables; y por tanto, los costes se reducirían y los beneficios aumentarían.\\
 
 Aunque, una vez vista la importancia del problema ¿$P=NP$? es natural preguntarse cómo podría resolverse. La respuesta es tan sencilla como dar un algoritmo que trabaje en tiempo polinomial en función del dato de entrada para un problema $NP$-completo, o demostrar que no existe dicho algoritmo. \\ 
@@ -101,6 +103,8 @@ Con la ventaja principal de que la función $ejemplo$ se puede utilizar normalme
 
 Por último, se ha utilizado la herramienta \texttt{git} de control de versiones, que junto a la plataforma \texttt{GitHub} ha sido de gran ayuda en la depuración del código y la búsqueda de eficiencia.
 
+\newpage
+
 \section{La herramienta}
 A continuación, se describirán los distintos módulos de la herramienta, detallando los procesos más relevantes. Es importante destacar que los cálculos llevados a cabo por el programa se dividen principalmente en dos etapas:
 \begin{enumerate}
@@ -123,7 +127,11 @@ Por ejemplo, $p_1 \vee p_2$ ó $p_1 \vee \neg p_2 \vee \neg p_3$ son cláusulas.
 
 Con respecto al problema de satisfacibilidad es importante saber el que criterio debe cumplir una fórmula en forma normal conjuntiva para ser verdadera. Esta condición es que en todas sus cláusulas debe haber al menos un literal que sea verdadero.\\
 
-Otra propiedad que se debe conocer sobre la forma normal conjuntiva es que dada cualquier fórmula proposicional existe otra equivalente en forma normal conjuntiva. El algoritmo \cite{apuntes} que la calcula es el siguiente:
+Otra propiedad que se debe conocer sobre la forma normal conjuntiva es que dada cualquier fórmula proposicional existe otra equivalente en forma normal conjuntiva. 
+
+\newpage
+
+El algoritmo que la calcula es el siguiente \cite{apuntes} :
 
 \begin{center}
 \includegraphics[scale=0.45]{imagenes/algfnc}
@@ -153,6 +161,8 @@ Como ya se ha comentado, se pretende presentar la herramienta a una competición
 %{\Large \texttt{-3 -4 0}}
 \end{tabular}
 \end{table}
+
+\newpage
 
 Dicho formato es una estandarización simplificada de la forma normal conjuntiva de una fórmula. Las instancias serán archivos de texto (\texttt{.txt} o \texttt{.cnf}) con la siguiente estructura:
 
@@ -194,7 +204,6 @@ x4,x42,x44,x47,x48,x5,x50,x52,x55,x56,x57,x58,x59,x60,x63,x64,x65,x68,
 x7,x72,x75,x76,x78,x8,x80,x81,x83,x84,x86,x87,x88,x89,x9,x90,x92,x93,
 x94,x96,x97,x98,x99])
 \end{code}
-\newpage
 
 \subsection{Saturación}
 
@@ -300,14 +309,28 @@ False
 (0.01 secs, 1,361,672 bytes)
 \end{code}
 
-\newpage
 \subsection{Directorio \texttt{medium}}
-Tras comprobar que la herramienta responde de la forma deseada con los ejemplos anteriores, conviene probar su eficiencia. Para ello, se construye una batería de ejemplos truncando el archivo \texttt{sat100.cnf} del directorio \texttt{hard}. Al ser conjuntos de cláusulas contenidas en un conjunto de cláusulas satisfacible son también satisfacibles y por tanto, el resultado de usar la herramienta debe ser \texttt{True}.
+Tras comprobar que la herramienta responde de la forma deseada con los ejemplos anteriores, conviene probar su eficiencia. Para ello, se construye una batería de ejemplos truncando el archivo \texttt{sat100.cnf} del directorio \texttt{hard}. \\
+
+Al ser conjuntos de cláusulas contenidas en un conjunto de cláusulas satisfacible son también satisfacibles y por tanto, el resultado de usar la herramienta debe ser \texttt{True}.\\
 
 Únicamente se tratarán los tres primeros ejemplos ya que el resto no se ejecuta en un tiempo razonable.
 
 \subsubsection{Ejemplo 0}
-El archivo se llama \texttt{exampleSat0} y codifica una fórmula en forma normal conjuntiva con 30 cláusulas en las que intervienen hasta 59 variables distintas. Destacar que tanto en este ejemplo como en los próximos, en cada cláusula habrá exactamente 3 literales.
+El archivo se llama \texttt{exampleSat0} y codifica una fórmula en forma normal conjuntiva con 30 cláusulas en las que intervienen hasta 59 variables distintas. \\ 
+
+Destacar que tanto en este ejemplo como en los próximos, en cada cláusula habrá exactamente 3 literales.
+
+La ejecución en máquina es:
+\begin{code}
+>>> satSolver "exDIMACS/medium/exampleSat0.txt"
+True
+(0.02 secs, 10,307,480 bytes)
+\end{code}
+
+\newpage
+
+El archivo es:
 
 \begin{codigo}
 c 
@@ -344,13 +367,6 @@ p cnf 59 30
 10 88 -76 0
 92 -81 -88 0
 \end{codigo}
-
-La ejecución en máquina es:
-\begin{code}
->>> satSolver "exDIMACS/medium/exampleSat0.txt"
-True
-(0.02 secs, 10,307,480 bytes)
-\end{code}
 
 \subsubsection{Ejemplo 5}
 El archivo se llama \texttt{exampleSat1.txt} y codifica una fórmula satisfacible con 91 cláusulas y 82 variables. Por razones de espacio se omitirá mostar el archivo. La ejecución en máquina es:
@@ -394,6 +410,8 @@ A raíz de esto se probarán experimentalmente varias heurísticas; y en base a 
 Se define el módulo \texttt{Heuristicas}, en el que se implementarán dichas heurísticas.
 
 \entrada{Heuristicas}
+
+\newpage
 
 Quedando la solución del ejemplo 5:
 

@@ -1,4 +1,6 @@
-\subsection{Transformaciones entre fórmulas y polinomios}
+\newpage
+
+\section{Transformaciones entre fórmulas y polinomios}
 
  La traducción o transformación de la lógica proposicional en álgebra
  polinomial viene dada por \cite{Kapur-1985} y se ilustra en la figura
@@ -10,9 +12,7 @@
  que equivalen a los conceptos de \textit{Verdad} y \textit{Falsedad},
  respectivamente. Las operaciones básicas de suma y multiplicación se
  corresponden con las conectivas booleanas \textit{o exclusivo} e \textit{y},
- respectivamente.\\
-
- Por tanto, la función $P: Form (\mathcal{L} \rightarrow
+ respectivamente. Por tanto, la función $P: Form (\mathcal{L} \rightarrow
  \mathbb{F}_2[\textbf{x}])$ que aparece en la página  \pageref{fig:esquema} se
  define por: 
 
@@ -28,9 +28,8 @@
  cero y las verdaderas con el uno. Por ejemplo, si una fórmula ($p_1 \wedge
  p_2$) dada una valoración ($p_1=True$, $p_2=True$) es verdadera, su
  correspondiente polinomio ($x_1 * x_2$) teniendo en cuenta la interpretación
- ($x_1=1$, $x_2=1$) debe valer uno ($1 + 1 =_{\mathbb{F}_2} 1$).
-
- La implementación se hará en el módulo \texttt{Transformaciones}:
+ ($x_1=1$, $x_2=1$) debe valer uno ($1 + 1 =_{\mathbb{F}_2} 1$). La
+ implementación se hará en el módulo \texttt{Transformaciones}:
 
 \begin{code}
 module Transformaciones
@@ -97,6 +96,8 @@ tr (Equi a b)      = 1 + tr a + tr b
 \item[•] $\Theta (a \cdot b) = \Theta(a) \wedge \Theta(b)$
 \end{itemize}
 
+\newpage
+
  La función (\texttt{theta p}) transforma el polinomio \texttt{p} en la
  fórmula proposicional que le corresponde según la definición anterior.
 
@@ -144,6 +145,8 @@ prop_theta_tr f = equivalentes (theta (tr f)) f
  Notar que a la hora de comprobar la propiedad anterior se ha acotado el tamaño
  máximo de las fórmulas proposicionales ya que en caso contrario se demora
  demasiado en ejecutarse.\\
+
+\newpage
 
  Se define ahora la propiedad inversa:
   
@@ -215,8 +218,8 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
 
 \begin{code}
 -- |
--- >>> let [p1,p2,p3] = map Atom ["p1","p2","p3"]
--- >>> let f = p1 → p2 ∧ p3
+-- >>> [p1,p2,p3] = map Atom ["p1","p2","p3"]
+-- >>> f = p1 → p2 ∧ p3
 -- >>> tr f
 -- x1x2x3+x1+1
 -- >>> esModeloFormula [p3] f
@@ -244,6 +247,8 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
  representante equivale a reemplazar cada ocurrencia de $x_i^k$ (con
  $k\in\mathbb{N}$) por $x_i$.\\ 
 
+\newpage
+
  La función \texttt{(phi p)} calcula el representante de menor grado del
  polinomio $p$ en el grupo cociente $\mathbb{F}_2[\textbf{x}]/_{\mathbb{I}_2}$,
  siendo $\mathbb{I}_2 = \{x_1+x_1^2,...,x_n+x_n^2\}$ y $n\in \mathbb{N}$ el
@@ -252,7 +257,7 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
 \index{\texttt{phi}}
 \begin{code}
 -- | Por ejemplo,
--- >>> let [x1,x2] = [var "x1", var "x2"] :: [PolF2]
+-- >>> [x1,x2] = [var "x1", var "x2"] :: [PolF2]
 -- >>> phi (1+x1+x1^2*x2) 
 -- x1x2+x1+1
 phi :: PolF2  -> PolF2
@@ -268,7 +273,7 @@ phi = linear (\m -> product [ var x | (x,i) <- mindices m])
 \begin{code}
 -- | Por ejemplo,
 --
--- >>> let [x1,x2] = [var "x1", var "x2"] :: [PolF2]
+-- >>> [x1,x2] = [var "x1", var "x2"] :: [PolF2]
 -- >>> ideal (1+x1+x1^2*x2)
 -- [x1^2+x1,x2^2+x2]
 ideal :: PolF2 -> [PolF2]
@@ -300,7 +305,7 @@ prop_phi p = phi p == p %% (ideal p)
 \index{\texttt{proyeccion}}
 \begin{code}
 -- | Por ejemplo,
--- >>> let [p1,p2] = [Atom "p1",Atom "p2"]
+-- >>> [p1,p2] = [Atom "p1",Atom "p2"]
 -- >>> proyeccion p1
 -- x1
 -- >>> tr (p1 → p1 ∧ p2)
@@ -337,7 +342,7 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
 
  En esta subsección se recordará la correspondencia entre conjuntos
  algebraicos e ideales polinomiales (en el cuerpo de coeficientes
- $\mathbb{F}_2$) y la lógica proposicional.\\
+ $\mathbb{F}_2$) y la lógica proposicional.
 
  \defn Dado un subconjunto $X \subseteq (\mathbb{F}_2)^n$, se denota por $I(X)$
  al ideal de polinomios de $\mathbb{F}_2[\textbf{x}]$ que se anulan en $X$:
@@ -352,11 +357,15 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
 
  Antes de enunciar y demostrar el teorema de Nullstellensatz para cuerpos
  finitos \cite{Agudelo-15} (concretamente el cuerpo $\mathbb{F}_2$) es
- necesario un lema: \\
+ necesario un lema:
+
+\vspace{0.2cm}
 
  \lem \label{lem1} Sea un polinomio $p \in \mathbb{F}_2[\textbf{x}]$, entonces
  $p \in \mathbb{I}_2^n \; \Leftrightarrow \; p(\textbf{z}) = 0 \; \forall
- \textbf{z} \in (\mathbb{F}_2)^n $ \\
+ \textbf{z} \in (\mathbb{F}_2)^n $
+
+\vspace{0.3cm}
 
  \noindent \textbf{Prueba:} La implicación hacia la derecha es trivial ya que: \\
  Si $p \in \mathbb{I}_2^n$ entonces $p \in \langle x_1^2+x_1 , \dots ,

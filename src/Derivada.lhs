@@ -1,5 +1,3 @@
-Para ello se crea el módulo \texttt{Derivada} y se importan los módulos necesarios.\\
-
 \begin{code}
 module Derivada (derivaPol) where
 
@@ -23,11 +21,9 @@ import Test.QuickCheck (quickCheck)
  $\frac{\partial}{\partial x_{p}}$ a polinomios en el espacio cociente. Esto
  implica que se supondrá que los polinomios son proyecciones de fórmulas y que
  por lo tanto, las variables que aparecen en dichos polinomios tienen a lo sumo
- exponente igual a 1.\\
-
- La función \texttt{(derivaMononomio m v)} es la derivada del monomio $m$
- respecto de la variable $v$, siempre que el exponente de todas sus variables
- sea menor o igual que 1.\\
+ exponente igual a 1. La función \texttt{(derivaMononomio m v)} es la derivada
+ del monomio $m$ respecto de la variable $v$, siempre que el exponente de todas
+ sus variables sea menor o igual que 1.
 
 \index{\texttt{derivaMonomio}}
 \begin{code}

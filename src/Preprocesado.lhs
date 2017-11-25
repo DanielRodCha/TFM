@@ -11,6 +11,8 @@ import Data.List (foldl')
 import qualified Data.Set as S
 \end{code}
 
+\newpage
+
  La función \texttt{(literalAPolinomio lit)} recibe una cadena que codifica un
  literal en formato \texttt{DIMACS} y devuelve un par \texttt{(p,v)} donde $p$
  es el polinomio correspondiente a dicho literal (la proyección por $\pi$) y

@@ -14,8 +14,9 @@ import qualified Data.Set as S
 
  Sin embargo, antes de implementar estas funciones hay una modificación que
  mejora la eficiencia de las funciones \texttt{(reglaIndependenciaAux} y
- \texttt{(reglaIndependenciaKB)}. Esta mejora se basa en el hecho de
- que si en algún 
+ \texttt{(reglaIndependenciaKB)}.\\
+
+ Esta mejora se basa en el hecho de que si en algún 
  momento de la computación hay un cero en el conjunto de polinomios (que
  traducido a fórmula es un $\bot$) éste permanecerá hasta finalizar la
  saturación. De hecho, tras saturar dicho conjunto, será el único polinomio que
@@ -26,7 +27,11 @@ import qualified Data.Set as S
  Teniendo en cuenta lo comentado anteriormente, se pueden modificar las
  definiciones anteriores de \texttt{(reglaIndependenciaAux} y
  \texttt{(reglaIndependenciaKB} para obtener un método de saturación más
- eficiente. Para ello basta añadir al bucle de la primera la siguiente línea de
+ eficiente.
+
+ \newpage
+
+ Para ello basta añadir al bucle de la primera la siguiente línea de
  código:\\
 
 \texttt{| dR == 0   = S.fromList [0]}\\
@@ -118,6 +123,8 @@ saturaKB (ps,v:vs) | S.member 0 ps = False
                        where nextVPS = omiteVariableKB v ps
 
 \end{code}
+
+\newpage
 
  Finalmente, se combinan ambas etapas (Preprocesado y Saturación) en la función
  \texttt{satSolver f}. Esta función recibe un fichero donde se codifica una

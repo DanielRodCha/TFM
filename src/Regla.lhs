@@ -1,4 +1,6 @@
- La implementación en Haskell de dicha regla se hará en el módulo \texttt{Regla}
+\newpage
+
+La implementación en Haskell de dicha regla se hará en el módulo \texttt{Regla}
 
 \begin{code}
 module Regla where
@@ -51,7 +53,9 @@ reglaIndependencia x a1 a2 = aux + a1a2 + aux2
 \end{code}
 
  Recordar que la función \texttt{(phi p)} ó $\Phi (p)$ escogía el representante de
- menor grado del polinomio $p + \mathbb{I}_2$. Además, destacar que se aplica
+ menor grado del polinomio $p + \mathbb{I}_2$. \\
+
+ Además, destacar que se aplica
  la función \texttt{phi} a cada multiplicación de forma aislada ya que es más
  eficiente que realizar las operaciones necesarias y finalmente
  aplicarla.\\
@@ -158,8 +162,12 @@ Siguiendo con el ejemplo anterior,
  Ambas características son consecuencia de la transformación a polinomios, pues
  las fórmulas polinomiales que corresponden a tautologías o inconsistencias
  son algebraicamente simplificadas a 1 ó 0 en $\mathbb{F}_2 [\textbf{x}] /
- \mathbb{I}_2$, respectivamente. De hecho, se trabaja con las proyecciones
- polinomiales para explotar dicha propiedad. Por ejemplo,
+ \mathbb{I}_2$, respectivamente. \\
+
+\newpage
+
+ De hecho, se trabaja con las proyecciones polinomiales para explotar la
+ propiedad anterior. Por ejemplo,
 
 \begin{code}
 -- |
@@ -197,6 +205,8 @@ Y por lo tanto, $1+b_1b_2 |_{x=u} = 0$
 Examinando la definición de $\partial_p$ se concluye que en ambos casos
 $$\partial_{x_p}(\pi (F_1) , \pi (F_2))|_{x=u} =1$$
 así que $\textbf{u} \in \mathcal{V} (1+\partial_{x_p} (\pi (F_1) , \pi (F_2)))$ . \hspace{8.5cm} $\square$ \\
+
+\newpage
 
 El siguiente resultado es
 
@@ -241,6 +251,8 @@ $$((1+b_1 \cdot b_2)[1+(b_1+c_1)(b_2+c_2)]) |_{x=o_v} = 0$$
 \item[•] Si $[1+(b_1+c_1)(b_2+c_2)]|_{x=o_v} = 0$, entonces $$\hat{v} = v \cup \{ (x_p,1) \} \vDash F_1 \wedge F_2 $$
 \end{itemize}
 \hspace{15.5cm} $\square$ \\
+
+\newpage
 
  Abusando de notación, se usará el mismo símbolo $\vdash_{\partial}$ tanto para
  fórmulas (\ref{def:prueba}) como para polinomios. De esta forma, se pueden
@@ -290,14 +302,16 @@ $$((1+b_1 \cdot b_2)[1+(b_1+c_1)(b_2+c_2)]) |_{x=o_v} = 0$$
 
  El resultado anterior en términos algebraicos queda:
 
- \cor \label{cor:cero} Sea $F \in Form(\mathcal{L})$ una base de conocimiento. Los siguientes
- enunciados son equivalentes:
+ \cor \label{cor:cero} Sea $F \in Form(\mathcal{L})$ una base de
+ conocimiento. Los siguientes enunciados son equivalentes:
  \begin{enumerate}
  \item $K \vDash F$
  \item $J_K \vdash_{\partial} 0$, donde $J_K$ es el ideal definido en la página
  \pageref{def:J_K}. 
  \end{enumerate}
- 
+
+\newpage
+  
  \noindent \textbf{Prueba: } $(1) \Rightarrow (2)$ : Supuesto $K \vDash F$,
  entonces $K \cup  \{ \neg F \}$ es inconsistente. Como $\partial_p$ es
  refutacionalmente completo, $K\cup \{ \neg F \} \vdash_{\partial} \bot$. Por
@@ -360,6 +374,8 @@ reglaIndependenciaAux v p ps acum
  anterior no será necesario volver a aplicar la regla de independencia al
  polinomio distinguido $p$, y por consiguiente, se puede continuar aplicando la
  regla al resto de polinomios y decartar $p$. \\
+
+\newpage
 
  De esta forma se define la función \texttt{(reglaIndependenciaKB v pps acum)}
  que aplica el operador de omisión $\partial_{\texttt{v}}$ al conjunto
@@ -441,5 +457,6 @@ $$[K, \mathcal{L} \setminus \{ p_3, p_4 \}] \equiv \{ \top \} \nvDash G $$
 -- fromList [0,1]
 \end{code}
 
-Luego, por el corolario \ref{cor:cero}, $ \partial_{p_3} [K] \cup \{ \neg F \}$ es inconsistente.
+ Luego, por el corolario \ref{cor:cero}, $ \partial_{p_3} [K] \cup \{ \neg F \}$
+ es inconsistente. 
 

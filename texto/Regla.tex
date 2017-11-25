@@ -26,14 +26,12 @@ $$\delta (F,G) \equiv [\{F,G\}, \mathcal{L} \setminus \{p\}]$$
 
 Una caracterización muy útil de los operadores se puede deducir de la siguiente propiedad semántica: Si  $\delta$ es un operador de omisión, los modelos de $\delta (F,G)$ son precisamente las \textit{proyecciones} de los modelos de $\{ F,G \}$ (ver figura \ref{fig:proy}). 
 
-\vspace{0.5cm}
 \begin{figure}[h]
 	\centering
 		\includegraphics[scale=0.6]{imagenes/indemod.png}
 	\caption{Interpretación semántica del operador de omisión (Lema de elevación)}
 	\label{fig:proy}
 \end{figure}
-\vspace{0.5cm}
 
 \lem \label{lem:lifting} (\textbf{Lema de elevación}) Sean $v :\mathcal{L} \setminus \{p\} \rightarrow \{ 0,1 \}$ una valoración o interpretación, $F, G \in Form(\mathcal{L})$ fórmulas y $\delta$ un operador de omisión de la variable $p$. Las siguientes condiciones son equivalentes:
 \begin{enumerate}
@@ -80,6 +78,8 @@ $$\{ F \} \equiv [\{ F \} ,\mathcal{L} \setminus \{ p \}] \equiv \delta_p (F,F)$
 Por otro lado, 
 $$\delta_p (F,G) \equiv [\{ F,G \} , \mathcal{L} \setminus \{ p \}] \vDash \{ F,\delta_p (G,G) \}$$ Para probar que en realidad la última consecuencia lógica es una equivalencia se mostrará que tienen los mismos modelos.\\
 Sea $v$ una valoración sobre $\mathcal{L} \setminus \{ p \}$ tal que $$v \vDash \{ F,\delta_p (G,G) \}$$ Entonces existe $\hat{v}$ (una extensión de $v$) tal que $\hat{v} \vDash G$. Como $\hat{v} \vDash F$, se tiene por el Lema de Elevación que $v \vDash \delta (F,G)$. \hspace{10cm} $\square$ 
+
+\newpage 
  
 \subsubsection{Retracciones conservativas inducidas por un operador de omisión} 
  
@@ -167,9 +167,7 @@ Como consecuencia del teorema \ref{teo:completo} y el corolario \ref{cor:omitep}
 \noindent \textbf{Prueba:} Trivial, porque $\delta_{\mathcal{L} \setminus var(F)} [K] \equiv [K,var(F)]$
 
 \section{Derivadas Booleanas}
-Con el objetivo de definir el operador de omisión que se usará en la herramienta, se hará uso de las derivadas polinomiales aunque no de forma directa. En la práctica, se traducirá la derivada tradicional en $\mathbb{F}_2 [\textbf{x}]$ a un operador sobre fórmulas proposicionales.\\
-
-Antes de continuar se expondrán diversas propiedades básicas. Recalcar que una derivación sobre un anillo $R$ es una función $d:R \rightarrow R$ verificando que $\forall a,b \in R$:
+Con el objetivo de definir el operador de omisión que se usará en la herramienta, se hará uso de las derivadas polinomiales aunque no de forma directa. En la práctica, se traducirá la derivada tradicional en $\mathbb{F}_2 [\textbf{x}]$ a un operador sobre fórmulas proposicionales. Antes de continuar se expondrán diversas propiedades básicas. Recalcar que una derivación sobre un anillo $R$ es una función $d:R \rightarrow R$ verificando que $\forall a,b \in R$:
 
 \begin{itemize}
 \item[•] $d(a+b) = d(a) + d(b)$
@@ -191,11 +189,13 @@ La traducción de las derivaciones al contexto de la lógica se construye como s
  
  \noindent O lo que es lo mismo: $$\partial = \Theta \circ d \circ \pi $$
  
- En este trabajo, la atención recae sobre una derivada booleana en particular, denotada por $\frac{\partial}{\partial p}$, e inducida por la derivada $d = \frac{\partial}{\partial x_p}$. A continuación se implementará dicha derivada.\\
+ En este trabajo, la atención recae sobre una derivada booleana en particular, denotada por $\frac{\partial}{\partial p}$, e inducida por la derivada $d = \frac{\partial}{\partial x_p}$. A continuación se implementará dicha derivada. Para ello se crea el módulo \texttt{Derivada} y se importan los módulos necesarios.
 
 \entrada{Derivada}  
- 
+  
 Notar que el valor de verdad de $\frac{\partial}{\partial p}F$ respecto de una valoración no depende del valor de verdad de la propia $p$; luego se pueden aplicar valoraciones sobre $\mathcal{L} \setminus \{ p \}$ a dicha fórmula. De hecho, se puede describir la estructura de $F$ aislando el rol de la variable $p$ de la siguiente manera:
+
+\newpage 
 
 \lem \cite{Borrego2009} (Forma $p$-normal) Sea $F \in Form(\mathcal{L})$ y sea $p$ una variable proposicional. Existe $F_0 \in Form (\mathcal{L} \setminus \{ p \})$ tal que 
 $$F \equiv \neg (F_0 \leftrightarrow p \wedge \frac{\partial}{\partial p} F)$$
@@ -211,6 +211,7 @@ $$\pi (F) = 1+x_px_q + x_px_qx_r = 1+x_p (x_q+x_qx_r)$$
 Siguiendo la prueba anterior, $a=1$ y $b=x_q+x_qx_r$ (notar que $\frac{\partial}{\partial x_p} (\pi (F))=x_q+x_q+x_r$). Por tanto, $\Theta (a) = \top$ y $\Theta (b)=q \wedge \neg r$, así que:
 $$F \equiv \neg (\top \leftrightarrow p \wedge (q \wedge \neg r))$$
 
+\newpage
 
 \section{Regla de independencia}
 El operador de omisión que se va a definir en esta sección se llama regla de independencia y trata de representar los modelos de la retracción conservativa como aquellos que pueden ser extendidos a modelos de $F \wedge G$. Destacar que ésta es la idea tras el Lema de elevación (\ref{lem:lifting}).\\

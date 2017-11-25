@@ -1,3 +1,5 @@
+\newpage
+
 \section{El anillo $\mathbb{F}_2[\textbf{x}]$}
 
  Para una natural interpretación algebraica de la lógica, el marco de trabajo
@@ -176,6 +178,8 @@ import Math.CommutativeAlgebra.Polynomial
 -- 169/70
 \end{code}
 
+\newpage
+
  Para este trabajo, el cuerpo que nos interesa es $\mathbb{F}_2$, cuyos
  elementos pertenecen a la lista \texttt{f2}:
 
@@ -239,7 +243,7 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
 
  Una función que conviene destacar es la función \texttt{(linear f v)}, que es
  una función lineal entre dos espacios vectoriales ($A = \texttt{Vect k a}$ y $B =
- \texttt{Vect k b}$). La función \texttt{f :: a -> Vect k b} va de los
+ \texttt{Vect k b}$). La función \\ \texttt{(f :: a -> Vect k b)} va de los
  elementos de la base de $A$ a $B$. Por lo que \texttt{(linear)} es muy útil si
  se necesita transformar vectores de forma interna.
 
@@ -292,10 +296,11 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
 -- x^2+y^2+z^2
 \end{code}
  
- Como se mencionó anteriormente la base del espacio vectorial que es un
+\newpage
+
+Como se mencionó anteriormente la base del espacio vectorial que es un
  polinomio, está formada por monomios. El tipo de dato monomio está formado por
- un coeficiente $i$ y una lista de pares. En el caso de los polinomios, un
- ejemplo de monomio es:
+ un coeficiente $i$ y una lista de pares. Un ejemplo de monomio es:
 
 \index{\texttt{monomio}}
 \index{\texttt{MonImpl}}
@@ -355,6 +360,8 @@ monomio = (M 1 [("x",2),("y",1)])
 -- >>> lm (x*z*y+y*x^2+z^4)
 -- x^2y
 \end{code}
+
+\newpage
 
  Otra función natural es \texttt{(eval p vs)}, que evalúa el polinomio
  \texttt{p} en el punto descrito por \texttt{vs}, siendo ésta una lista de
