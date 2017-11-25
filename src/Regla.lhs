@@ -3,17 +3,17 @@
 \begin{code}
 module Regla where
 
-import F2
 import Logica
-import Derivada
 import Haskell4Maths ( var
                      , vars)
+import F2 (PolF2)
 import Transformaciones ( phi
                         , theta
                         , proyeccion)
+import Derivada (derivaPol)
 
 import Data.List (union)
-import Test.QuickCheck
+import Test.QuickCheck (quickCheck)
 import qualified Data.Set as S
 \end{code}
 

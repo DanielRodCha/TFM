@@ -38,7 +38,7 @@ module Transformaciones
     , theta
     , proyeccion) where
 
-import Logica
+import Logica 
 import Haskell4Maths (Vect(..)
                      , var
                      , vars
@@ -48,7 +48,10 @@ import Haskell4Maths (Vect(..)
                      , (%%))
 import F2 (PolF2)
 
-import Test.QuickCheck
+import Test.QuickCheck (quickCheck
+                       , maxSize
+                       , quickCheckWith
+                       , stdArgs)
 \end{code}
 
  La función encargada de hacer dicha traducción es la función \texttt{tr}., que

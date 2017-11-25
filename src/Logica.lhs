@@ -16,7 +16,12 @@ import Control.Monad ( liftM
                      , liftM2)
 import Data.List     ( union
                      , subsequences)
-import Test.QuickCheck
+import Test.QuickCheck ( Arbitrary
+                       , arbitrary
+                       , oneof
+                       , elements
+                       , sized
+                       , quickCheck)
 import qualified Data.Set as S
 \end{code}
 

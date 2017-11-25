@@ -207,7 +207,7 @@ Y así queda implementada una primera versión de la herramienta.
 \newpage
 \section{Análisis de la herramienta}
 
-En esta sección se probará la herramienta con instancias de ejemplo, con el objetivo de detectar cotas de eficiencia. Las instancias se almacenan en el directorio \texttt{exDIMACS}, organizadas en carpetas según su dificultad.
+En esta sección se probará la herramienta con instancias del problema, con el objetivo de detectar cotas de eficiencia. Las instancias se almacenan en el directorio \texttt{exDIMACS}, organizadas en carpetas según su dificultad.
 
 \subsection{Directorio \texttt{easy}}
 Este directorio contiene cuatro ejemplos muy sencillos, de hecho, las fórmulas que codifican sólo  tienen 2 variables ($p$ y $q$). El objetivo de estos ejemplos es servir como test para comprobar que el funcionamiento de la herramienta es el deseado.
@@ -302,7 +302,7 @@ False
 
 \newpage
 \subsection{Directorio \texttt{medium}}
-Tras comprobar que la herramienta responde de la forma deseada con los ejemplos anterior, conviene probar su eficiencia. Para ello, se construye una batería de ejemplos truncando el archivo \texttt{sat100.cnf} del directorio \texttt{hard}. Al ser conjuntos de cláusulas contenidas en un conjunto de cláusulas satisfacible son también satisfacibles y por tanto, el resultado de usar la herramienta debe ser \texttt{True}.
+Tras comprobar que la herramienta responde de la forma deseada con los ejemplos anteriores, conviene probar su eficiencia. Para ello, se construye una batería de ejemplos truncando el archivo \texttt{sat100.cnf} del directorio \texttt{hard}. Al ser conjuntos de cláusulas contenidas en un conjunto de cláusulas satisfacible son también satisfacibles y por tanto, el resultado de usar la herramienta debe ser \texttt{True}.
 
 Únicamente se tratarán los tres primeros ejemplos ya que el resto no se ejecuta en un tiempo razonable.
 

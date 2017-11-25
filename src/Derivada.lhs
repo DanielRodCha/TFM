@@ -4,20 +4,19 @@ Para ello se crea el módulo \texttt{Derivada} y se importan los módulos necesa
 module Derivada (derivaPol) where
 
 import Logica
-import Haskell4Maths ( Lex
-                     , lm
+import Haskell4Maths ( lm
                      , var
                      , vars
                      , linear
-                     , mindices)
+                     , mindices
+                     , Lex (..)
+                     , MonImpl(..))
 import F2 (PolF2)
 import Transformaciones (proyeccion
                         , theta)
-
-import Math.CommutativeAlgebra.Polynomial
-
+       
 import Data.List (union)
-import Test.QuickCheck
+import Test.QuickCheck (quickCheck)
 \end{code}
 
  Destacar que se restringirá la definición de la derivada
@@ -50,6 +49,7 @@ import Test.QuickCheck
 -- x1x2
 -- >>> derivaMononomio exampleMonomial3 x1
 -- x2
+exampleMonomial2 = (Lex (M 1 [("x1",1)]))
 derivaMononomio :: (Lex String) -> PolF2 -> PolF2
 derivaMononomio m v
   | varDif `elem` mIndices =

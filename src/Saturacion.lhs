@@ -1,22 +1,15 @@
 \begin{code}
-
 module Saturacion where
-
-import Data.List
-import Data.Char (isSpace)
-import Data.Foldable (sum, product)
-import System.Environment
-
-import qualified Data.Set as S
-
 
 import Haskell4Maths (var
                      , vars
                      , zerov)
-import F2
-import Transformaciones ( phi)
+import F2 (PolF2)
 import Regla (reglaIndependencia)
-import Preprocesado
+import Preprocesado (dimacsAPolinomios)
+
+import System.Environment
+import qualified Data.Set as S
 \end{code}
 
  Sin embargo, antes de implementar estas funciones hay una modificación que

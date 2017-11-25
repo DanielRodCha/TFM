@@ -1,16 +1,14 @@
 \begin{code}
-{-# LANGUAGE FlexibleInstances, FlexibleContexts #-}
-
 module Preprocesado where
 
-import Data.List
 
-import qualified Data.Set as S
-
-import F2
 import Haskell4Maths (var
                      , zerov)
+import F2
 import Transformaciones ( phi)
+
+import Data.List (foldl')
+import qualified Data.Set as S
 \end{code}
 
  La función \texttt{(literalAPolinomio lit)} recibe una cadena que codifica un

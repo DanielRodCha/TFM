@@ -1,16 +1,14 @@
 \begin{code}
-{-# LANGUAGE FlexibleInstances, FlexibleContexts #-}
-
 module Heuristicas where
 
-import qualified Data.Set as S
-import Data.List (foldl', sortOn)
-
+import Haskell4Maths (var
+                     , vars)
 import F2
-import Haskell4Maths (var,vars)
 import Preprocesado (dimacsAPolinomios)
 import Saturacion (omiteVariableKB)
 
+import Data.List (foldl', sortOn)
+import qualified Data.Set as S
 \end{code}
 
  A continuación, se define el tipo \texttt{Heuristica}. Este es una función que

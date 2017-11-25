@@ -136,10 +136,11 @@ la
 \begin{code}
 module Haskell4Maths 
     ( F2
+    , MonImpl(..)
     , Vect(..)
     , linear
     , zerov
-    , Lex
+    , Lex (..)
     , Glex
     , Grevlex
     , var
