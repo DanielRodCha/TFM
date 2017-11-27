@@ -1,15 +1,26 @@
-\chapter{Conclusión}\label{sec:progfunHas}
+\addcontentsline{toc}{chapter}{Conclusión}
+\chapter*{Conclusión}
 
-En este capítulo se hace una breve introducción a la programación funcional en
-Haskell suficiente para entender su aplicación en los siguientes
-capítulos. Para una introducción más amplia se pueden consultar los apuntes de
-la asignatura de Informática de 1º del Grado en Matemáticas
-(\cite{Alonso-15b}). 
+La interpretación algebraica de lalógica proposicional representa una valioso recurso que nos permite aplicar técnicas algebraicas a la representación del conocimiento y el razonamiento. En este trabajo se presenta un modelo algebraico para resolver problemas cuyo conocimiento se representa mediante fórmulas de la lógica proposicional.\\
 
-El contenido de este capítulo se encuentra en el módulo \texttt{PFH} 
-\entrada{PFH}.
+La estructura del trabajo es la natural, es decir, en el primer capítulo se establecen las bases teóricas y los fundamentos necesarios; en el segundo capítulo se presenta el modelo lógico-algebraico, probando su robustez y completitud refutacional; mientras que en el tercer y último capítulo se describe la implementación del algoritmo en el lenguaje Haskell.\\
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "TFG"
-%%% End:
+Destacar que las aplicaciones del modelo aquí presentado son muy variados, ya que no sólo es útil para resolver el problema de satisfacibilidad booleana, sino que también para la detección de estados peligrosos o la descomposición de bases de conocimiento, por ejemplo.\\
+
+Como trabajos futuros destacan tres líneas principales de investigación:
+
+\begin{itemize}
+\item[•] Extender el modelo a lógicas multi-valuadas.
+\item[•] Dar de forma explícita el algoritmo formal, estudiando su complejidad computacional.
+\item[•] Tratar de mejorar la eficiencia de la implementación.
+\end{itemize}
+
+En la última línea existen numerosas modificaciones, pero principalmente hacer notar las siguientes:
+
+\begin{enumerate}
+\item Desarrollar una librería de polinomios optimizada para calcular la regla de independencia en $\mathbb{F}_2[\textbf{x}]/_{\mathbb{I}}$.
+\item Tratar de encontrar alguna propiedad que permita reducir el número de polinomios de una base de conocimiento, ya que, el principal problema detectado es de espacio computacional.
+\item Profundizar en el estudio de heurísticas a fin de encontrar una que se adecúe mejor al problema, por ejemplo, ayundándonos del aprendizaje automático.
+\item Trata de implementar la paralelización, por ejemplo, mediante el cálculo de la regla de independencia de conjuntos con variables disjuntas. 
+\item Debido a que encuentra inconsistencias de forma eficiente, se podría combinar este método con otros más eficientes a la hora de reponder afirmativamente al problema de satisfacibilidad, por ejemplo, con métodos que tratan de encontrar una valoración que haga verdaderas las fórmulas de la base de conocimiento.
+\end{enumerate}

@@ -3,7 +3,7 @@ version: '0.1.0.0'
 category: Haskell
 author: Daniel R. Chavarria
 maintainer: drodriguez15@us.es
-copyright: 2017 Author name here
+copyright: 2017 Daniel R. Chavarria
 license: BSD3
 github: githubuser/TFM
 extra-source-files:
@@ -26,6 +26,7 @@ library:
   - Regla
   - Preprocesado
   - Saturacion
+  - Heuristicas
 executables:
   TFM-exe:
     main: Main.hs

@@ -1,0 +1,60 @@
+\select@language {spanish}
+\contentsline {chapter}{Introducci\IeC {\'o}n}{9}{chapter*.1}
+\contentsline {section}{\numberline {0.1}El problema $SAT$}{9}{section.0.1}
+\contentsline {section}{\numberline {0.2}Gesti\IeC {\'o}n del proyecto}{11}{section.0.2}
+\contentsline {section}{\numberline {0.3}Estructura de la memoria}{14}{section.0.3}
+\contentsline {chapter}{\numberline {1}Interpretaci\IeC {\'o}n algebraica de la l\IeC {\'o}gica}{17}{chapter.1}
+\contentsline {section}{\numberline {1.1}L\IeC {\'o}gica proposicional}{18}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Alfabeto y sintaxis}{18}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Sem\IeC {\'a}ntica}{22}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Validez, satisfacibilidad e insatisfacibilidad}{24}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}Bases de conococimiento}{25}{subsection.1.1.4}
+\contentsline {subsection}{\numberline {1.1.5}Consistencia e inconsistencia}{26}{subsection.1.1.5}
+\contentsline {subsection}{\numberline {1.1.6}Consecuencia l\IeC {\'o}gica}{27}{subsection.1.1.6}
+\contentsline {subsection}{\numberline {1.1.7}Equivalencia}{28}{subsection.1.1.7}
+\contentsline {subsection}{\numberline {1.1.8}Retracci\IeC {\'o}n conservativa}{29}{subsection.1.1.8}
+\contentsline {section}{\numberline {1.2}El anillo $\PazoBB {F}_2[\textbf {x}]$}{31}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Polinomios en Haskell}{31}{subsection.1.2.1}
+\contentsline {subsubsection}{Cryptol}{32}{section*.4}
+\contentsline {subsubsection}{The polynomial package}{32}{section*.5}
+\contentsline {subsubsection}{ToySolver.Data.Polynomial}{32}{section*.6}
+\contentsline {subsubsection}{SBV}{33}{section*.7}
+\contentsline {subsubsection}{Gr\IeC {\"o}ebner bases in Haskell}{33}{section*.8}
+\contentsline {subsubsection}{HaskellForMaths}{33}{section*.9}
+\contentsline {subsection}{\numberline {1.2.2}Introducci\IeC {\'o}n a HaskellForMaths}{34}{subsection.1.2.2}
+\contentsline {subsubsection}{Math.Core.Field}{34}{section*.10}
+\contentsline {subsubsection}{Math.Algebras.VectorSpace}{35}{section*.11}
+\contentsline {subsubsection}{Math.ConmutativeAlgebra.Polynomial}{36}{section*.12}
+\contentsline {subsection}{\numberline {1.2.3}$\PazoBB {F}_2[\textbf {x}]$ en Haskell}{38}{subsection.1.2.3}
+\contentsline {subsubsection}{Propiedades de $\PazoBB {F}_2[\textbf {x}]$}{40}{section*.13}
+\contentsline {section}{\numberline {1.3}Transformaciones entre f\IeC {\'o}rmulas y polinomios}{43}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Correspondencia entre valoraciones y puntos en $\PazoBB {F}_2^n$}{46}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Proyecci\IeC {\'o}n polinomial}{47}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Bases de conocimiento e ideales}{49}{subsection.1.3.3}
+\contentsline {chapter}{\numberline {2}Regla de independencia y prueba no clausal de teoremas}{55}{chapter.2}
+\contentsline {section}{\numberline {2.1}Retracci\IeC {\'o}n conservativa mediante omisi\IeC {\'o}n de variables}{56}{section.2.1}
+\contentsline {subsubsection}{Retracciones conservativas inducidas por un operador de omisi\IeC {\'o}n}{59}{section*.16}
+\contentsline {section}{\numberline {2.2}Derivadas Booleanas}{62}{section.2.2}
+\contentsline {section}{\numberline {2.3}Regla de independencia}{66}{section.2.3}
+\contentsline {chapter}{\numberline {3}Herramienta $\mathtt {SAT\_Solver}$}{77}{chapter.3}
+\contentsline {section}{\numberline {3.1}Fichero de entrada y el formato \texttt {DIMACS}}{77}{section.3.1}
+\contentsline {section}{\numberline {3.2}Preprocesado}{80}{section.3.2}
+\contentsline {section}{\numberline {3.3}Saturaci\IeC {\'o}n}{83}{section.3.3}
+\contentsline {section}{\numberline {3.4}An\IeC {\'a}lisis de la herramienta}{87}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Directorio \texttt {easy}}{87}{subsection.3.4.1}
+\contentsline {subsubsection}{Ejemplo 1}{87}{section*.25}
+\contentsline {subsubsection}{Ejemplo 2}{87}{section*.26}
+\contentsline {subsubsection}{Ejemplo 3}{88}{section*.27}
+\contentsline {subsubsection}{Ejemplo 4}{88}{section*.28}
+\contentsline {subsection}{\numberline {3.4.2}Directorio \texttt {medium}}{89}{subsection.3.4.2}
+\contentsline {subsubsection}{Ejemplo 0}{89}{section*.29}
+\contentsline {subsubsection}{Ejemplo 5}{90}{section*.30}
+\contentsline {subsubsection}{Ejemplo 6}{91}{section*.31}
+\contentsline {subsection}{\numberline {3.4.3}Directorio \texttt {hard}}{91}{subsection.3.4.3}
+\contentsline {subsubsection}{Archivo \texttt {sat100.cnf}}{91}{section*.32}
+\contentsline {subsubsection}{Archivo \texttt {sat250.cnf}}{91}{section*.33}
+\contentsline {subsubsection}{Archivo \texttt {unsat250.cnf}}{91}{section*.34}
+\contentsline {subsection}{\numberline {3.4.4}Heur\IeC {\'\i }sticas}{91}{subsection.3.4.4}
+\contentsline {chapter}{Conclusi\IeC {\'o}n}{95}{subsection.3.4.4}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{97}{Item.34}
+\contentsline {chapter}{\IeC {\'I}ndice alfab\IeC {\'e}tico de funciones}{98}{chapter*.36}

@@ -1,35 +1,126 @@
+\addcontentsline{toc}{chapter}{Introducción}
 \chapter*{Introducción}
-
-Desde su origen, el ser humano siempre se ha caracterizado por su curiosidad. Pero una curiosidad más profunda que la de cualquier animal que acude al escuchar un ruido en busca de comida, la curiosidad por entender el mundo.\\
-
-Saber \textit{cómo}, \textit{cuándo} o \textit{dónde} ocurren las cosas siempre nos ha permitido evolucionar como sociedad. Sin embargo, opino que lo que nos diferencia del resto de seres vivos es nuestra búsqueda del \textit{por qué}. Saber la razón por la que ocurren las cosas nos permite modificarlas, con todo el poder que ello conlleva.\\
-
-En su búsqueda de respuestas, el ser humano debe ser capaz de, ante unos hechos determinados, distinguir qué razonamientos y conclusiones son verdaderos y cuáles falsos. Este proceso es arduo, así que para poder desarrollar y aplicar una teoría sobre el propio razonamiento, se abstraen los hechos y se representan mediante la lógica. \\
-
-En esta búsqueda de la verdad, la lógica proposicional nos permite trabajar de una forma sencilla con los hechos e hipótesis, tal y como quiere decir Séneca con esta frase:
 
 \begin{center}
 \textit{El lenguaje de la verdad debe ser, sin duda alguna, simple y sin artificios}\\
 \hspace{10.7cm} Séneca
 \end{center}
 
-Por tanto, una vez representado el conocimiento que se tiene sobre un tema, saber si el compendio de los hechos y las conclusiones son siquiera plausibles es uno de los problemas centrales de la lógica. Dicho problema se conoce como el problema de satisfacibilidad o problema $SAT$ y ha sido estudiado por multitud de filósofos y científicos a lo largo de la historia.\\
+La lógica proposicional nos permite representar el conocimiento de manera que sea sencillo trabajar con él, pero a la vez plantea un marco de estudio de gran interés y con multitud de aplicaciones. Uno de los problemas centrales de la lógica es el problema de satisfacibilidad, es decir, preguntarse si existe algún mundo en el que un conjunto de hechos o propiedades sean posibles.\\
 
-En este marco se encuadra el trabajo fin de máster aquí desarrollado, ya que trata de sentar las bases teóricas de un algoritmo que dé solución al problema $SAT$, para posteriormente implementar una herramienta en lenguaje Haskell que sea útil en el mundo real.\\
+Antes de continuar, se pondrá al lector en situación dando una descripción detallada del problema de satisfacibilidad booleana; así como de su importancia, tanto para la comunidad científica internacional como para la sociedad en general.
 
-El algoritmo transforma las fórmulas proposicionales en polinomios sobre el cuerpo $\mathbb{F}_2$, de forma que dada una valoración, una fórmula será verdadera (o falsa) si y sólo si el polinomio que le corresponde vale 1 (ó 0) según cierta sustitución. \\
+\section{El problema $SAT$}
+
+%\subsection{Definición}
+Tal y como se define en la página \pageref{def:sat}, una fórmula proposicional $F$ se dice \textit{satisfacible} si existe al menos una interpretación $i$ de $F$ que sea modelo de la fórmula. A partir de esta definición, es natural preguntarse cuándo una formula dada es satisfacible o no. \\ 
+
+Éste es el problema de la satisfacibilidad booleana o el comúnmente conocido como problema $SAT$. En definitiva consiste en saber si existe alguna forma de sustituir las variables proposicionales por $True$ o $False$, de manera que la fórmula sea verdadera. \\
+
+Es importante destacar que para una fórmula con 10 variables, existen $2^{10} = 1024$ valoraciones a comprobar. Si a esto se suma que para que una fórmula se considere ``mínimamente interesante'' (en el mundo empresarial, por ejemplo) debe tener cientos de variables; el orden de magnitud de comprobaciones que se han de hacer es similar al número de átomos que hay en el universo. Este crecimiento tan rápido de combinaciones se debe a la complejidad exponencial intrínseca al problema de satisfacibilidad. \\
+
+En teoría de la complejidad computacional, es considerado el problema capital de la clase de complejidad $NP$ al ser también un problema $NP$ duro ($NP$-hard), y ganándose así el estatus de problema $NP$-completo. \\
+
+Respecto a los problemas $NP$-completos, no hay manera eficiente conocida de obtener una solución. Es decir, el tiempo requerido para resolver el problema usando cualquier algoritmo conocido aumenta muy rápidamente a medida que el tamaño del problema crece.\\
+
+Como consecuencia, el problema de determinar si es posible resolver estos problemas de forma rápida, llamado problema $P$ versus $NP$ (¿$P=NP$?), es uno de los principales problemas sin resolver de la matemática e informática actuales. Es por esto que en el año 2000, el \textit{Clay Mathematics Institute} lo declaró como el primer problema del milenio, junto a otros siete. Este título no es en vano, ya que se cree que estos problemas marcarán el devenir de la comunidad científico-matemática.\\
+
+Para comprender algo mejor la importancia del problema ¿$P=NP$? es importante conocer las consecuencias de su resolución. Si resultara que no son iguales, el impacto en la sociedad sería mínimo ya que únicamente se dejarían de buscar algoritmos de complejidad polinomial para resolver problemas de la clase $NP$.\\
+
+Sin embargo, si se demostrase que ambas clases de complejidad son iguales, las implicaciones para la sociedad actual serían de una magnitud incomparable. Esto se debe a que la robustez de los sistemas criptográficos actuales se basan en la intratabilidad de ciertos problemas de la clase $NP$. Si éstos fueran resolubles en tiempo polinomial peligrarían todas las comunicaciones y las claves bancarias dejarían de ser seguras. Por otro lado, no todas las consecuencias son negativas ya que multitud de problemas de ámbito empresarial o social serían tratables; y por tanto, los costes se reducirían y los beneficios aumentarían.\\
+
+Aunque, una vez vista la importancia del problema ¿$P=NP$? es natural preguntarse cómo podría resolverse. La respuesta es tan sencilla como dar un algoritmo que trabaje en tiempo polinomial en función del dato de entrada para un problema $NP$-completo, o demostrar que no existe dicho algoritmo. \\ 
+
+El problema $NP$-completo objeto de la mayoría de estudios por parte de la comunidad científica es el problema $SAT$. Es tal su popularidad que cada año se publican multitud de nuevos algoritmos que dicen mejorar la eficiencia de resolución, y que se basan en las técnicas informáticas más innovadoras. \\
+
+Con el objetivo de regular dicha competición, así como de identificar y promover nuevos retos relacionados con la resolución del problema $SAT$ surge la \textit{SAT Competition 2002}\footnote{\url{http://www.satcompetition.org/2002/}} \footnote{\url{http://www.satcompetition.org}}, enmarcada dentro del \textit{Fifth  International Symposium on the Theory and Applications of Satisfiability Testing} \footnote{\url{http://gauss.ececs.uc.edu/Conferences/SAT2002/}}. Y desde ese año, de forma anual o bianual, se celebra tal competición. \\
+
+Para poder participar en dicha competición se debe seguir un estándar, cuya regla principal es que la fórmula (o base de conocimiento) de entrada está escrita en un fichero de texto en forma normal conjuntiva utilizando el formato $DIMACS$ \footnote{\url{http://www.satcompetition.org/2009/format-benchmarks2009.html}}, que se describirá con detalle más adelante.
+
+Enmarcando el trabajo aquí presente en el contexto actual, éste pretende sentar las bases de un algoritmo que resuelva el problema $SAT$, para posteriormente implementar una herramienta eficiente en lenguaje Haskell \footnote{\url{https://www.haskell.org}} que cumpla los estándares de dicha competición.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Gestión del proyecto}
+Es comúnmente aceptado que el proceso de creación de un programa consta de 5 etapas principales:
+
+\begin{enumerate}
+\item El desarrollo lógico del programa para resolver un problema en particular.
+\item Escritura de la lógica del programa empleando un lenguaje de programación específico (codificación del programa).
+\item Ensamblaje o compilación del programa hasta convertirlo en lenguaje de máquina.
+\item Prueba y depuración del programa.
+\item Desarrollo de la documentación.
+\end{enumerate}
+
+En esta sección se tratarán las tecnologías auxiliares usadas en las distintas etapas a fin de comprender su importancia dentro del proyecto, así como la necesidad de usar las herramientas que están a disposición del programador para desarrollar una aplicación de mayor calidad en menor tiempo.\\
+
+El lenguaje de programación escogido es el lenguaje funcional Haskell, ya que encaja perfectamente con las necesidades del proyecto. Según la propia página web de Haskell, es un lenguaje que combina un fuerte sistema de tipos, inferencia de tipos y código de alto nivel, lo que afirman que ofrece al usuario la velocidad de desarrollo de lenguajes como Python o Ruby, además de una mayor robustez que lenguajes como Java o C++ .\\
+
+A esto se le debe añadir que goza de una comunidad muy activa y un ecosistema de librerías muy rico, con multitud de librerías centradas en las matemáticas, y por ende, en los polinomios. Además, al ser objetivo del proyecto el definir diversas funciones matemáticas que actúen sobre el cuerpo $\mathbb{F} [\textbf{x}]$, resulta natural escoger un lenguaje funcional tipado.\\
+
+En lo que refiere a la tercera etapa, destacar la herramienta \texttt{stack}\footnote{\url{https://docs.haskellstack.org/en/stable/README/}} que, definiendo una jerarquía específica de ficheros en nuestro proyecto, asiste el ensamblado y compilación. Esto permite usar el programa en cualquier computador sin la necesidad de instalar librerías auxiliares ya que con tener instalado \texttt{stack} es suficiente. Aunque a la postre, el compilador primario que usa Haskell es GHC (Glasgow Haskell Compiler \footnote{\url{https://www.haskell.org/ghc/}}), un compilador en la vanguardia tecnológica, y de código libre, diseñado específicamente para Haskell.\\
+
+Para la comprobación de la aplicación, el sistema de tipos de Haskell garantiza una cierta robustez, y es que asegura que cada función se utilice sobre los tipos para los que está diseñada. Por ejemplo, si intentamos calcular la suma de dos caracteres se devolverá un error al compilar.\\
+
+Otro detalle a destacar de \texttt{stack} es que está diseñado de forma que la comprobación de los ejemplos sea muy natural y se haga automáticamente al compilar, con ayuda de la librería \texttt{doctest} \footnote{\url{https://hackage.haskell.org/package/doctest}}. Cada vez que en el código hay ($>>>$) se ejecuta lo escrito a continuación y se corrobora si devuelve lo que aparezca en la línea siguiente (si es que se devolviese algo). Por ejemplo, en
+
+\begin{code}
+-- | 
+-- >>> 2+2
+-- 4
+\end{code}
+
+se comprueba si 2+2 devuelve 4. Notar que esto concede al proyecto de mucha robustez frente a modificaciones. Es decir, si se cambia el código de cierta función $f$ buscando una mayor eficiencia pero se comete algún error, se puede detectar al hacer las comprobaciones de los casos base, tanto de esta función como de alguna otra en la que intervenga $f$.\\
+
+Otra ventaja, relacionada con las comprobaciones, que ofrece el lenguaje Haskell es la posibilidad de implementar propiedades matemáticas de las funciones o los tipos. Estas propiedades pueden ser esenciales en el desarrollo teórico pues pueden justificar, por ejemplo, la corrección de la aplicación o parte de ella.\\
+
+Por lo tanto, es parte fundamental del proyecto verificar dichas propiedades mediante la librería \texttt{quickCheck} \footnote{\url{https://hackage.haskell.org/package/QuickCheck}}. Esta librería manda ejecutar 100 ejemplos y casos límites (el número 0, listas vacías, etc) para ver si sobre ellos se sigue verificando la propiedad. En el proyecto se comprobarán estas propiedades cada vez que se compile ya que junto a cada propiedad $prop$ se ha incluido:
+
+\begin{code}
+-- | 
+-- >>> quickCheck prop
+--  +++ OK, passed 100 tests
+\end{code}
+
+Así que, si en algún momento del desarrollo se deja de cumplir dicha propiedad para alguna instancia, el sistema devuelve el error.\\
+
+En la etapa de documentación se ha utilizado una versión modificada del lenguaje Haskell, llamada Haskell literario \footnote{\url{https://wiki.haskell.org/Literate_programming}}. Ésta permite escribir código \LaTeX en el mismo archivo en el que se escribe el código Haskell. Por ejemplo, si se escribe en el archivo \texttt{.lhs}:
+
+\begin{codigo}
+Es un ejemplo
+\begin{code}
+ejemplo = "helloworld"
+\end{code}
+\end{codigo}
+
+Al compilar se verá lo siguiente en el pdf:\\
+
+Es un ejemplo
+\begin{code}
+ejemplo = "helloworld"
+\end{code}
+
+Con la ventaja principal de que la función $ejemplo$ se puede utilizar normalmente, como si se hubiese escrito en un archivo \texttt{.hs} típico.\\
+
+Por último, se ha utilizado la herramienta \texttt{git}\footnote{\url{https://git-scm.com}} de control de versiones, que junto a la plataforma \texttt{GitHub} \footnote{\url{https://github.com}} ha sido de gran ayuda en la depuración del código y la búsqueda de eficiencia.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Estructura de la memoria}
+
+%El algoritmo aquí descrito transforma las fórmulas proposicionales en polinomios sobre el cuerpo $\mathbb{F}_2$, de forma que dada una valoración, una fórmula será verdadera (o falsa) si y sólo si el polinomio que le corresponde vale 1 (ó 0) según cierta sustitución. \\
 
 En el primer capítulo, llamado \textit{Interpretación algebraica de la lógica}, se definen formalmente multitud de conceptos lógicos de gran importancia para comprender el funcionamiento de la herramienta. Destacando, la idea de retracción conservativa de una base de conocimiento, que consiste en renombrar las fórmulas de entrada usando un lenguaje menor.\\ 
 
-Además, se define e implementa el anillo $\mathbb{F}_2[\textbf{x}]$ mediante la librería \texttt{HaskellForMaths}, optimizada para realizar cálculos como la multiplicación polinomial o la búsqueda de variables.\\ 
+Además, se define e implementa el anillo $\mathbb{F}_2[\textbf{x}]$ mediante la librería \texttt{HaskellForMaths} \footnote{\url{https://hackage.haskell.org/package/HaskellForMaths}}, optimizada para realizar cálculos como la multiplicación polinomial o la búsqueda de variables.\\ 
 
-La última sección del primer capítulo describe la transformación entre fórmulas lógicas y polinomio. Para, posteriormente, sumergir dicho polinomio en el anillo cociente $\mathbb{F}_2[\textbf{x}] /_{\mathbb{I}}$, de forma que sea más fácil trabajar con él.\\
+La última sección del primer capítulo describe la transformación entre fórmulas lógicas y polinomio. Ésta hace corresponder a cada fórmulas proposicional un polinomio sobre el cuerpo $\mathbb{F}_2$, de forma que dada una valoración, la fórmula será verdadera (o falsa) si y sólo si el polinomio que le corresponde vale 1 (ó 0) según cierta sustitución. Y, posteriormente, sumerge dicho polinomio en el anillo cociente $\mathbb{F}_2[\textbf{x}] /_{\mathbb{I}}$, de forma que sea más fácil trabajar con él.\\
 
  También se define una función inversa por equivalencias, es decir, si se transforma una fórmula en polinomio, y después otra vez en fórmula; la fórmula obtenida será lógicamente equivalente a la original (pero no tiene que ser igual).\\
 
-En el segundo capítulo se describe una variante de retracción conservativa, que devuelve una base de conocimiento en la que se omite una única variable proposicional mientras que el resto permanecen. Esto nos permitirá en un número finito de pasos (una base de conocimiento finita tiene finitas variables) saturar el conjunto en $\top$ ó $\bot$. En caso de obtenerse el primero se dice que el conjunto de fórmulas original es satisfacible, mientras que será insatisfacible en caso contrario.\\
+En el segundo capítulo se define el concepto de operador de omisión, que transforma una base de conocimiento en otra con una variable proposicional menos, probando que dichos operadores inducen una retracción conservativa. También se prueba que, mediante la aplicación sucesiva del mismo, se puede, en un número finito de pasos, saturar un conjunto de fórmulas proposicionales en $\top$ ó $\bot$. En caso de obtenerse el primero se dice que el conjunto de fórmulas original es satisfacible, mientras que será insatisfacible en caso contrario.\\
 
-El operador de omisión se conoce como regla de independencia y actuará sobre los polinomios de $\mathbb{F}_2[\textbf{x}] /_{\mathbb{I}}$, haciendo uso de la derivada polinomial (también implementada en esta sección). Con este procedimiento, se traduce el problema de satisfacibilidad a un cálculo polinomial.\\
+El operador de omisión que se escoge se conoce como regla de independencia y se inspira en un cálculo sobre los polinomios de $\mathbb{F}_2[\textbf{x}] /_{\mathbb{I}}$, haciendo uso de la derivada polinomial (también implementada en esta sección). Con este procedimiento, se traduce el problema de satisfacibilidad a un cálculo polinomial.\\
 
 En el capítulo tercero se expone la herramienta desarrollada, enmarcándola en una competición $SAT$. Previamente, se analizan la importancia del problema de satisfacibilidad así como las tecnologías usadas en el proyecto.
 
