@@ -1,15 +1,52 @@
-\chapter{Introducción}\label{sec:progfunHas}
+\chapter*{Introducción}
 
-En este capítulo se hace una breve introducción a la programación funcional en
-Haskell suficiente para entender su aplicación en los siguientes
-capítulos. Para una introducción más amplia se pueden consultar los apuntes de
-la asignatura de Informática de 1º del Grado en Matemáticas
-(\cite{Alonso-15b}). 
+Desde su origen, el ser humano siempre se ha caracterizado por su curiosidad. Pero una curiosidad más profunda que la de cualquier animal que acude al escuchar un ruido en busca de comida, la curiosidad por entender el mundo.\\
 
-El contenido de este capítulo se encuentra en el módulo \texttt{PFH} 
-\entrada{PFH}.
+Saber \textit{cómo}, \textit{cuándo} o \textit{dónde} ocurren las cosas siempre nos ha permitido evolucionar como sociedad. Sin embargo, opino que lo que nos diferencia del resto de seres vivos es nuestra búsqueda del \textit{por qué}. Saber la razón por la que ocurren las cosas nos permite modificarlas, con todo el poder que ello conlleva.\\
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "TFG"
-%%% End:
+En su búsqueda de respuestas, el ser humano debe ser capaz de, ante unos hechos determinados, distinguir qué razonamientos y conclusiones son verdaderos y cuáles falsos. Este proceso es arduo, así que para poder desarrollar y aplicar una teoría sobre el propio razonamiento, se abstraen los hechos y se representan mediante la lógica. \\
+
+En esta búsqueda de la verdad, la lógica proposicional nos permite trabajar de una forma sencilla con los hechos e hipótesis, tal y como quiere decir Séneca con esta frase:
+
+\begin{center}
+\textit{El lenguaje de la verdad debe ser, sin duda alguna, simple y sin artificios}\\
+\hspace{10.7cm} Séneca
+\end{center}
+
+Por tanto, una vez representado el conocimiento que se tiene sobre un tema, saber si el compendio de los hechos y las conclusiones son siquiera plausibles es uno de los problemas centrales de la lógica. Dicho problema se conoce como el problema de satisfacibilidad o problema $SAT$ y ha sido estudiado por multitud de filósofos y científicos a lo largo de la historia.\\
+
+En este marco se encuadra el trabajo fin de máster aquí desarrollado, ya que trata de sentar las bases teóricas de un algoritmo que dé solución al problema $SAT$, para posteriormente implementar una herramienta en lenguaje Haskell que sea útil en el mundo real.\\
+
+El algoritmo transforma las fórmulas proposicionales en polinomios sobre el cuerpo $\mathbb{F}_2$, de forma que dada una valoración, una fórmula será verdadera (o falsa) si y sólo si el polinomio que le corresponde vale 1 (ó 0) según cierta sustitución. \\
+
+En el primer capítulo, llamado \textit{Interpretación algebraica de la lógica}, se definen formalmente multitud de conceptos lógicos de gran importancia para comprender el funcionamiento de la herramienta. Destacando, la idea de retracción conservativa de una base de conocimiento, que consiste en renombrar las fórmulas de entrada usando un lenguaje menor.\\ 
+
+Además, se define e implementa el anillo $\mathbb{F}_2[\textbf{x}]$ mediante la librería \texttt{HaskellForMaths}, optimizada para realizar cálculos como la multiplicación polinomial o la búsqueda de variables.\\ 
+
+La última sección del primer capítulo describe la transformación entre fórmulas lógicas y polinomio. Para, posteriormente, sumergir dicho polinomio en el anillo cociente $\mathbb{F}_2[\textbf{x}] /_{\mathbb{I}}$, de forma que sea más fácil trabajar con él.\\
+
+ También se define una función inversa por equivalencias, es decir, si se transforma una fórmula en polinomio, y después otra vez en fórmula; la fórmula obtenida será lógicamente equivalente a la original (pero no tiene que ser igual).\\
+
+En el segundo capítulo se describe una variante de retracción conservativa, que devuelve una base de conocimiento en la que se omite una única variable proposicional mientras que el resto permanecen. Esto nos permitirá en un número finito de pasos (una base de conocimiento finita tiene finitas variables) saturar el conjunto en $\top$ ó $\bot$. En caso de obtenerse el primero se dice que el conjunto de fórmulas original es satisfacible, mientras que será insatisfacible en caso contrario.\\
+
+El operador de omisión se conoce como regla de independencia y actuará sobre los polinomios de $\mathbb{F}_2[\textbf{x}] /_{\mathbb{I}}$, haciendo uso de la derivada polinomial (también implementada en esta sección). Con este procedimiento, se traduce el problema de satisfacibilidad a un cálculo polinomial.\\
+
+En el capítulo tercero se expone la herramienta desarrollada, enmarcándola en una competición $SAT$. Previamente, se analizan la importancia del problema de satisfacibilidad así como las tecnologías usadas en el proyecto.
+
+\newpage
+
+ La herramienta se divide principalmente en dos etapas: 
+
+\begin{enumerate}
+\item Preprocesado del fichero de entrada en formato \texttt{DIMACS}.
+\item Saturación del conjunto de polinomios.
+\end{enumerate}
+
+En la última sección del capítulo se analiza la herramienta mediante diversas instancias organizadas en orden de complejidad en tres ficheros (\texttt{easy}, \texttt{medium} y \texttt{hard}). Fruto de dicho análisis se detecta e implementa una mejora: la introducción de una heurística a la hora de escoger el orden en el que se van a olvidar las variables.\\
+
+En resumen, con ayuda de las matemáticas damos respuesta al problema de satisfacibilidad, clave en la lógica proposicional. De esta forma obtenemos una respuesta matemática en la búqueda de la verdad, un paso a tener en cuenta, ya que, tal y como decía \textit{Lemoine}:
+
+\begin{center}
+\textit{Una verdad matemática no es ni simple ni complicada en si misma, es una verdad}\\
+\hspace{10.7cm} Émile Lemoine
+\end{center}

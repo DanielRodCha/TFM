@@ -1,82 +1,83 @@
 \begin{theindex}
 
-  \item \texttt{F2}, \hyperpage{28}
-  \item \texttt{FProp}, \hyperpage{13, 14}
-  \item \texttt{GlexPoly}, \hyperpage{29}
-  \item \texttt{GrevlexPoly}, \hyperpage{29}
-  \item \texttt{Heurisitica}, \hyperpage{83}
+  \item \texttt{F2}, \hyperpage{29}
+  \item \texttt{FProp}, \hyperpage{13--15}
+  \item \texttt{GlexPoly}, \hyperpage{30}
+  \item \texttt{GrevlexPoly}, \hyperpage{30}
+  \item \texttt{Heurisitica}, \hyperpage{91}
   \item \texttt{Interpretacion}, \hyperpage{16}
-  \item \texttt{KB}, \hyperpage{18}
-  \item \texttt{LexPoly}, \hyperpage{29}
-  \item \texttt{MonImpl}, \hyperpage{29}
-  \item \texttt{PolF2}, \hyperpage{31, 32}
-  \item \texttt{Q}, \hyperpage{27}
-  \item \texttt{VarF2}, \hyperpage{31, 32}
+  \item \texttt{KB}, \hyperpage{19}
+  \item \texttt{LexPoly}, \hyperpage{30}
+  \item \texttt{MonImpl}, \hyperpage{31}
+  \item \texttt{PolF2}, \hyperpage{32, 33}
+  \item \texttt{Q}, \hyperpage{28}
+  \item \texttt{VarF2}, \hyperpage{32, 33}
   \item \texttt{VarProp}, \hyperpage{13}
-  \item \texttt{\%\%}, \hyperpage{31}
-  \item \texttt{\IeC {\ensuremath  {\leftrightarrow }}}, \hyperpage{14}
-  \item \texttt{\IeC {\ensuremath  {\rightarrow }}}, \hyperpage{14}
+  \item \texttt{\%\%}, \hyperpage{32}
+  \item \texttt{\IeC {\ensuremath  {\leftrightarrow }}}, \hyperpage{15}
+  \item \texttt{\IeC {\ensuremath  {\rightarrow }}}, \hyperpage{15}
   \item \texttt{\IeC {\ensuremath  {\vee }}}, \hyperpage{14}
   \item \texttt{\IeC {\ensuremath  {\wedge }}}, \hyperpage{14}
-  \item \texttt{clausulaAPolinomio}, \hyperpage{73}
-  \item \texttt{cuadrado}, \hyperpage{9}, \hyperpage{87}
-  \item \texttt{derivaMonomio}, \hyperpage{52}
-  \item \texttt{derivaPol}, \hyperpage{53}
-  \item \texttt{dimacsAPolinomios}, \hyperpage{74}
-  \item \texttt{equivalentesKB}, \hyperpage{22}
-  \item \texttt{equivalentes}, \hyperpage{22}
-  \item \texttt{esConsecuenciaKB}, \hyperpage{21}
-  \item \texttt{esConsecuencia}, \hyperpage{20}
-  \item \texttt{esConsistente}, \hyperpage{19}
-  \item \texttt{esInconsistente}, \hyperpage{20}
+  \item \texttt{clausulaAPolinomio}, \hyperpage{80}
+  \item \texttt{cuadrado}, \hyperpage{95}
+  \item \texttt{derivaMonomio}, \hyperpage{57}
+  \item \texttt{derivaPol}, \hyperpage{57}
+  \item \texttt{dimacsAPolinomios}, \hyperpage{81}
+  \item \texttt{equivalentesKB}, \hyperpage{23}
+  \item \texttt{equivalentes}, \hyperpage{23}
+  \item \texttt{esConsecuenciaKB}, \hyperpage{22}
+  \item \texttt{esConsecuencia}, \hyperpage{21}
+  \item \texttt{esConsistente}, \hyperpage{20}
+  \item \texttt{esInconsistente}, \hyperpage{21}
   \item \texttt{esInsatisfacible}, \hyperpage{18}
-  \item \texttt{esModeloFormula}, \hyperpage{16}
-  \item \texttt{esModeloKB}, \hyperpage{19}
-  \item \texttt{esSatisfacible}, \hyperpage{18}
-  \item \texttt{esValida}, \hyperpage{17}
-  \item \texttt{eval}, \hyperpage{30}
-  \item \texttt{f2}, \hyperpage{28}
-  \item \texttt{fromInteger}, \hyperpage{28}
-  \item \texttt{heuristicaFrecRev}, \hyperpage{84}
-  \item \texttt{heuristicaFrecuencia}, \hyperpage{84}
-  \item \texttt{heuristicaOrdMon}, \hyperpage{84}
-  \item \texttt{ideal}, \hyperpage{39}
+  \item \texttt{esModeloFormula}, \hyperpage{17}
+  \item \texttt{esModeloKB}, \hyperpage{20}
+  \item \texttt{esSatisfacible}, \hyperpage{19}
+  \item \texttt{esValida}, \hyperpage{18}
+  \item \texttt{eval}, \hyperpage{32}
+  \item \texttt{f2}, \hyperpage{29}
+  \item \texttt{fromInteger}, \hyperpage{29}
+  \item \texttt{heuristicaFrecRev}, \hyperpage{92}
+  \item \texttt{heuristicaFrecuencia}, \hyperpage{92}
+  \item \texttt{heuristicaOrdMon}, \hyperpage{91}
+  \item \texttt{ideal}, \hyperpage{42}
   \item \texttt{interpretacionesForm}, \hyperpage{17}
   \item \texttt{interpretacionesKB}, \hyperpage{19}
-  \item \texttt{lines}, \hyperpage{73}
-  \item \texttt{literalAPolinomio}, \hyperpage{72}
-  \item \texttt{lm}, \hyperpage{30}
-  \item \texttt{lt}, \hyperpage{30}
-  \item \texttt{mindices}, \hyperpage{30}
-  \item \texttt{modelosFormula}, \hyperpage{17}
-  \item \texttt{modelosKB}, \hyperpage{19}
-  \item \texttt{monGen}, \hyperpage{32}
-  \item \texttt{monomio}, \hyperpage{29}
+  \item \texttt{lines}, \hyperpage{80}
+  \item \texttt{literalAPolinomio}, \hyperpage{80}
+  \item \texttt{lm}, \hyperpage{31}
+  \item \texttt{lt}, \hyperpage{31}
+  \item \texttt{mindices}, \hyperpage{31}
+  \item \texttt{modelosFormula}, \hyperpage{18}
+  \item \texttt{modelosKB}, \hyperpage{20}
+  \item \texttt{monGen}, \hyperpage{34}
+  \item \texttt{monomio}, \hyperpage{31}
   \item \texttt{no}, \hyperpage{14}
-  \item \texttt{omiteVariableKB}, \hyperpage{76}
-  \item \texttt{phi}, \hyperpage{39}
-  \item \texttt{polGen}, \hyperpage{32}
-  \item \texttt{proyeccion}, \hyperpage{40}
-  \item \texttt{readFile}, \hyperpage{73}
-  \item \texttt{reglaIndForm}, \hyperpage{58}
-  \item \texttt{reglaIndependenciaAux}, \hyperpage{62}, \hyperpage{75}
-  \item \texttt{reglaIndependenciaKB}, \hyperpage{63}, \hyperpage{76}
-  \item \texttt{reglaIndependencia}, \hyperpage{56}
-  \item \texttt{satSolver}, \hyperpage{77}, \hyperpage{85}
-  \item \texttt{saturaKB}, \hyperpage{85}
-  \item \texttt{satura}, \hyperpage{77}
+  \item \texttt{omiteVariableKB}, \hyperpage{83}
+  \item \texttt{phi}, \hyperpage{42}
+  \item \texttt{polGen}, \hyperpage{34}
+  \item \texttt{proyeccion}, \hyperpage{42}
+  \item \texttt{readFile}, \hyperpage{80}
+  \item \texttt{reglaIndForm}, \hyperpage{63}
+  \item \texttt{reglaIndependenciaAux}, \hyperpage{67}, \hyperpage{83}
+  \item \texttt{reglaIndependenciaKB}, \hyperpage{68}, \hyperpage{83}
+  \item \texttt{reglaIndependencia}, \hyperpage{61}
+  \item \texttt{satSolver}, \hyperpage{85}, \hyperpage{92}
+  \item \texttt{saturaKB}, \hyperpage{92}
+  \item \texttt{satura}, \hyperpage{84}
   \item \texttt{significado}, \hyperpage{16}
-  \item \texttt{simbolosPropForm}, \hyperpage{16}
-  \item \texttt{simbolosPropKB}, \hyperpage{18}
-  \item \texttt{sustituye}, \hyperpage{15}
-  \item \texttt{theta}, \hyperpage{36}
-  \item \texttt{tr}, \hyperpage{35}
-  \item \texttt{unbox}, \hyperpage{31}
-  \item \texttt{varExpGen}, \hyperpage{32}
-  \item \texttt{varGen}, \hyperpage{32}
-  \item \texttt{vars}, \hyperpage{30}
-  \item \texttt{var}, \hyperpage{29}
-  \item \texttt{words}, \hyperpage{73}
-  \item \texttt{zerov}, \hyperpage{28}
+  \item \texttt{simbolosPropForm}, \hyperpage{17}
+  \item \texttt{simbolosPropKB}, \hyperpage{19}
+  \item \texttt{sustituye}, \hyperpage{16}
+  \item \texttt{theta'}, \hyperpage{39}
+  \item \texttt{theta}, \hyperpage{39}
+  \item \texttt{tr}, \hyperpage{38}
+  \item \texttt{unbox}, \hyperpage{33}
+  \item \texttt{varExpGen}, \hyperpage{33}
+  \item \texttt{varGen}, \hyperpage{33}
+  \item \texttt{vars}, \hyperpage{31}
+  \item \texttt{var}, \hyperpage{30}
+  \item \texttt{words}, \hyperpage{81}
+  \item \texttt{zerov}, \hyperpage{29}
 
 \end{theindex}
