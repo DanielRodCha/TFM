@@ -17,7 +17,7 @@ import Data.List (union)
 import Test.QuickCheck (quickCheck)
 \end{code}
 
- Destacar que se restringirá la definición de la derivada
+ Destacar que se restringirá la aplicación de la derivada
  $\frac{\partial}{\partial x_{p}}$ a polinomios en el espacio cociente. Esto
  implica que se supondrá que los polinomios son proyecciones de fórmulas y que
  por lo tanto, las variables que aparecen en dichos polinomios tienen a lo sumo

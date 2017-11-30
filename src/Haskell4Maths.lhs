@@ -1,8 +1,7 @@
 \newpage
-
 \section{El anillo $\mathbb{F}_2[\textbf{x}]$}
 
- Para una natural interpretación algebraica de la lógica, el marco de trabajo
+ Para una interpretación natural y algebraica de la lógica, el marco de trabajo
  escogido es el anillo $\mathbb{F}_2[\textbf{x}]$. Con la idea de facilitar la
  identificación entre variables proposicionales e incógnitas, se fija la
  notación de forma que a una variable proposicional $p_i$ (ó $p$) le
@@ -25,23 +24,17 @@
  Haskell, así como algunas operaciones polinomiales que serán necesarias más
  adelante.
 
-\subsection{Polinomios en Haskell}
+\subsection{Polinomios en Haskell: Análisis de librerías}
 
  Si se quiere trabajar con polinomios en Haskell, no es necesario ``hacer tabla
  rasa'' y tratar de implementarlo todo desde el principio. Parafraseando a
- Newton,
+ Newton,\textit{Si he conseguido ver más lejos es porque me he aupado en hombros de
+ gigantes}. \\
 
-\begin{center}
-\textit{Si he conseguido ver más lejos es porque me he aupado en hombros de
- gigantes}\\
-\hspace{10.5cm} Isaac Newton
-\end{center}
-
- \noindent así que conviene apoyarse en la multitud de librerías existentes de
-la 
- comunidad Haskell. Aunque, continuando con la metáfora de Newton, no es fácil
- saber qué gigante es el más alto si miramos desde el suelo. Por tanto, es
- necesario un estudio de las distintas librerías, a fin de escoger la que se
+ Conviene apoyarse en la multitud de librerías existentes de
+ la comunidad Haskell. Aunque, continuando con la metáfora de Newton, no es
+ fácil saber qué gigante es el más alto si miramos desde el suelo. Por tanto,
+ es necesario un estudio de las distintas librerías, a fin de escoger la que se
  adecúe en mayor medida a las necesidades de este proyecto.\\
 
  Seguidamente se comentarán los detalles más relevantes de las distintas
@@ -101,7 +94,7 @@ la
  declarar desde el principio las variables que se quieren usar.\\
 
  La documentación está muy detallada aunque el autor comenta que se prioriza la
- claridad del código y el rigor matemático ante la efieciencia.
+ claridad del código y el rigor matemático ante la eficiencia.
 
  \subsubsection{HaskellForMaths}
 
@@ -177,8 +170,6 @@ import Math.CommutativeAlgebra.Polynomial
 -- >>> (2.3 + 1/5 * 4/7) :: Q
 -- 169/70
 \end{code}
-
-\newpage
 
  Para este trabajo, el cuerpo que nos interesa es $\mathbb{F}_2$, cuyos
  elementos pertenecen a la lista \texttt{f2}:
@@ -296,7 +287,6 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
 -- x^2+y^2+z^2
 \end{code}
  
-\newpage
 
 Como se mencionó anteriormente la base del espacio vectorial que es un
  polinomio, está formada por monomios. El tipo de dato monomio está formado por
@@ -331,7 +321,7 @@ monomio = (M 1 [("x",2),("y",1)])
 
 \index{\texttt{vars}}
 \begin{code}
--- |Por ejemplo,
+-- | Por ejemplo,
 --
 -- >>> [x,y,z] = map var ["x","y","z"] :: [LexPoly F2 String]
 -- >>> vars (x*z*y+y*x^2+z^4)
@@ -360,8 +350,6 @@ monomio = (M 1 [("x",2),("y",1)])
 -- >>> lm (x*z*y+y*x^2+z^4)
 -- x^2y
 \end{code}
-
-\newpage
 
  Otra función natural es \texttt{(eval p vs)}, que evalúa el polinomio
  \texttt{p} en el punto descrito por \texttt{vs}, siendo ésta una lista de

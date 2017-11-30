@@ -2,7 +2,7 @@
 
 En esta sección se introducirán brevemente los principales conceptos de la
 lógica proposicional, además de fijar la notación que se usará durante todo el
-trabajo. Para su implementación en Haskell se define el módulo \texttt{Lógica}:
+trabajo. Para su implementación en Haskell se define el módulo \texttt{Logica}:
 
 \begin{code}
 module Logica where 
@@ -35,7 +35,7 @@ definiciones formales de alfabeto y lenguaje:
 Especificando, un lenguaje formal es un lenguaje cuyos símbolos primitivos y
  reglas para unir esos símbolos están formalmente especificados. Al conjunto
  de las reglas se le denomina gramática formal o sintaxis. A las cadenas de
- símbolos que siguen las idicaciones de la gramática se les conoce como
+ símbolos que siguen las indicaciones de la gramática se les conoce como
  fórmulas bien formadas o simplemente fórmulas. \\
 
  Para algunos lenguajes formales existe también una semántica formal que puede
@@ -88,12 +88,16 @@ $-$ Disyunción ($\vee$) & $-$ Bicondicional ($\leftrightarrow$)
  proposicional descrito anteriormente (variables proposicionales, conectivas
  lógicas y símbolos auxiliares). Destacar que se construyen de forma recursiva,
  esto es, las variables se combinan mediante conectivas para formar fórmulas y
- éstas, a su vez, se combinan dando lugar a nuevas fórmulas.
+ éstas, a su vez, se combinan dando lugar a nuevas fórmulas.\\
 
  Con todo ello se define el tipo de dato de las fórmulas proposicionales
- (\texttt{FProp}) usando constructores de tipo, es decir, una fórmula es
+ (\texttt{FProp}) usando constructores de tipo; es decir, una fórmula es
  $\top$, $\bot$, una variable proposicional o una combinación mediante una
- conectiva de dos fórmulas. En Haskell:
+ conectiva de dos fórmulas.
+
+\newpage
+
+En Haskell:
 
 \index{\texttt{FProp}}
 \begin{code}
@@ -138,7 +142,7 @@ r  = Atom "r"
 
  Combinando las fórmulas atómicas mediante el uso de las conectivas lógicas
  anteriormente enumeradas obtenemos lo que se denomina como fórmulas
- compuestas. Aunque estén definidas en el propio tipo de dato, con el objetivo
+ compuestas. Aunque estén inidas en el propio tipo de dato, con el objetivo
  de facilitar su uso, implementaremos las conectivas lógicas como
  funciones entre fórmulas:\\
 
@@ -149,6 +153,8 @@ r  = Atom "r"
 no :: FProp -> FProp
 no = Neg
 \end{code}
+
+\newpage
 
 \texttt{(f ∨ g)} es la disyunción de las fórmulas f y g.
 
@@ -167,8 +173,6 @@ infixr 5 ∨
 (∧)   = Conj
 infixr 4 ∧
 \end{code}
-
-\newpage
 
 \texttt{(f → g)} es la implicación de la fórmula f a la fórmula g.
 
@@ -225,7 +229,6 @@ instance Arbitrary FProp where
  proposicional por la que se sustituye. Al ser \texttt{FProp} un tipo recursivo
  se hará dicha definición usando patrones:
 
-\newpage
 
 \index{\texttt{sustituye}}
 \begin{code}
@@ -306,7 +309,7 @@ esModeloFormula i f = significado f i
  implementación en Haskell es la siguiente: En primer lugar, extraer los
  símbolos de $F$; posteriormente, calcular el conjunto potencia de los
  símbolos, que corresponde a las interpretaciones. Finalmente, devolver las
- interpretaciones que sean modelo de $F$.
+ interpretaciones que sean modelo de $F$.\\
 
  \texttt{(simbolosPropForm f)} es el conjunto formado por todos los símbolos
  proposicionales que aparecen en la fórmula f.
@@ -340,8 +343,6 @@ simbolosPropForm (Equi f g) = simbolosPropForm f `union` simbolosPropForm g
 interpretacionesForm :: FProp -> [Interpretacion]
 interpretacionesForm = subsequences . simbolosPropForm
 \end{code}
-
-\newpage
 
  \texttt{(modelosFormula f)} es la lista de todas las interpretaciones de la
  fórmula f que son modelo de la misma.
@@ -412,13 +413,13 @@ esSatisfacible :: FProp -> Bool
 esSatisfacible = not . null . modelosFormula
 \end{code}
 
-\subsection{Bases de conococimiento}
+\subsection{Bases de conocimiento}
 
- \defn Una \textit{base de conocimiento} o \textit{Knowledge Basis} ($KB$) es un conjunto
+ \defn Una \textit{base de conocimiento} (o \textit{Knowledge Basis} $KB$) es un conjunto
  finito de fórmulas proposicionales. Para la implementación, se importa de
  forma cualificada la librería \texttt{Data.Set} como \texttt{S}. Esta es una
- práctica muy común con esta librería y lo único que ces que las
- funciones de dicha librería deben ir precedidas por \texttt{S.}. Por lo que se
+ práctica muy común con esta librería y lo único que implica es que las
+ funciones de dicha librería deben ir precedidas por ''\texttt{S.}''. Por lo que se
  define el tipo de dato \texttt{KB} como:
 
 \index{\texttt{KB}}
@@ -426,7 +427,7 @@ esSatisfacible = not . null . modelosFormula
 type KB = S.Set FProp
 \end{code}
 
- Destacar que se denotará al lenguaje proposicional de $K$ como
+ Se denotará al lenguaje proposicional de $K$ como
  $\mathcal{L}(K)$.
 
  Antes de extender las definiciones anteriores a más de una fórmula,
@@ -523,7 +524,7 @@ esConsistente = not . null . modelosKB
 
 \index{\texttt{esInconsistente}}
 \begin{code}
--- |Por ejemplo,
+-- | Por ejemplo,
 --
 -- >>> esInconsistente $ S.fromList [(p ∨ q) ∧ ((no q) ∨ r), p → r]        
 -- False
@@ -541,9 +542,9 @@ esInconsistente = null . modelosKB
  del trabajo. \\
 
  \defn Se dice que $F$ es \textit{consecuencia lógica} de $K$ ($K \vDash F$) si
- todo modelo de $K$ lo es a su vez de $F$, es decir, $Mod(K) \subseteq
- Mod(F)$. Equivalentemente, $K \vDash F$ si no es posible que las premisas sean
- verdaderas y la conclusión falsa.\\
+ todo modelo de $K$ lo es a su vez de $F$; es decir, $Mod(K) \subseteq
+ Mod(F)$ (equivalentemente, $K \vDash F$ si no es posible que las premisas sean
+ verdaderas y la conclusión falsa).\\
 
  La función \texttt{(esConsecuencia k f)} se verifica si la fórmula proposicional
  f es consecuencia lógica de la base de conocimiento o conjunto de fórmulas k.
@@ -567,11 +568,10 @@ esConsecuencia k f =
  propiedades de la relación de \textit{ser consecuencia} en lógica
  proposicional. Dichas propiedades se comprobarán con la librería \texttt{QuickCheck}
  propia del lenguaje Haskell. Es importante saber que estas evaluaciones de
- propiedades con quickCheck son sólo comprobaciones de que la
+ propiedades son sólo comprobaciones de que la
  propiedad se cumple para una batería de ejemplos. En ningún caso se puede
  confiar en que dicha propiedad se cumple el 100% de los casos; para ello sería
- necesaria una verificación formal, un problema más costoso y en ningún caso
- trivial.
+ necesaria una verificación formal, un problema no trivial.
 
  \prop Una fórmula $f$ es válida si y sólo si es consecuencia del conjunto vacío.
 
@@ -604,7 +604,7 @@ prop_esConsecuencia k f =
 
 \index{\texttt{esConsecuenciaKB}}
 \begin{code}
--- |Por ejemplo,
+-- | Por ejemplo,
 --
 -- >>> esConsecuenciaKB (S.fromList [p → q, q → r]) (S.fromList [p → q, p → r])
 -- True
@@ -618,14 +618,16 @@ esConsecuenciaKB k = all (esConsecuencia k)
 
  \defn Sean $F$ y $G$ dos fórmulas proposicionales, se dice que son
  equivalentes ($F \equiv G$) si tienen el mismo significado lógico, es decir,
- si  tienen el mismo valor de verdad en todas sus interpretaciones.
+ si tienen el mismo valor de verdad en todas sus interpretaciones.
+
+\newpage
 
  La función \texttt{(equivalentes f g)} se verifica si las fórmulas
  proposicionales son equivalentes.
 
 \index{\texttt{equivalentes}}
 \begin{code}
--- |Por ejemplo,
+-- | Por ejemplo,
 --
 -- >>> equivalentes (p → q) (no p ∨ q)
 -- True
@@ -657,7 +659,7 @@ equivalentesKB k k' = esConsecuenciaKB k k' && esConsecuenciaKB k' k
  anteriormente son iguales en el caso de una única fórmula en la base de
  conocimiento.
 
- \prop Sean $F$ y $g$ dos fórmulas proposicionales, son equivalentes como
+ \prop Sean $F$ y $G$ dos fórmulas proposicionales, son equivalentes como
  fórmulas si y sólo si lo son como bases de conocimiento.
 
 \begin{code}
@@ -673,7 +675,7 @@ prop_equivalentes f g =
 
  Dada una base de conocimiento resulta interesante estudiar qué fórmulas se
  pueden deducir de la misma o incluso buscar si existe otra manera de expresar
- el conocimiento, en definitiva otras fórmulas, de las que se deduzca
+ el conocimiento. En definitiva, otras fórmulas de las que se deduzca
  exactamente la misma información. A esta relación entre bases de conocimiento
  se le conoce con el nombre de extensión:
  
@@ -694,7 +696,7 @@ prop_equivalentes f g =
  es decir, $K$ extiende a $K'$ pero no se añade nueva información expresada en
  términos de $\mathcal{L}(K')$.
 
- \defn $K'$ es una \textit{retracción conservativa} de $K$ si y sólo si $K$ es
+ \defn $K'$ es una \textit{retracción conservativa} de $K$ si $K$ es
  una extensión conservativa de $K'$.
 
  Dado $\mathcal{L}' \subseteq \mathcal{L}(K)$, siempre existe una retracción
@@ -703,5 +705,7 @@ prop_equivalentes f g =
 $$[K,\mathcal{L}']=\{F\in Form(\mathcal{L}'): K \vDash F \}$$
 
  Esto es, $[K,\mathcal{L}']$ es el conjunto de $\mathcal{L}'$-fórmulas que son
- consecuencia de $K$. De hecho, cualquier retración conservativa sobre
- $\mathcal{L}'$ es equivalente a $[K,\mathcal{L}']$.
+ consecuencia de $K$. De hecho;
+
+ \lem Cualquier retracción conservativa sobre $\mathcal{L}'$ es equivalente a
+ $[K,\mathcal{L}']$. 

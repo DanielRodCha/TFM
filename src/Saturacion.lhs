@@ -18,7 +18,7 @@ import qualified Data.Set as S
 
  Esta mejora se basa en el hecho de que si en algún 
  momento de la computación hay un cero en el conjunto de polinomios (que
- traducido a fórmula es un $\bot$) éste permanecerá hasta finalizar la
+ traducido a fórmula es $\bot$) éste permanecerá hasta finalizar la
  saturación. De hecho, tras saturar dicho conjunto, será el único polinomio que
  esté en el conjunto (junto con el 1, correspondiente a la tautología $\top$, y
  se puede obviar si aparece acompañado). Por tanto, aplicando el corolario
@@ -29,7 +29,6 @@ import qualified Data.Set as S
  \texttt{(reglaIndependenciaKB} para obtener un método de saturación más
  eficiente.
 
- \newpage
 
  Para ello basta añadir al bucle de la primera la siguiente línea de
  código:\\
@@ -124,7 +123,6 @@ saturaKB (ps,v:vs) | S.member 0 ps = False
 
 \end{code}
 
-\newpage
 
  Finalmente, se combinan ambas etapas (Preprocesado y Saturación) en la función
  \texttt{satSolver f}. Esta función recibe un fichero donde se codifica una

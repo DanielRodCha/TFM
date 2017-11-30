@@ -1,6 +1,6 @@
 This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
-Scanning input file TFG.idx....done (86 entries accepted, 0 rejected).
+Scanning input file TFM.idx....done (86 entries accepted, 0 rejected).
 Sorting entries....done (544 comparisons).
-Generating output file TFG.ind....done (82 lines written, 0 warnings).
-Output written in TFG.ind.
-Transcript written in TFG.ilg.
+Generating output file TFM.ind....done (82 lines written, 0 warnings).
+Output written in TFM.ind.
+Transcript written in TFM.ilg.

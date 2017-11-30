@@ -42,7 +42,7 @@ newtype VarF2 = Box (Vect F2 (Lex String))
 type PolF2 = Vect F2 (Lex String)
 \end{code}
 
- Notar que el tipo de las variables es simplemente un cambio de nombre respecto
+ Nótese que el tipo de las variables es simplemente un cambio de nombre respecto
  a los polinomios que ha sido metido dentro del constructor \texttt{Box}. Este
  artificio es necesario ya que no se pueden declarar instancias repetidas (como
  se hará a continuación) sobre un mismo tipo de dato aunque tengan nombres
@@ -111,6 +111,8 @@ varExpGen = do
   return $ (x,i)
 \end{code}
 
+\newpage
+
 El generador de monomios \texttt{monGen} se implementa de la siguiente forma:
 
 \index{\texttt{monGen}}
@@ -135,11 +137,13 @@ polGen = do
 \subsubsection{Propiedades de $\mathbb{F}_2[\textbf{x}]$}
 
  Es importante comprobar que el nuevo tipo de dato que hemos definido cumple
- las propiedades básicas. Ya que el trabajo se basa en este tipo de dato y sus
- propiedades. Se comprobarán las propiedades de la suma y del producto de
- polinomios de $\mathbb{F}_2[\textbf{x}]$:
+ las propiedades básicas, ya que el trabajo se basa en este tipo de dato y sus
+ propiedades. Por consiguiente, se comprobarán las propiedades de la suma y del
+ producto de polinomios de $\mathbb{F}_2[\textbf{x}]$: \\
 
- La suma de polinomios es conmutativa,
+\begin{itemize}
+
+ \item La suma de polinomios es conmutativa,
 $$\forall p,q \in \mathbb{F}_2[\textbf{x}] (p+q = q+p)$$
  En Haskell:
 
@@ -151,7 +155,7 @@ prop_suma_conmutativa :: PolF2 -> PolF2 -> Bool
 prop_suma_conmutativa p q = p+q == q+p
 \end{code}
 
- La suma de polinomios es asociativa:
+ \item La suma de polinomios es asociativa:
 $$\forall p,q,r \in \mathbb{F}_2[\textbf{x}] (p+(q+r) = (p+q)+r)$$
  En Haskell:
 
@@ -163,7 +167,7 @@ prop_suma_asociativa :: PolF2 -> PolF2 -> PolF2 -> Bool
 prop_suma_asociativa p q r = p+(q+r) == (p+q)+r
 \end{code}
 
- El cero es el elemento neutro de la suma de polinomios:
+ \item El cero es el elemento neutro de la suma de polinomios:
 
 $$\forall p \in \mathbb{F}_2[\textbf{x}] p+0 = 0+p = p$$
 
@@ -177,7 +181,7 @@ prop_suma_neutro :: PolF2 -> Bool
 prop_suma_neutro p = (p + 0 == p) && (0 + p == p)
 \end{code}
 
- Todo polinomio es simétrico de sí mismo respecto a la suma:
+ \item Todo polinomio es simétrico de sí mismo respecto a la suma:
 $$\forall p \in \mathbb{F}_2[\textbf{x}] : p+p = 0$$
  En Haskell:
 
@@ -189,7 +193,7 @@ prop_suma_simetrico :: PolF2 -> Bool
 prop_suma_simetrico p = p+p == 0
 \end{code}
 
- La multiplicación de polinomios es conmutativa:
+ \item La multiplicación de polinomios es conmutativa:
 $$\forall p,q \in \mathbb{F}_2[\textbf{x}] (p*q = q*p)$$
  En Haskell:
 
@@ -201,7 +205,7 @@ prop_prod_conmutativa :: PolF2 -> PolF2 -> Bool
 prop_prod_conmutativa p q = p*q == q*p
 \end{code}
 
- El producto es asociativo:
+ \item El producto es asociativo:
 $$\forall p,q,r \in \mathbb{F}_2[\textbf{x}] (p*(q*r) = (p*q)*r)$$
  En Haskell:
 
@@ -213,7 +217,7 @@ prop_prod_asociativo :: PolF2 -> PolF2 -> PolF2 -> Bool
 prop_prod_asociativo p q r = p*(q*r) == (p*q)*r
 \end{code}
 
- El 1 es el elemento neutro de la multiplicación de polinomios:
+ \item El 1 es el elemento neutro de la multiplicación de polinomios:
 $$\forall p \in \mathbb{F}_2[\textbf{x}] p*1 = 1*p = p$$
  En Haskell:
 
@@ -225,7 +229,7 @@ prop_prod_neutro :: PolF2 -> Bool
 prop_prod_neutro p = (p * 1 == p) && (1 * p == p)
 \end{code}
 
- Distributividad del producto respecto la suma:
+ \item Distributividad del producto respecto la suma:
 $$\forall p,q,r \in \mathbb{F}_2[\textbf{x}] (p*(q+r) = p*q + p*r)$$
  En Haskell:
 
@@ -236,3 +240,4 @@ $$\forall p,q,r \in \mathbb{F}_2[\textbf{x}] (p*(q+r) = p*q + p*r)$$
 prop_distributiva :: PolF2 -> PolF2 -> PolF2 -> Bool
 prop_distributiva p q r = p*(q+r) == (p*q)+(p*r)
 \end{code}
+\end{itemize}

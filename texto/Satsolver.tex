@@ -1,6 +1,10 @@
 \chapter{Herramienta $\mathtt{SAT\_Solver}$}
 
-En el presente capítulo se expondrá una herramienta para resolver el famoso problema de satisfacibilidad o más conocido como el problema $SAT$. Dicha herramienta se basará en la teoría presentada en los capítulos anteriores, mostrando así una de sus más relevantes aplicaciones. 
+\hfil \textit{La esencia de las matemáticas no es hacer las cosas simples complicadas, sino hacer las cosas complicadas simples.}
+
+\hfil \hfil \hfil  Stanley Gudder \\\\
+
+En el presente capítulo se expondrá una herramienta para resolver el famoso problema de satisfacibilidad o más conocido como el problema $SAT$. Dicha herramienta se basará en la aproximación algebraica presentada en los capítulos anteriores, mostrando así una de sus más relevantes aplicaciones. \\
 
 Se describirán los distintos módulos de la herramienta, detallando los procesos más relevantes. Es importante destacar que los cálculos llevados a cabo por el programa se dividen principalmente en dos etapas:
 \begin{enumerate}
@@ -26,8 +30,6 @@ Por ejemplo, $p_1 \vee p_2$ ó $p_1 \vee \neg p_2 \vee \neg p_3$ son cláusulas.
 Con respecto al problema de satisfacibilidad es importante saber el que criterio debe cumplir una fórmula en forma normal conjuntiva para ser verdadera. Esta condición es que en todas sus cláusulas debe haber al menos un literal que sea verdadero.\\
 
 Otra propiedad que se debe conocer sobre la forma normal conjuntiva es que dada cualquier fórmula proposicional existe otra equivalente en forma normal conjuntiva. 
-
-\newpage
 
 El algoritmo que la calcula es el siguiente \cite{apuntes} :
 
@@ -75,6 +77,7 @@ Dicho formato es una estandarización simplificada de la forma normal conjuntiva
 \end{itemize} 
 \end{enumerate}
 
+\newpage
 \section{Preprocesado}
 
 Las funciones que intervienen en el preprocesado transforman un archivo \texttt{.txt} ó \texttt{.cnf} en formato \texttt{DIMACS} en el conjunto de polinomios que les corresponde según la función $\pi$. A continuación, se presentan estas funciones.
@@ -103,6 +106,7 @@ x7,x72,x75,x76,x78,x8,x80,x81,x83,x84,x86,x87,x88,x89,x9,x90,x92,x93,
 x94,x96,x97,x98,x99])
 \end{code}
 
+\newpage
 \section{Saturación}
 
 Una vez que se tiene el conjunto de polinomios basta saturar dicho conjunto usando la regla de independencia. Las funciones encargadas de realizar este proceso son: \texttt{omiteVariableKB} y \texttt{saturaKB}. El módulo en el que se implementan estas se llama \texttt{Saturacion}.
@@ -114,7 +118,13 @@ Y así queda implementada una primera versión de la herramienta.
 \newpage
 \section{Análisis de la herramienta}
 
-En esta sección se probará la herramienta con instancias del problema, con el objetivo de detectar cotas de eficiencia. Las instancias se almacenan en el directorio \texttt{exDIMACS}, organizadas en carpetas según su dificultad.
+En esta sección se probará la herramienta con instancias del problema, con el objetivo de detectar cotas de eficiencia. Dichos ejemplos se han obtenido de dos fuentes:
+\begin{itemize}
+\item[•] Construidos manualmente (almacenados en el directorio \texttt{easy})
+\item[•] Truncando (o no) tres ejemplos de la web de la \href{http://www.satcompetition.org}{SAT Competition}.
+\end{itemize}
+
+ Las instancias se almacenan en el directorio \texttt{exDIMACS}, organizadas en carpetas según su longitud.
 
 \subsection{Directorio \texttt{easy}}
 Este directorio contiene cuatro ejemplos muy sencillos, de hecho, las fórmulas que codifican sólo  tienen 2 variables ($p$ y $q$). El objetivo de estos ejemplos es servir como test para comprobar que el funcionamiento de la herramienta es el deseado.

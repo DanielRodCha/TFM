@@ -69,7 +69,7 @@ reglaIndependencia x a1 a2 = aux + a1a2 + aux2
  \noindent Por ejemplo, para hallar $a$ tal que:
  $$a= \partial_{x_2}(1+x_2x_3x_5+x_3x_5, 1 + x_1x_2x_3x_4x_5+x_1x_2x_3x_5)$$
 
- basta con saber que
+ \noindent basta con saber que
  \begin{itemize}
  \item $b_1 = 1+x_3x_5$
  \item $c_1 = x_3x_5$
@@ -87,8 +87,8 @@ reglaIndependencia x a1 a2 = aux + a1a2 + aux2
 -- x1x3x4x5+x1x3x5+1
 \end{code}
 
- Notar que la regla de independencia es simétrica. Se comprobará aplicando
- \texttt{quickCheck} a la siguiente propiedad:
+ Notar que la regla de independencia es simétrica. Se comprobará con ayuda de
+ \texttt{QuickCheck}:
 
 \begin{code}
 -- |
@@ -130,8 +130,8 @@ Siguiendo con el ejemplo anterior,
  $=$ & $\Theta (\partial_{x_2}(1+x_2x_3x_5+x_3x_5, 1 +
  x_1x_2x_3x_4x_5+x_1x_2x_3x_5))$ & $=$ \\\\
  $=$ & $\Theta (1 + x_1x_3x_4x_5 + x_1x_3x_5) = \neg (p_1 \wedge p_3 \wedge p_4
- \wedge p_5 \leftrightarrow p_1 \wedge p_3 \wedge p_5) $ & $=$ \\\\
- $=$ & $p_1 \wedge p_3 \wedge p_5 \rightarrow p_4$
+ \wedge p_5 \leftrightarrow p_1 \wedge p_3 \wedge p_5) $ & $\equiv$ \\\\
+ $\equiv$ & $p_1 \wedge p_3 \wedge p_5 \rightarrow p_4$
 \end{tabular}
 \end{table}
 
@@ -183,7 +183,7 @@ Siguiendo con el ejemplo anterior,
  independencia, que justificarán el uso de la misma como herramienta para
  probar teoremas.
 
-\prop Sea $p$ una variable proposicional, entonces $\partial_p$ es robusto.
+\prop Sea $p$ una variable proposicional, entonces $\partial_p$ es correcto.
 
  \noindent \textbf{Prueba:} Hay que probar que $F_1 \wedge F_2 \vDash \partial_p (F_1,F_2)$. Para ello, se supone que:
  $$\pi (F_1) = b_1 + x_p \cdot c_1 \;\;  , \;\; \pi (F_2) = b_2 + x_p \cdot c_2$$
@@ -208,7 +208,7 @@ así que $\textbf{u} \in \mathcal{V} (1+\partial_{x_p} (\pi (F_1) , \pi (F_2)))$
 
 \newpage
 
-El siguiente resultado es
+Estamos ya en condiciones de probar que hemos construido un operador de omisión:
 
 \thm \label{thm:opOmision} $\partial_p$ es un operador de omisión.
 
@@ -222,7 +222,7 @@ $$[\{ F_1 , F_2 \} , \mathcal{L} \setminus \{ p \}] \equiv \partial_p (F_1 , F_2
 $$ \partial_{x_p}(\pi (F_1), \pi (F_2)) = \Phi [1+(1+b_1 \cdot b_2) \cdot
  [1+(b_1+c_1)(b_2+c_2)]]$$
  
- Como se ha probado la robustez del operador $\partial_p$ en la proposición
+ Como se ha probado la corrección del operador $\partial_p$ en la proposición
  anterior, por el corolario \ref{cor:robusto} es suficiente probar que
  cualquier valoración $v$ sobre $\mathcal{L} \setminus \{ p \}$ que sea modelo
  de $\partial_p (F_1 , F_2)$ se puede extender a $\hat{v} \vDash \{ F_1,F_2 \}
@@ -432,7 +432,7 @@ $$[K, \mathcal{L} \setminus \{ p_3, p_4 \}] \equiv \{ \top \} \nvDash G $$
 \begin{code}
 -- |
 -- >>> [p1,p2,p3,p4,p5] = map Atom ["p1","p2","p3","p4","p5"]
--- >>> k = [p5 ∧ p1 ↔ p4,                                                                                p5 ∧ p3 → p4,                                                                                p5 ∧ p2 → p4,                                                                                p1 ∧ p2 ∧ p4 ∧ p5 → p3]
+-- >>> k = [p5 ∧ p1 ↔ p4,p5 ∧ p3 → p4, p5 ∧ p2 → p4,p1 ∧ p2 ∧ p4 ∧ p5 → p3]
 -- >>> ps = S.fromList $ map proyeccion k
 -- >>> ps
 -- fromList [x1x2x3x4x5+x1x2x4x5+1,x1x5+x4+1,x2x4x5+x2x5+1,x3x4x5+x3x5+1]

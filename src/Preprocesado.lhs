@@ -11,7 +11,6 @@ import Data.List (foldl')
 import qualified Data.Set as S
 \end{code}
 
-\newpage
 
  La función \texttt{(literalAPolinomio lit)} recibe una cadena que codifica un
  literal en formato \texttt{DIMACS} y devuelve un par \texttt{(p,v)} donde $p$
@@ -62,7 +61,7 @@ clausulaAPolinomio cs = aux $ foldl' (\acc x -> disj (literalAPolinomio x) acc)
 \end{code}
 
 \index{\texttt{readFile}}
- Además de las anteriores, serán necesarias tres funciones predefindas de
+ Además de las anteriores, serán necesarias tres funciones predefinidas de
  Haskell. La primera es la función \texttt{readFile}, que transforma el
  archivo \texttt{.txt} en una cadena de caracteres.\\
 

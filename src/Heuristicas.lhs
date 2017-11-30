@@ -13,7 +13,8 @@ import qualified Data.Set as S
 
  A continuación, se define el tipo \texttt{Heuristica}. Este es una función que
  recibe un conjunto de polinomios y una lista de sus variables, y devuelve una
- lista ordenada de dichas variables.
+ lista ordenada de dichas variables que define el orden en el que se van a
+ omitir.
 
 \index{\texttt{Heurisitica}}
 \begin{code}

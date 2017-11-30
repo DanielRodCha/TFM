@@ -166,7 +166,8 @@ every picture/.append style={
 \begin{titlepage}
  \vspace*{2cm}
   \begin{center}
-    {\huge \textbf{Título del TFM}}
+     %{\huge \textbf{Una aproximación algebraica\\al problema SAT y su \\ \vspace{0.4cm} implementación funcional}}    
+    {\huge \textbf{Una aproximación algebraica al \\ problema SAT y su implementación \\ \vspace{0.4cm} funcional}}
   \end{center}
   \vspace{4cm}
   \begin{center}
@@ -176,14 +177,24 @@ every picture/.append style={
     {\normalsize Trabajo Fin de Máster} \\
   \end{center}
   \begin{center}
-    {\large \textbf{Autor}}
+    {\large \textbf{Daniel Rodríguez Chavarría}}
   \end{center}
-  \newpage
- 
+  \newpage\phantom{blabla}
+  \pagestyle{empty}
+  \newpage\phantom{blabla}
+ \pagestyle{fancy}
  \begin{flushright}
    \vspace*{5cm}
    \begin{minipage}{8.45cm}
-      Agradecimientos
+      Este Trabajo Fin de Máster ha sido posible gracias a la labor de muchas personas a las que me gustaría transmitirles mi más sincero agradecimiento:\\
+      
+      A la culpable de mis sonrisas.\\
+      
+      A mis familiares y amigos, que permanecen a mi lado ante toda dificultad.\\
+      
+      A mis compañeros de desayuno, sin los que empezar el día sería mucho más difícil.\\
+      
+      A Mª José Hidalgo, que me escucha y ayuda siempre que lo necesito.
     \end{minipage}
 
       \vspace*{7.5mm}
@@ -191,9 +202,10 @@ every picture/.append style={
   \end{flushright}
   \vspace*{\fill}
 
-  \newpage
-
-
+  \newpage\phantom{blabla}
+  \pagestyle{empty}
+  \newpage\phantom{blabla}
+ \pagestyle{fancy}
   
   % \begin{flushright}
   \begin{center}
@@ -205,15 +217,21 @@ every picture/.append style={
 
       \vspace*{7.5mm}
 
-      Supervisado por
-      % \vspace*{5mm}
+      Tutores:
+       \vspace{-3mm}
     \end{minipage}\par
-    Tutor
+ Joaquín Borrego Díaz \\
+ 
+ José Antonio Alonso Jiménez
     % \end{flushright}
+
     \end{center}
   \vspace*{\fill}
 
-  \newpage
+  \newpage\phantom{blabla}
+  \pagestyle{empty}
+  \newpage\phantom{blabla}
+ \pagestyle{fancy}
 
   \vspace*{3cm}
   {\huge \textit{Abstract}}
@@ -222,7 +240,11 @@ every picture/.append style={
   A logic-algebraic model for solving $SAT$ problem is presented. It is based on a new inference rule of algebro-geometric inspiration. Soundness and refutational completeness of the rule are proved. The exposition of the theory lays the foundation for the implementation in Haskell of an efficient tool that solves $SAT$ problem. An analysis and a proposal to improve the tool conclude the thesis.
   
 \end{titlepage}
-\newpage
+
+  \newpage\phantom{blabla}
+  \pagestyle{empty}
+  \newpage\phantom{blabla}
+ \pagestyle{fancy}
 
 \input{licencia/licenciaCC}
 \newpage 

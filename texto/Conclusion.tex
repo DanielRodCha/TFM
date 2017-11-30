@@ -1,21 +1,25 @@
 \addcontentsline{toc}{chapter}{Conclusión}
 \chapter*{Conclusión}
 
-La interpretación algebraica de lalógica proposicional representa una valioso recurso que nos permite aplicar técnicas algebraicas a la representación del conocimiento y el razonamiento. En este trabajo se presenta un modelo algebraico para resolver problemas cuyo conocimiento se representa mediante fórmulas de la lógica proposicional.\\
+\hfil \textit{La lógica es el principio de la sabiduría, no el final.}
 
-La estructura del trabajo es la natural, es decir, en el primer capítulo se establecen las bases teóricas y los fundamentos necesarios; en el segundo capítulo se presenta el modelo lógico-algebraico, probando su robustez y completitud refutacional; mientras que en el tercer y último capítulo se describe la implementación del algoritmo en el lenguaje Haskell.\\
+\hfil \hfil \hfil Leonard Nimoy \\\\
+
+La interpretación algebraica de la lógica proposicional representa una valioso recurso que nos permite aplicar técnicas algebraicas a la representación del conocimiento y el razonamiento. En este trabajo se presenta un modelo algebraico para resolver problemas cuyo conocimiento se representa mediante fórmulas de la lógica proposicional.\\
+
+La estructura del trabajo es la natural; es decir, en el primer capítulo se establecen las bases teóricas y los fundamentos necesarios; en el segundo capítulo se presenta el modelo lógico-algebraico, probando su robustez y completitud refutacional; mientras que en el tercer y último capítulo se describe la implementación del algoritmo en el lenguaje Haskell.\\
 
 Destacar que las aplicaciones del modelo aquí presentado son muy variados, ya que no sólo es útil para resolver el problema de satisfacibilidad booleana, sino que también para la detección de estados peligrosos o la descomposición de bases de conocimiento, por ejemplo.\\
 
 Como trabajos futuros destacan tres líneas principales de investigación:
 
 \begin{itemize}
+\item[•] Tratar de mejorar la eficiencia de la implementación.
 \item[•] Extender el modelo a lógicas multi-valuadas.
 \item[•] Dar de forma explícita el algoritmo formal, estudiando su complejidad computacional.
-\item[•] Tratar de mejorar la eficiencia de la implementación.
 \end{itemize}
 
-En la última línea existen numerosas modificaciones, pero principalmente hacer notar las siguientes:
+En la primera línea existen numerosas modificaciones, pero principalmente hacer notar las siguientes:
 
 \begin{enumerate}
 \item Desarrollar una librería de polinomios optimizada para calcular la regla de independencia en $\mathbb{F}_2[\textbf{x}]/_{\mathbb{I}}$.

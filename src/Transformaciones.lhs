@@ -1,20 +1,19 @@
 \newpage
-
 \section{Transformaciones entre fórmulas y polinomios}
 
  La traducción o transformación de la lógica proposicional en álgebra
  polinomial viene dada por \cite{Kapur-1985} y se ilustra en la figura
  \ref{fig:esquema}. \\
 
- La idea principal es que las fórmulas se pueden ver como polinomios sobre
+ La idea principal es que las fórmulas se pueden ver como una especie de polinomios sobre
  fórmulas atómicas cuando éstas están expresadas en términos de las conectivas
  booleanas \textit{o exclusivo} e \textit{y}; así como de las constantes 1 y 0,
  que equivalen a los conceptos de \textit{Verdad} y \textit{Falsedad},
  respectivamente. Las operaciones básicas de suma y multiplicación se
  corresponden con las conectivas booleanas \textit{o exclusivo} e \textit{y},
- respectivamente. Por tanto, la función $P: Form (\mathcal{L} \rightarrow
- \mathbb{F}_2[\textbf{x}])$ que aparece en la página  \pageref{fig:esquema} se
- define por: 
+ respectivamente. La función $P: Form (\mathcal{L}) \rightarrow
+ \mathbb{F}_2[\textbf{x}]$ que aparece en la página \pageref{fig:esquema} de
+ este trabajo, se define \cite{Kapur-1985} por: 
 
 \begin{itemize}
 \item[•] $P(\perp)=0$, $P(p_i)=x_i$, $P(\neg F)=1+P(F)$
@@ -24,11 +23,12 @@
 \item[•] $P(F_1 \leftrightarrow F_2) = 1 + P(F_1) + P(F_2)$
 \end{itemize}
 
- En resumen, consiste en hacer corresponder las fórmulas falsas con el valor
+ En resumen, la idea consiste en hacer corresponder las fórmulas falsas con el
+ polinomio constante e igual a
  cero y las verdaderas con el uno. Por ejemplo, si una fórmula ($p_1 \wedge
  p_2$) dada una valoración ($p_1=True$, $p_2=True$) es verdadera, su
  correspondiente polinomio ($x_1 * x_2$) teniendo en cuenta la interpretación
- ($x_1=1$, $x_2=1$) debe valer uno ($1 + 1 =_{\mathbb{F}_2} 1$). La
+ ($x_1=1$, $x_2=1$) debe valer uno ($1 * 1 =_{\mathbb{F}_2} 1$). La
  implementación se hará en el módulo \texttt{Transformaciones}:
 
 \begin{code}
@@ -148,7 +148,7 @@ prop_theta_tr f = equivalentes (theta (tr f)) f
 
 \newpage
 
- Se define ahora la propiedad inversa:
+ Se comprueba ahora la propiedad inversa:
   
  \prop Sea $p$ un polinomio de $\mathbb{F}_2[x]$, $P (\Theta(p)) = p$. Cuya
  implementación es:
@@ -168,9 +168,19 @@ prop_tr_theta p = tr (theta p) == p
 
  Esto se debe a los exponentes, que se pierden al transformar el polinomio en
  una fórmula proposicional. Por tanto, al reescribir el polinomio, éste es
- idéntico pero sin exponentes. Se tratará esto en la siguiente subsección y se
- comprobará que realmente ambos polinomios son iguales al estar en
- $\mathbb{F}_2[x]$.
+ idéntico pero sin exponentes. Si lo comprobamos en Haskell:
+
+\begin{code}   
+-- |
+-- >>> [x29,x87,x30,x74,x80,x38,x62] =                                                                map var ["x29","x87","x30","x74","x80","x38","x62"] :: [PolF2]
+-- >>> p = x29^3*x87^5+x30*x74^2*x80^4+x38^5*x62^2
+-- >>> p
+-- x29^3x87^5+x30x74^2x80^4+x38^5x62^2
+-- >>> theta p
+-- ¬((p29 ∧ p87) ↔ ¬((p30 ∧ (p74 ∧ p80)) ↔ (p38 ∧ p62)))
+-- >>> tr (theta p)
+-- x29x87+x30x74x80+x38x62
+\end{code}
 
 \subsection{Correspondencia entre valoraciones y puntos en $\mathbb{F}_2^n$}
 
@@ -237,7 +247,7 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
  $$\Phi (\sum\limits_{\alpha \in I} \textbf{x}^{\alpha} ) := \sum\limits_{\alpha
  \in I} \textbf{ x}^{sg(\alpha)} $$
 
- siendo $sg(\alpha) := (\delta_1 ,\dots,\delta_n)$ donde $\delta_i$ es 0 si
+ \noindent siendo $sg(\alpha) := (\delta_1 ,\dots,\delta_n)$ donde $\delta_i$ es 0 si
  $\alpha_i = 0$ y 1 en cualquier otro caso. \\
 
  En la librería \texttt{HaskellForMaths} ya existe una función que calcula el
@@ -245,9 +255,7 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
  función \texttt{(\%\%)}. Sin embargo, ya que la búsqueda de la eficiencia es una
  máxima en este trabajo, se aprovechará el hecho de que calcular dicho
  representante equivale a reemplazar cada ocurrencia de $x_i^k$ (con
- $k\in\mathbb{N}$) por $x_i$.\\ 
-
-\newpage
+ $k>0$) por $x_i$.\\ 
 
  La función \texttt{(phi p)} calcula el representante de menor grado del
  polinomio $p$ en el grupo cociente $\mathbb{F}_2[\textbf{x}]/_{\mathbb{I}_2}$,
@@ -313,7 +321,7 @@ prop_phi p = phi p == p %% (ideal p)
 -- >>> proyeccion (p1 → p1 ∧ p2)
 -- x1x2+x1+1
 proyeccion :: FProp -> PolF2
-proyeccion = (phi . tr)
+proyeccion = phi . tr
 \end{code}
 
  Conveniene comprobar si se verifica que cualquier fórmula $f$ es
@@ -327,7 +335,7 @@ prop_theta_proyeccion :: FProp -> Bool
 prop_theta_proyeccion f = equivalentes (theta (proyeccion f)) f
 \end{code}
 
- Además, como se ha solucionado el problema de los exponentes se puede
+ Además, como se ha solucionado el problema de los exponentes ya se puede
  comprobar la propiedad recíproca:
 
 \begin{code}
@@ -362,8 +370,8 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
 \vspace{0.2cm}
 
  \lem \label{lem1} Sea un polinomio $p \in \mathbb{F}_2[\textbf{x}]$, entonces
- $p \in \mathbb{I}_2^n \; \Leftrightarrow \; p(\textbf{z}) = 0 \; \forall
- \textbf{z} \in (\mathbb{F}_2)^n $
+ $p \in \mathbb{I}_2^n$ si y sólo si $p(\textbf{z}) = 0$ para todo $\textbf{z}
+ \in (\mathbb{F}_2)^n $
 
 \vspace{0.3cm}
 
@@ -396,8 +404,8 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  
  \begin{enumerate}
  \item Si $A \subseteq (\mathbb{F}_2)^n$, entonces $\mathcal{V}(I(A)) = A$
- \item Para todo $\mathfrak{J} \in Ideales(\mathbb{F}_2[\textbf{x}])$,
- $I(\mathcal{V}(\mathfrak{J})) = \mathfrak{J} + \mathbb{I}_2$ 
+ \item Para todo $\mathfrak{J} \in Ideales(\mathbb{F}_2[\textbf{x}])$ se
+ verifica que $I(\mathcal{V}(\mathfrak{J})) = \mathfrak{J} + \mathbb{I}_2$
  \end{enumerate}
 
  \noindent \textbf{Prueba:} 
@@ -433,7 +441,8 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  $(\mathbb{F}_2)^n$ (porque $p$ se anula en $\mathcal{V}(\mathfrak{J})$ y
  $\prod_{a \in A}(j_{i_a}-j_{i_a}(a))$ en $A$). Además, por el lema \ref{lem1}, $g \in
  \mathbb{I}_2^n$. Y desarrollando el producto en $g$ se puede escribir el
- polinomio como $$g=bp+h$$, donde $h\in \mathfrak{J}$ y $b=\prod_{a \in
+ polinomio como $$g=bp+h$$
+ donde $h\in \mathfrak{J}$ y $b=\prod_{a \in
  A}(-j_{i_a}(a))$.\\ Por tanto, $bp=g-h \in \mathfrak{J}+\mathbb{I}_2^n$ y $b\neq
  0$. De esto se sigue que $p \in \mathfrak{J}+\mathbb{I}_2^n$. \hspace{1cm} $\square$ 
  \end{enumerate}
@@ -489,7 +498,7 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  %% Gröbner para la lógica porposicional.\\
 
  \noindent \textbf{Prueba:} La estructura que se seguirá es probar $(2
- \Leftrightarrow 1)$ y $(2 \Leftrightarrow)$. Por el lema \ref{lem2}:
+ \Leftrightarrow 1)$ y $(2 \Leftrightarrow 3)$. Por el lema \ref{lem2}:
 
  $$ 1+P(G) \in \langle 1+P(F_1), \dots ,1+P(F_m) \rangle + \mathbb{I}_2
  \Longleftrightarrow $$
@@ -508,27 +517,19 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  \noindent quedando así probado ($2 \Leftrightarrow 1$). $\hspace{9.9cm}
  \square$ \\
 
- \indent Se sabe que todo conjunto $X \subseteq (\mathbb{F}_2)^n$ es un conjunto
+ \indent Como se sabe que todo conjunto $X \subseteq (\mathbb{F}_2)^n$ es un conjunto
  algebraico; de hecho, existen $a_X \in \mathbb{F}_2(\textbf{x})$ tal que
  $\mathcal{V} (a_X) = X$. Por lo que, aplicando el teorema de Nullstellensatz
- se tiene que $I(\mathcal{V}(a_X)) = (a_X)+\mathbb{I}_2$, de lo que se sigue
- que el anillo de coordenadas de $X$ como variedad algebraica es:
- $$ \mathbb{F}_2[\textbf{x}]/_{I(X)} \cong
- (\mathbb{F}_2[\textbf{x}]/_{(a_X)})/_{\mathbb{I}_2} $$
+ se tiene que $I(\mathcal{V}(a_X)) = (a_X)+\mathbb{I}_2$.
 
  Cualquier ideal $J_X$ tal que $\mathcal{V}(J_X) = X$ se puede usar para
- describir el anillo de coordenadas. Por consiguiente y con el objetivo de
+ describir el conjunto $X$. Por consiguiente y con el objetivo de
  simplificar la notación, se asumirá que $\mathbb{I}_2 \subseteq J_X$ si es
  necesario. De manera similar, dada una base de conocimiento $K$, se define el
  ideal:
 
  $$ \label{def:J_K} J_K = (\{1+P(F) : F \in K\})$$
 
- y entonces
+ y entonces se verifica que
 
  $$v \vDash K \; \Longleftrightarrow \; o_v \in \mathcal{V}(J_K)$$
-
- \defn El \textit{anillo de coordenadas} de $K$ se define como el
- correspondiente a la variedad algebraica $V(J_K)$, que, por el teorema de
- Nullstellensatz, es $\mathbb{F}_2[\textbf{x}]/_{(J_K)})/_{\mathbb{I}_2} $.
-
