@@ -12,10 +12,12 @@ import System.Environment
 import qualified Data.Set as S
 \end{code}
 
+\vspace{-1mm}
  Sin embargo, antes de implementar estas funciones hay una modificación que
  mejora la eficiencia de las funciones \texttt{(reglaIndependenciaAux} y
  \texttt{(reglaIndependenciaKB)}.\\
 
+\vspace{-1mm}
  Esta mejora se basa en el hecho de que si en algún 
  momento de la computación hay un cero en el conjunto de polinomios (que
  traducido a fórmula es $\bot$) éste permanecerá hasta finalizar la
@@ -24,19 +26,18 @@ import qualified Data.Set as S
  se puede obviar si aparece acompañado). Por tanto, aplicando el corolario
  \ref{cor:cero}, la base de conocimiento original es inconsistente.\\
 
+\vspace{-1mm}
  Teniendo en cuenta lo comentado anteriormente, se pueden modificar las
  definiciones anteriores de \texttt{(reglaIndependenciaAux} y
  \texttt{(reglaIndependenciaKB} para obtener un método de saturación más
- eficiente.
-
-
- Para ello basta añadir al bucle de la primera la siguiente línea de
+ eficiente. Para ello basta añadir al bucle de la primera la siguiente línea de
  código:\\
 
+\vspace{-3mm}
 \texttt{| dR == 0   = S.fromList [0]}\\
 
 Quedando la implementación de dicha función tal y como sigue:
-
+\vspace{-2mm}
 \index{\texttt{reglaIndependenciaAux}}
 \begin{code}
 reglaIndependenciaAux :: PolF2 -> PolF2 -> S.Set PolF2 ->

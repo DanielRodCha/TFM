@@ -331,6 +331,8 @@ simbolosPropForm (Impl f g) = simbolosPropForm f `union` simbolosPropForm g
 simbolosPropForm (Equi f g) = simbolosPropForm f `union` simbolosPropForm g
 \end{code}
 
+\newpage
+
  \texttt{(interpretacionesForm f)} es la lista de todas las interpretaciones de
  la fórmula f.
 
@@ -395,8 +397,6 @@ esInsatisfacible = null . modelosFormula
 
 \defn \label{def:sat} Una fórmula $F$ se dice satisfacible si existe al menos una
  interpretación $i$ de $F$ que sea modelo de la fórmula.
-
-\newpage
 
  La función \texttt{(esSatisfacible f)} se verifica si la fórmula f es
  satisfacible.

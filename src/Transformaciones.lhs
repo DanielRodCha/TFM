@@ -238,6 +238,7 @@ $Mod(F) \rightarrow \mathcal{V}(1+P(F))$ & $\mathcal{V}(1+P(F)) \rightarrow
 -- 0
 \end{code}
 
+\newpage
 \subsection{Proyección polinomial}
  Consideremos ahora la parte derecha de la figura \ref{fig:esquema}. Para
  simplificar la relación entre la semántica de la lógica proposicional y la
@@ -288,6 +289,7 @@ ideal :: PolF2 -> [PolF2]
 ideal p = [v+v^2| v<-vars p]
 \end{code}
 
+\newpage
  La propiedad implementada queda:
 
 \begin{code}
@@ -391,6 +393,8 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  \noindent Sea $n \geq 1$. Se usará también la división respecto $\mathbb{I}_1$,
  por lo que $$p = a*\mathbb{I}_2^1 + b$$ donde $b = b_0+b_1x$; $b_0, b_1 \in
  \mathbb{F}_2[x_2,\dots ,x_n]$.\\
+
+\newpage
  Fijando un punto cualquiera $z \in \mathbb{F}_2^{n-1}$ tal que $z=(z_2,\dots
  ,z_n)$, el polinomio $b$ respecto de la variable $x_1$
  queda: $$b_0(z)+b_1(z)x_1=0$$
@@ -466,9 +470,12 @@ prop_proyeccion_theta p = phi p == (proyeccion . theta) p
  (\mathbb{F}_2)^n \setminus A$ de forma que $$\forall z \in B \;,\; \exists i_z
  \in \{1, \dots ,m \} \text{ tal que } P_{i_z}(z) \neq 0$$ A continuación, se
  define el polinomio $$S=R \cdot \prod_{z \in B} (P_{i_z}-P_{i_z}(z))$$
- Notar que este polinomio se anula en todo $(\mathbb{F}_2)^n$, ya que es producto de
+Notar que este polinomio se anula en todo $(\mathbb{F}_2)^n$, ya que es producto de
  $R$, que se anula en $A$; y de $\prod_{z \in B} (P_{i_z}-P_{i_z}(z))$, que se
- anula en $B$. El lema \ref{lem1} implica que $S \in \mathbb{I}_2^n$. Por lo que si se
+ anula en $B$. El lema \ref{lem1} implica que $S \in \mathbb{I}_2^n$.
+
+\newpage
+ \noindent Si se
  reescribe $S$ desarrollando el producto: $$S=b\cdot R + P' \text{, con } P' \in
  \mathfrak{J} \text{ y } b = \prod_{z \in B}(-P_{i_z}(z)) \in \mathbb{F}_2$$ se deduce
  que $$b\cdot R=S-P' \in \mathfrak{J} + \mathbb{I}_2^n=\mathcal{R}$$

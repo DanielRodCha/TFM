@@ -205,6 +205,7 @@ prop_prod_conmutativa :: PolF2 -> PolF2 -> Bool
 prop_prod_conmutativa p q = p*q == q*p
 \end{code}
 
+\newpage
  \item El producto es asociativo:
 $$\forall p,q,r \in \mathbb{F}_2[\textbf{x}] (p*(q*r) = (p*q)*r)$$
  En Haskell:

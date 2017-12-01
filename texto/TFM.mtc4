@@ -1,18 +1,18 @@
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3.1}Fichero de entrada y el formato \texttt {DIMACS}}{\reset@font\mtcSfont 81}{section.3.1}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3.2}Preprocesado}{\reset@font\mtcSfont 84}{section.3.2}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3.3}Saturaci\IeC {\'o}n}{\reset@font\mtcSfont 87}{section.3.3}}
-{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3.4}An\IeC {\'a}lisis de la herramienta}{\reset@font\mtcSfont 91}{section.3.4}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.4.1}Directorio \texttt {easy}}{\reset@font\mtcSSfont 91}{subsection.3.4.1}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 1}{\reset@font\mtcSSSfont 91}{section*.28}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 2}{\reset@font\mtcSSSfont 91}{section*.29}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 3}{\reset@font\mtcSSSfont 92}{section*.30}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 4}{\reset@font\mtcSSSfont 92}{section*.31}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.4.2}Directorio \texttt {medium}}{\reset@font\mtcSSfont 93}{subsection.3.4.2}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 0}{\reset@font\mtcSSSfont 93}{section*.32}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 5}{\reset@font\mtcSSSfont 94}{section*.33}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 6}{\reset@font\mtcSSSfont 95}{section*.34}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.4.3}Directorio \texttt {hard}}{\reset@font\mtcSSfont 95}{subsection.3.4.3}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Archivo \texttt {sat100.cnf}}{\reset@font\mtcSSSfont 95}{section*.35}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Archivo \texttt {sat250.cnf}}{\reset@font\mtcSSSfont 95}{section*.36}}
-{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Archivo \texttt {unsat250.cnf}}{\reset@font\mtcSSSfont 95}{section*.37}}
-{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.4.4}Heur\IeC {\'\i }sticas}{\reset@font\mtcSSfont 95}{subsection.3.4.4}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3.1}Fichero de entrada y el formato \texttt {DIMACS}}{\reset@font\mtcSfont 70}{section.3.1}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3.2}Preprocesado}{\reset@font\mtcSfont 72}{section.3.2}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3.3}Saturaci\IeC {\'o}n}{\reset@font\mtcSfont 75}{section.3.3}}
+{\reset@font\mtcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {3.4}An\IeC {\'a}lisis de la herramienta}{\reset@font\mtcSfont 78}{section.3.4}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.4.1}Directorio \texttt {easy}}{\reset@font\mtcSSfont 78}{subsection.3.4.1}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 1}{\reset@font\mtcSSSfont 78}{section*.28}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 2}{\reset@font\mtcSSSfont 79}{section*.29}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 3}{\reset@font\mtcSSSfont 79}{section*.30}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 4}{\reset@font\mtcSSSfont 80}{section*.31}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.4.2}Directorio \texttt {medium}}{\reset@font\mtcSSfont 80}{subsection.3.4.2}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 0}{\reset@font\mtcSSSfont 80}{section*.32}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 5}{\reset@font\mtcSSSfont 82}{section*.33}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Ejemplo 6}{\reset@font\mtcSSSfont 82}{section*.34}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.4.3}Directorio \texttt {hard}}{\reset@font\mtcSSfont 82}{subsection.3.4.3}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Archivo \texttt {sat100.cnf}}{\reset@font\mtcSSSfont 82}{section*.35}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Archivo \texttt {sat250.cnf}}{\reset@font\mtcSSSfont 82}{section*.36}}
+{\reset@font\mtcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode Archivo \texttt {unsat250.cnf}}{\reset@font\mtcSSSfont 82}{section*.37}}
+{\reset@font\mtcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {3.4.4}Heur\IeC {\'\i }sticas}{\reset@font\mtcSSfont 83}{subsection.3.4.4}}

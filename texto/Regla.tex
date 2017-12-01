@@ -41,6 +41,7 @@ Una caracterización muy útil de los operadores se puede deducir de la siguient
 	\label{fig:proy}
 \end{figure}
 
+\newpage
 \lem \label{lem:lifting} (\textbf{Lema de elevación}) Sean $v :\mathcal{L} \setminus \{p\} \rightarrow \{ 0,1 \}$ una valoración o interpretación, $F, G \in Form(\mathcal{L})$ fórmulas y $\delta$ un operador de omisión de la variable $p$. Las siguientes condiciones son equivalentes:
 \begin{enumerate}
 \item $v \vDash \delta (F,G)$
@@ -62,6 +63,7 @@ $$[K, \mathcal{L} \setminus \{ p \}] \equiv \delta_p (\bigwedge K , \bigwedge K)
 
 Un caso interesante aparece cuando $\delta_p(F_1,F_2) \equiv \top$. En este caso, toda valoración parcial en $\mathcal{L} \setminus \{ p \}$ se puede extender a un modelo de $\{ F_1,F_2 \}$.\\
 
+\newpage
 La siguiente caracterización será útil más adelante:
 \cor \label{cor:robusto} Sea $\delta : Form(\mathcal{L}) \times Form(\mathcal{L}) \longrightarrow Form(\mathcal{L} \setminus \{ p \})$ un operador correcto. Las siguientes condiciones son equivalentes:
 \begin{enumerate}
@@ -78,12 +80,15 @@ Luego $H$ también es consecuencia lógica de $\{ F,G \}$. Sin embargo, existe u
 $$v \vDash \delta (F,G) \wedge \neg H$$ 
 Por $(2)$, existe $\hat{v}$ extensión de $v$ que es modelo de $\{ F,G \}$. Por tanto, $\{ F,G \} \vDash \neg H$, lo que es una contradicción. \hspace{10.5cm} $\square$ \\
 
+\vspace{-5mm}
 \cor Si $p \notin var(F)$, y $\delta_p$ es un operador de omisión de $p$, entonces
 $$\delta_p(F,F) \equiv F \;\;\;\;\;\;\;\; \text{y} \;\;\;\;\;\;\;\; \delta_p (F,G) \equiv \{ F,\delta_p (G,G) \}$$
 
 \noindent \label{cor:pnotinvar} \textbf{Prueba:} Si $p \notin var(F)$, entonces 
 $$\{ F \} \equiv [\{ F \} ,\mathcal{L} \setminus \{ p \}] \equiv \delta_p (F,F)$$
+\vspace{-5mm}
 Por otro lado, 
+
 $$\delta_p (F,G) \equiv [\{ F,G \} , \mathcal{L} \setminus \{ p \}] \vDash \{ F,\delta_p (G,G) \}$$ Para probar que en realidad la última consecuencia lógica es una equivalencia se mostrará que tienen los mismos modelos.\\
 Sea $v$ una valoración sobre $\mathcal{L} \setminus \{ p \}$ tal que $$v \vDash \{ F,\delta_p (G,G) \}$$ Entonces existe $\hat{v}$ (una extensión de $v$) tal que $\hat{v} \vDash G$. Como $\hat{v} \vDash F$, se tiene por el Lema de Elevación que $v \vDash \delta (F,G)$. \hspace{10cm} $\square$ 
 

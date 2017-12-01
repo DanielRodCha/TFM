@@ -95,8 +95,6 @@ clausulaAPolinomio cs = aux $ foldl' (\acc x -> disj (literalAPolinomio x) acc)
 -- (fromList [x1x2+x1+x2,1],[x1,x2])
 -- >>> dimacsAPolinomios "exDIMACS/easy/example4.txt"
 -- (fromList [x1x2+x1+x2,x1x2+x1+1,x1x2+x2+1,x1x2+1,1],[x1,x2])
-
-
 dimacsAPolinomios f = do
   s0 <- readFile f
   return $

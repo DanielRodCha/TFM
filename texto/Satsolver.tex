@@ -14,6 +14,7 @@ Se describirán los distintos módulos de la herramienta, detallando los proceso
 
 Finalmente, se realizará un análisis de eficiencia de la herramienta, durante el cual se detectaron ciertas ``fugas de tiempo''. Estas posibles mejoras se implementarán también dando lugar a una primera versión del \texttt{SAT-Solver}.
 
+\newpage
 \section{Fichero de entrada y el formato \texttt{DIMACS}}
 Previo a la descripción del formato \texttt{DIMACS} es necesaria una definición formal de qué es la forma normal conjuntiva. Con este objetivo se verán antes dos definiciones de la lógica proposicional.
 
@@ -62,7 +63,6 @@ Como ya se ha comentado, se pretende presentar la herramienta a una competición
 \end{tabular}
 \end{table}
 
-\newpage
 
 Dicho formato es una estandarización simplificada de la forma normal conjuntiva de una fórmula. Las instancias serán archivos de texto (\texttt{.txt} o \texttt{.cnf}) con la siguiente estructura:
 
@@ -150,6 +150,7 @@ La ejecución en máquina es:
 True
 (0.00 secs, 586,368 bytes)
 \end{code}
+\newpage
 \subsubsection{Ejemplo 2}
 El archivo se llama \texttt{example2.txt}:
 \begin{codigo}
@@ -229,6 +230,7 @@ El archivo se llama \texttt{exampleSat0} y codifica una fórmula en forma normal
 
 Destacar que tanto en este ejemplo como en los próximos, en cada cláusula habrá exactamente 3 literales.
 
+\newpage
 La ejecución en máquina es:
 \begin{code}
 >>> satSolver "exDIMACS/medium/exampleSat0.txt"
@@ -236,9 +238,7 @@ True
 (0.02 secs, 10,307,480 bytes)
 \end{code}
 
-\newpage
-
-El archivo es:
+El archivo \texttt{exampleSat0} es:
 
 \begin{codigo}
 c 
@@ -276,8 +276,11 @@ p cnf 59 30
 92 -81 -88 0
 \end{codigo}
 
+\newpage
 \subsubsection{Ejemplo 5}
-El archivo se llama \texttt{exampleSat1.txt} y codifica una fórmula satisfacible con 91 cláusulas y 82 variables. Por razones de espacio se omitirá mostar el archivo. La ejecución en máquina es:
+El archivo se llama \texttt{exampleSat1.txt} y codifica una fórmula satisfacible con 91 cláusulas y 82 variables. Por razones de espacio se omitirá mostar el archivo. 
+
+La ejecución en máquina es:
 \begin{code}
 >>> satSolver "exDIMACS/medium/exampleSat1.txt"
 True
@@ -318,8 +321,6 @@ A raíz de esto se probarán experimentalmente varias heurísticas; y en base a 
 Se define el módulo \texttt{Heuristicas}, en el que se implementarán dichas heurísticas.
 
 \entrada{Heuristicas}
-
-\newpage
 
 Quedando la solución del ejemplo 5:
 

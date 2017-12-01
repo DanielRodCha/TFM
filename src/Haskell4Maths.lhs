@@ -171,6 +171,7 @@ import Math.CommutativeAlgebra.Polynomial
 -- 169/70
 \end{code}
 
+\newpage
  Para este trabajo, el cuerpo que nos interesa es $\mathbb{F}_2$, cuyos
  elementos pertenecen a la lista \texttt{f2}:
 
@@ -290,7 +291,10 @@ $$\texttt{newtype Vect k b = V [(b,k)]}$$
 
 Como se mencionó anteriormente la base del espacio vectorial que es un
  polinomio, está formada por monomios. El tipo de dato monomio está formado por
- un coeficiente $i$ y una lista de pares. Un ejemplo de monomio es:
+ un coeficiente $i$ y una lista de pares.
+
+\newpage
+Un ejemplo de monomio es:
 
 \index{\texttt{monomio}}
 \index{\texttt{MonImpl}}

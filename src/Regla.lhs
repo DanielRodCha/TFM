@@ -436,23 +436,24 @@ $$[K, \mathcal{L} \setminus \{ p_3, p_4 \}] \equiv \{ \top \} \nvDash G $$
 -- >>> ps = S.fromList $ map proyeccion k
 -- >>> ps
 -- fromList [x1x2x3x4x5+x1x2x4x5+1,x1x5+x4+1,x2x4x5+x2x5+1,x3x4x5+x3x5+1]
--- >>> ps' = reglaIndependenciaKB (proyeccion p3) ps (S.fromList [])
+-- >>> vs = (S.fromList []) :: (S.Set PolF2)
+-- >>> ps' = reglaIndependenciaKB (proyeccion p3) ps vs
 -- >>> ps'
 -- fromList [x1x2x4x5+x1x2x5+x1x5+x2x4x5+x2x5+x4+1,x1x5+x4+1,x2x4x5+x2x5+1,1]
 -- >>> f = p1 ∧ p2 ∧ p5 → p4
 -- >>> no_f = proyeccion (no f)
 -- >>> no_f
 -- x1x2x4x5+x1x2x5
--- >>> ps'' = reglaIndependenciaKB (proyeccion p1) (S.insert (no_f) ps') (S.fromList [])
+-- >>> ps'' = reglaIndependenciaKB (proyeccion p1) (S.insert (no_f) ps') vs
 -- >>> ps''
 -- fromList [0,x2x4x5+x2x5,x2x4x5+x2x5+x4x5+x4+1,x2x4x5+x2x5+1,x4x5+x4+1,1]
--- >>> ps''' = reglaIndependenciaKB (proyeccion p4) ps'' (S.fromList [])
+-- >>> ps''' = reglaIndependenciaKB (proyeccion p4) ps'' vs
 -- >>> ps'''
 -- fromList [0,x2x5,1]
--- >>> ps'''' = reglaIndependenciaKB (proyeccion p2) ps''' (S.fromList [])
+-- >>> ps'''' = reglaIndependenciaKB (proyeccion p2) ps''' vs
 -- >>> ps''''
 -- fromList [0,x5,1]
--- >>> ps''''' = reglaIndependenciaKB (proyeccion p5) ps'''' (S.fromList [])
+-- >>> ps''''' = reglaIndependenciaKB (proyeccion p5) ps'''' vs
 -- >>> ps'''''
 -- fromList [0,1]
 \end{code}

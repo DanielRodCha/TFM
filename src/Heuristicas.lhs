@@ -23,8 +23,9 @@ type Heuristica = S.Set PolF2 -> [PolF2] -> [PolF2]
 
 \end{code}
 
+\newpage
  La primera heurística es la inducida por el orden monomial, en este caso el
- lexicográfico. Como por construcción, $vs$ ya está ordenada de tal forma, la
+ lexicográfico. Como, por construcción, $vs$ ya está ordenada de tal forma, la
  heurística \texttt{(heuristicaOM ps vs)} devuelve invariante la lista $vs$.
 
 \index{\texttt{heuristicaOrdMon}}
@@ -38,8 +39,6 @@ heuristicaOrdMon :: Heuristica
 heuristicaOrdMon ps vs = vs
 
 \end{code}
-
-\newpage
 
  La segunda heurística \texttt{(heuristicaFrecuencia ps vs)} devuelve una lista
  con las variables de $vs$ ordenadas de menor a mayor frecuencia de aparición en los
@@ -79,7 +78,10 @@ heuristicaFrecRev ps = (reverse . heuristicaFrecuencia ps)
 
  Para introducir esta variante es necesario que se ordene la lista de variables
  cada vez que se olvide una de ellas ya que también se modifican los polinomios
- y, por ejemplo, las frecuencias cambiarían. Es por esto que se redefinirá las
+ y, por ejemplo, las frecuencias cambiarían.\\
+
+\newpage
+ Es por esto que se redefinirán las
  funciones \texttt{saturaKB} y \texttt{satSolver} tal y como sigue:
 
 \index{\texttt{saturaKB}}
