@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {spanish}
+\beamer@sectionintoc {1}{El Problema SAT}{3}{0}{1}
+\beamer@sectionintoc {2}{M\IeC {\'e}todo de refutaci\IeC {\'o}n mediante omisi\IeC {\'o}n de variables}{8}{0}{2}
+\beamer@sectionintoc {3}{Interpretaci\IeC {\'o}n algebraica de la l\IeC {\'o}gica}{21}{0}{3}
+\beamer@sectionintoc {4}{Regla de independencia}{28}{0}{4}
+\beamer@sectionintoc {5}{SAT$\_$Solver}{32}{0}{5}
+\beamer@sectionintoc {6}{Conclusiones y trabajos futuros}{36}{0}{6}

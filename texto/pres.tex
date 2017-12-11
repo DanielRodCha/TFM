@@ -1,0 +1,623 @@
+\documentclass[10pt,a4paper]{beamer}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[right=2cm,left=3cm]
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb, setspace}
+
+\usepackage{parskip}
+\setlength{\parindent}{30pt}
+\usepackage{ragged2e}
+
+\newtheorem{definicion}{Definición:}[section]
+
+
+
+% Esto es para poder escribir acentos directamente:
+\usepackage[utf8]{inputenc}
+% Esto es para que el LaTeX sepa que el texto está en español:
+\usepackage[spanish]{babel}
+
+% Paquetes de la AMS:
+\usepackage{amsmath, amsthm, amsfonts,amssymb, wasysym}
+\usepackage{synttree} % Para hacer arboles
+\usepackage{graphicx} % Imagenes
+\usepackage{cancel}
+%\usepackage[usenames]{color} %colores
+\usepackage{multirow} % para las tablas
+\usepackage{wrapfig} % imagenes al lado de texto
+\usepackage{float} % colocar imagenes donde se quiera
+
+
+%\usepackage{a4wide}
+\usepackage{color}
+\usepackage{mathpazo} 
+\usepackage[scaled=.90]{helvet}
+\usepackage{cmtt}
+\renewcommand{\ttdefault}{cmtt}
+
+\newcommand{\mathsym}[1]{{}}
+\newcommand{\unicode}[1]{{}}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Teorema}
+\newtheorem{cor}[thm]{Corolario}
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{prop}[thm]{Proposición}
+\newtheorem{defn}[thm]{Definición}
+\theoremstyle{remark}
+\newtheorem{pru}[thm]{Prueba}
+\newtheorem{rem}[thm]{Observación}
+
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\PP{\mathbb{P}}
+\def\NP{\mathbb{NP}}
+\def\!!!{ \rightarrow \leftarrow }
+
+\def\MM{\textbf{M}}
+\newcommand{\QED}{\hfill {\qed}}
+
+\usepackage{fancyvrb} 
+
+
+\usetheme{CambridgeUS}
+\usecolortheme{whale}
+\useoutertheme{sidebar}
+\useinnertheme{circles}
+\setbeamercolor{frametitle}{fg=white}
+
+
+\title[Modelo del ecosistema de una población de Pandas Gigantes del GPBB]{Modelo del ecosistema de una población de Pandas Gigantes de la \textit{Chengdu Research Base of Giant Panda Breeding}}
+\author{Daniel R. Chavarría}
+\institute[US]{Simulación y Análisis Computacional en Biología de Sistemas \\Departamento de Ciencias de la Computación e Inteligencia Artificial \\ Universidad de Sevilla} 
+\date{6 de Marzo de 2017}
+\setbeamertemplate{navigation symbols}{}
+
+\AtBeginSection[]
+{\begin{frame}
+\frametitle{Índice}
+\begin{minipage}{\textwidth}
+\linespread{1.4}
+\tableofcontents[
+	currentsection]
+\end{minipage}
+\end{frame}}
+
+\begin{document}
+\frame{\titlepage}
+
+
+%--------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Interrupid ante cualquier duda}
+\includegraphics[scale=0.4]{bienvenidos}
+\end{frame}
+
+\begin{frame}
+\frametitle{El protagonista:}
+\includegraphics[scale=0.5]{panda2}
+\end{frame}
+
+\begin{frame}
+\frametitle{Índice}
+\begin{minipage}{\textwidth}
+\linespread{1.4}
+\tableofcontents
+\end{minipage}
+\end{frame}
+
+\section{Panda Gigante}
+
+\begin{frame}
+\frametitle{Panda Gigante}
+\framesubtitle{Información general}
+\begin{itemize}
+\item Mamífero de la orden de los carnívoros
+\item Familia de ....
+\item
+\item
+%\item Familia de los Úrsidos
+%\item Habita en regiones de China Central, a unos 3500 msnm.
+%\item Actualmente hay unos 2000 en libertad y 200 en cautividad.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{¿Mapaches u osos?}
+\framesubtitle{}
+\includegraphics[scale=2.3]{pandarojo} \hspace{1cm}
+\includegraphics[scale=0.16]{anteojos}
+
+\hspace{1cm} \textbf{Panda rojo} \hspace{1.3cm} \textbf{VS} \hspace{0.8cm} \textbf{Oso de Anteojos}
+\end{frame}
+
+\begin{frame}
+\frametitle{Panda Gigante}
+\framesubtitle{Información general}
+\begin{itemize}
+\item Mamífero de la orden de los carnívoros
+%\item Familia de ....
+\item Familia de los Úrsidos
+\item Habita en regiones de China Central, a unos 3500 msnm.
+\item Actualmente hay unos 2000 en libertad y 200 en cautividad.
+\item Debido al clima, el panda ha perdido el hábito de la hibernación.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Panda Gigante}
+\framesubtitle{Anatomía}
+\begin{itemize}
+\item En la edad adulta miden unos 0.75 \textit{m} de altura (sobre las 4 patas) y 1.5 \textit{m} de longitud.
+\item De adultos, pueden pesar entre 70 y 125 kg.
+\item Las crías al nacer pesan entre 90 y 130 gramos y sin apenas pelo.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Panda Gigante}
+\framesubtitle{Anatomía}
+\includegraphics[scale=0.45]{bebe}
+\end{frame}
+
+\begin{frame}
+\frametitle{Panda Gigante}
+\framesubtitle{Anatomía}
+\begin{itemize}
+\item En la edad adulta miden unos 0.75 \textit{m} de altura (sobre las 4 patas) y 1.5 \textit{m} de longitud.
+\item De adultos, pueden pesar entre 70 y 125 kg.
+\item Las crías al nacer pesan entre 90 y 130 gramos y sin apenas pelo.
+\item La pata tiene 5 dedos y un "pulgar" (hueso sesamoideo).
+\item A diferencia del resto de osos, sus pupilas son como las de los gatos.
+\item Existen dos clases de pelaje.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Panda Gigante}
+\framesubtitle{Panda de Sichuan }
+\includegraphics[scale=1]{panda1}
+\end{frame}
+
+\begin{frame}
+\frametitle{Panda Gigante}
+\framesubtitle{Panda de Quingling}
+\begin{center}
+\includegraphics[scale=0.5]{quinling}
+\end{center}
+
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Panda Gigante}
+\framesubtitle{Alimentación}
+\begin{itemize}
+\item La mayoría de su alimentación consiste en bambú. Su sistema digestivo no está adaptado para digerirlo, por lo que debe ingestar entre 14 y 30 \textit{kg} de bambú diarios. Tarea que le lleva 14 horas al día.
+\item En muy raras ocasiones ingiere otro tipo de alimentos (insectos huevos, roedores) como fuente de proteínas.
+\end{itemize}
+\vspace{0.2cm}
+\begin{center}
+\includegraphics[scale=0.4]{panda}
+\end{center}
+\end{frame}
+
+\section{GPBB}
+\begin{frame}
+\frametitle{\large{Chengdu Research Base of Giant Panda Breeding}}
+\framesubtitle{}
+\begin{itemize}
+\item Fundada en 1987.
+\item Es la encargada de la investigación, alimentación y conservación del Panda Gigante alrededor de todo el mundo.
+\end{itemize}
+\includegraphics[scale=0.3]{gpbb2} \hspace{0.5cm}
+\includegraphics[scale=0.3]{gpbb1}
+
+\includegraphics[scale=0.15]{gpbb3} \hspace{0.51cm}
+\includegraphics[scale=0.11]{gpbb4}
+\end{frame}
+
+\begin{frame}
+\frametitle{\large{Chengdu Research Base of Giant Panda Breeding}}
+\framesubtitle{El Panda Gigante en los Zoológicos}
+\begin{itemize}
+\item Es el animal más caro de mantener. El costo de mantener un panda es cinco veces mayor que el del elefante, el segundo mayor en cuanto a costo.
+\item Los zoológicos deben pagar al gobierno chino la suma de 2 millones de dólares por año en concepto de derechos y honorarios.
+\item Zoológicos de fuera de China que tienen (por continentes):
+\begin{itemize}
+\item[--] América: 7
+\item[--] Asia: 6
+\item[--] Australia: 1
+\item[--] Europa: 6
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{\large{Chengdu Research Base of Giant Panda Breeding}}
+\framesubtitle{El Panda Gigante en los Zoológicos}
+\begin{center}
+\includegraphics[scale=0.8]{zoom}
+
+\textbf{¡Tranquilos, Madrid es uno de los afortunados!}
+\end{center}
+\end{frame}
+
+\section{Descripción del modelo}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Notación}
+\begin{small}
+Se denotará por un subíndice $i=1$ si los individuos son machos y por $i=2$ si son hembras.\\
+
+\begin{itemize}
+\item[•] $k_{i,1}$: edad a la que se alcanza el tamaño \textit{sub-adulto}.
+\item[•] $k_{i,2}$: edad a la que se alcanza el tamaño \textit{adulto joven}.
+\item[•] $k_{i,3}$: edad a la que se alcanza el tamaño \textit{medio adulto}.
+\item[•] $k_{i,4,1}$: edad a la que se alcanza el tamaño \textit{anciano} (entre los 17 y los 26).
+\item[•] $k_{i,4,2}$: edad a la que se alcanza el tamaño \textit{anciano} (entre los 27 y los 35).
+\item[•] $k_{i,5}$: máxima esperanza de vida en el ecosistema dado.
+\item[•] $k_{i,6}$: tasa de mortalidad en pandas gigantes \textit{infantes}.
+\item[•] $k_{i,7}$: tasa de mortalidad en pandas gigantes \textit{sub-adultos}.
+\item[•] $k_{i,8}$: tasa de mortalidad en pandas gigantes \textit{adultos jóvenes}.
+\item[•] $k_{i,9}$: tasa de mortalidad en pandas gigantes \textit{medio adultos}.
+\item[•] $k_{i,10}$: tasa de mortalidad en pandas gigantes \textit{ancianos} (17 a 26).
+\item[•] $k_{i,11}$: tasa de mortalidad en pandas gigantes \textit{ancianos} (26 a 35).
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Notación}
+\begin{small}
+\begin{itemize}
+\item[•] $g_{1}$: número de descendientes machos por año.
+\item[•] $g_{2}$: número de descendientes hembra por año.
+\item[•] $g_{3}$: reservas anuales de brotes de bambú del GPBB (en kg).
+\item[•] $g_{4}$: reservas anuales de bambú del GPBB (en kg).
+\item[•] $g_{5}$: reservas anuales de otro tipo de comida (i.e. manzanas, carne, leche) del GPBB (en kg).
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Notación}
+\begin{small}
+\begin{itemize}
+\item[•] $f_{i,1}$: cantidad anual necesaria de brotes de bambú (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{infante}.
+\item[•] $f_{i,2}$: cantidad anual necesaria de bambú (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{infante}.
+\item[•] $f_{i,3}$: cantidad anual necesaria de otros alimentos (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{infante}.
+\item[•] $f_{i,4}$: cantidad anual necesaria de brotes de bambú (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{sub-adulto}.
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Notación}
+\begin{small}
+\begin{itemize}
+\item[•] $f_{i,5}$: cantidad anual necesaria de bambú (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{sub-adulto}.
+\item[•] $f_{i,6}$: cantidad anual necesaria de otros alimentos (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{sub-adulto}.
+\item[•] $f_{i,7}$: cantidad anual necesaria de brotes de bambú (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{adulto} ó \textit{anciano}.
+\item[•] $f_{i,8}$: cantidad anual necesaria de bambú (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{adulto} ó \textit{anciano}.
+\item[•] $f_{i,9}$: cantidad anual necesaria de otros alimentos (en kg) de acuerdo a las necesidades energéticas de un panda gigante \textit{adulto} ó \textit{anciano}.
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Notación}
+\begin{small}
+\begin{itemize}
+\item[•] $cmin$: mínimo número de pandas gigantes rescatados anualmente.
+\item[•] $cmax$: máximo número de pandas gigantes rescatados anualmente.
+\item[•] $cmaxage$: máxima edad de los pandas gigantes rescatados.
+\item[•] $pc_{c}$: probabilidad de rescatar $c$ individuos.
+\item[•] $pg_{i}$: probabilidad de que los individuos rescatados sean del género $i$.
+\item[•] $pa_{j}$: probabilidad de que los individuos rescatados tengan la edad $j$.
+\end{itemize}
+\end{small}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Símbolos del modelo}
+\begin{small}
+\begin{itemize}
+\item[•] $q_{i,j}$: número de pandas gigantes de edad $j$.
+\item[•] $X_{i,j}$: individuos de edad $j$ antes del módulo de reproducción.
+\item[•] $Y_{i,j}$: individuos de edad $j$ en el módulo de mortalidad.
+\item[•] $Z_{i,j}$: supervivientes de edad $j$.
+\item[•] $W_{i,j}$: individuos de edad $j$ después de módulo de alimentación.
+\item[•] $C_{i,j}$: individuos rescatados de edad $j$.
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Símbolos del modelo}
+\begin{small}
+\begin{itemize}
+\item[•] $S$: brotes de bambú.
+\item[•] $B$: bambú.
+\item[•] $O$: otros alimentos.
+\item[•] $F$: objeto auxiliar necesario para que el sistema generen una nueva cantidad de alimento al principio de cada ciclo de tiempo.
+\item[•] $N$: objeto auxiliar necesario para que el sistema generen nuevos nacimientos al principio de cada ciclo de tiempo.
+\item[•] $A$: objeto auxiliar que dispara los rescates.
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Estructura de membranas}
+\begin{center}
+$\mu=[\,[\;\;]_{2}\,]_{1}$
+
+\includegraphics[scale=0.5]{estructura}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Multiconjunto inicial}
+\begin{center}
+$\mathcal{M}_1=\{X^{q_{i,j}}_{i,j} : 1\leq i \leq 2, 1 \leq j \leq k_{i,5}\}$, $\mathcal{M}_2=\{F \;\; N \;\; A\}$
+
+\includegraphics[scale=0.5]{init}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Esquema de módulos}
+\begin{center}
+\includegraphics[scale=0.3]{esquemageneral}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Inicialización}
+\begin{center}
+\begin{small}
+\begin{itemize}
+\item[•] Generación de los objetos relacionados con la comida:
+$$r_1 \equiv [F]^0_2 \,\longrightarrow \,F \, [S^{g_3}\;B^{g_4}\;O^{g_5}]^+_2 $$
+\end{itemize}
+\end{small}
+\includegraphics[scale=0.5]{initr}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Reproducción}
+\begin{small}
+\begin{itemize}
+\item[•] Reglas relacionadas con el nacimiento:
+$$r_2 \equiv [N]^0_2 \,\longrightarrow \,N \, [Y^{g_1}_{1,0}\;Y^{g_2}_{2,0}]^+_2$$
+\end{itemize}
+\end{small}
+\begin{center}
+\includegraphics[scale=0.5]{nacim}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Reproducción}
+\begin{small}
+\begin{itemize}
+\item[•] Reglas de crecimiento
+$$r_3 \equiv [X_{i,j}]^0_2 \, \longrightarrow \,  [Y_{i,j}]^+_2 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ 1\leq j \leq k_{i,5} \end{matrix}\right. $$
+\end{itemize}
+\end{small}
+\begin{center}
+\includegraphics[scale=0.5]{grow}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Rescate}
+\begin{small}
+\begin{itemize}
+\item[•] Probabilidad de rescatar $c$ individuos:
+$$r_4 \equiv [A]^0_2 \, \xrightarrow{pc_c} \,  A\; C^c \; [\;]^+_2 , \text{ con }  cmin \leq c \leq cmax $$
+\end{itemize}
+\end{small}
+\begin{center}
+\includegraphics[scale=0.5]{resc1}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Primera ejecución}
+\begin{center}
+\includegraphics[scale=0.4]{paso1}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Mortalidad}
+\begin{small}
+\begin{itemize}
+\item[•] Pandas Gigantes \textit{infantes} que sobreviven:
+$$r_7 \equiv [Y_{i,j} \,\xrightarrow{1-k_{i,6}} \, Z_{i,j} ]^+_2 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ 0 \leq j < k_{i,1} \end{matrix}\right. $$
+\item[•] Pandas Gigantes \textit{infantes} que fallecen:
+$$r_8 \equiv [Y_{i,j} \,\xrightarrow{k_{i,6}} \, \lambda ]^+_2 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ 0 \leq j < k_{i,1} \end{matrix}\right. $$
+\end{itemize}
+\begin{center}
+.\\
+.\\
+.
+\end{center}
+\begin{itemize}
+\item[•] Pandas Gigantes que alcanzan la máxima esperanza de vida:
+$$r_{19} \equiv [Y_{i,k_{i,5}} \,\longrightarrow \, \lambda ]^+_2 , \text{ con } 1 \leq i \leq 2 $$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Mortalidad}
+\begin{center}
+\includegraphics[scale=0.5]{muerte}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Rescate}
+\begin{small}
+\begin{itemize}
+\item[•] Probabilidad de que los individuos rescatados tengan género $i$:
+$$r_5 \equiv [C \,\xrightarrow{pg_i} \, C_i ]^0_1 , \text{ con }  1 \leq i \leq 2 $$
+\end{itemize}
+\end{small}
+\begin{center}
+\includegraphics[scale=0.5]{resc2}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Segunda ejecución}
+\begin{center}
+\includegraphics[scale=0.4]{paso2}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Alimentación}
+\begin{small}
+\begin{itemize}
+\item[•] Proceso de alimentación de los Pandas Gigantes \textit{infantes}:
+$$r_{20} \equiv [Z_{i,j} \; S^{f_{i,1}} \; B^{f_{i,2}} \; O^{f_{i,3}}]^+_2 \,\longrightarrow \, [W_{i,j}]^0_2 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ 0 \leq j < k_{i,1} \end{matrix}\right. $$
+\item[•] Proceso de alimentación de los Pandas Gigantes \textit{subadultos}:
+$$r_{21} \equiv [Z_{i,j} \; S^{f_{i,4}} \; B^{f_{i,5}} \; O^{f_{i,6}}]^+_2 \,\longrightarrow \, [W_{i,j}]^0_2 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ < k_{i,1} \leq j < k_{i,2} \end{matrix}\right. $$
+\item[•] Proceso de alimentación de los Pandas Gigantes \textit{adultos} y \textit{ancianos}:
+$$r_{22} \equiv [Z_{i,j} \; S^{f_{i,7}} \; B^{f_{i,8}} \; O^{f_{i,9}}]^+_2 \,\longrightarrow \, [W_{i,j}]^0_2 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ < k_{i,2} \leq j < k_{i,5} \end{matrix}\right. $$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Alimentación}
+\begin{center}
+\includegraphics[scale=0.5]{feed}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Rescate}
+\begin{small}
+\begin{itemize}
+\item[•] Probabilidad de que los individuos rescatados tengan la edad $j$:
+$$r_6 \equiv [C_i \,\xrightarrow{pg_i} \, C_{i,j+1+ \lfloor \frac{j}{3} \rfloor} ]^0_1 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ 0 \leq j \leq cmaxage \end{matrix}\right. $$
+\end{itemize}
+\end{small}
+\begin{center}
+\includegraphics[scale=0.5]{resc3}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Tercera ejecución}
+\begin{center}
+\includegraphics[scale=0.4]{paso3}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Rescate}
+\begin{small}
+\begin{itemize}
+\item[•] Reglas que eliminan la comida sobrante:
+$$r_{23} \equiv [S \, \longrightarrow \, \lambda]^0_2$$
+$$r_{24} \equiv [B \, \longrightarrow \, \lambda]^0_2$$
+$$r_{25} \equiv [O \, \longrightarrow \, \lambda]^0_2$$
+\end{itemize}
+\end{small}
+\begin{center}
+\includegraphics[scale=0.5]{act1}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Módulo de Rescate}
+\begin{small}
+\begin{itemize}
+\item[•] Reglas que preparan el principio del próximo ciclo:
+$$r_{26} \equiv [W_{i,j}]^0_2 \, \longrightarrow \,  X_{i,j+1} \, [\;]^0_2 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ 1\leq j < k_{i,5} \end{matrix}\right. $$
+$$r_{27} \equiv C_{i,j} \, [\;]^0_2 \, \longrightarrow \, X_{i,j+1}\, [\;]^0_2 , \text{ con } \left \{ \begin{matrix} 1 \leq i \leq 2
+\\ 1\leq j < k_{i,5} \end{matrix}\right. $$
+$$r_{28} \equiv F \, [\;]^0_2 \, \longrightarrow \, [F]^0_2$$
+$$r_{29} \equiv N \, [\;]^0_2 \, \longrightarrow \, [N]^0_2$$
+$$r_{30} \equiv A \, [\;]^0_2 \, \longrightarrow \, [A]^0_2$$
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\includegraphics[scale=0.5]{act2}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del Modelo}
+\framesubtitle{Última ejecución}
+\begin{center}
+\includegraphics[scale=0.4]{paso4}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Gracias por la atención}
+\includegraphics[scale=0.12]{gracias}
+\end{frame}
+\end{document}
